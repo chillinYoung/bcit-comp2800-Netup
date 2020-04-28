@@ -10,6 +10,10 @@
 
 ## App Name: Netup
 
-- description of app
+- a platform created to allow anyone to initiate an event that anyone can join online anywhere in the world without worrying about language barriers
+
+## Version
+
+- 1.0.0
 
 
