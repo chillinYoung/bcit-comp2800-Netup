@@ -115,13 +115,14 @@ nav {
   grid-area: figure-text;
   padding: 2rem 4rem;
   background-color: var(--color-point-yellow);
-  color: var(--color-dark-text);
+  color: var(--color-bright-text);
   font-size: 1.5rem;
   text-align: center;
   font-weight: bold;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  letter-spacing: -1px;
 }
 
 #figure-text span {
@@ -147,7 +148,7 @@ nav {
 
 main {
   background-color: white;
-  padding: 2rem 1rem;
+  padding: 2rem 1rem 2.5rem;
   display: grid;
   grid-template-columns: 1fr;
 }
@@ -233,6 +234,38 @@ footer ul a {
   height: 2.5rem;
 }
 
+.yellow-btn {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--color-bright-text);
+  border: none;
+  border-radius: 5px;
+  width: 100px;
+  height: 2rem;
+  margin: 1rem;
+  background-color: var(--color-point-yellow)
+}
+
+.yellow-btn:hover {
+  background-color: var(--color-point-orange)
+}
+
+.gray-btn {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--color-bright-text);
+  border: none;
+  border-radius: 5px;
+  width: 100px;
+  height: 2rem;
+  margin: 1rem;
+  background-color: var(--color-dim-text)
+}
+
+.gray-btn:hover {
+  background-color: var(--color-point-mint)
+}
+
 
 /* tablet layout from here */
 @media (min-width: 640px) {
@@ -259,7 +292,7 @@ footer ul a {
   }
 
   main {
-    padding: 2rem 3.5rem;
+    padding: 2rem 3.5rem 2.5rem;
     grid-template-columns: repeat(2, 1fr);
   }
 

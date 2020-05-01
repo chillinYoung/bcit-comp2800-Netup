@@ -6,7 +6,7 @@
     <title>Netup</title>
     <!-- Style Sheets -->
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/signin.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/signup.css">
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&family=Racing+Sans+One&display=swap" rel="stylesheet">
@@ -46,34 +46,42 @@
 
     <figure class="figure-bg">
       <div class="figure-overtext">
-        <span>Please sign in to access your events</span>
+        <span>Join us today and enjoy all the events</span>
       </div>
     </figure>
 
     <main>
-      <div class="signin-signup">
-        <span>Not signed up yet?</span>
-        <a>Sign up</a>
+      <div class="signup-signup">
+        <span>Already have an account?</span>
+        <a>Sign in</a>
       </div>
       <form method="post">
         <div>
-          <label for="signin-email">Email:</label>
-          <input type="email" id="signin-email" name="signin-email" required>
+          <label for="signup-fname">First Name:</label>
+          <input type="text" id="signup-fname" name="signup-fname" required>
         </div>
         <div>
-          <label for="signin-pw">Password:</label>
-          <input type="password" id="signin-pw" name="signin-pw" required>
+          <label for="signup-lname">Last Name:</label>
+          <input type="text" id="signup-lname" name="signup-lname" required>
         </div>
-        <input id="signin-btn" class="yellow-btn" type="submit" value="Sign in">
+        <div>
+          <label for="signup-email">Email:</label>
+          <input type="email" id="signup-email" name="signup-email" required>
+        </div>
+        <div>
+          <label for="signup-pw">Password:</label>
+          <input type="password" id="signup-pw" name="signup-pw" required>
+        </div>
+        <input id="signup-btn" class="yellow-btn" type="submit" value="Sign up">
       </form>
-      <div class="signin-or">
+      <div class="signup-or">
         <div class="horizontal-line"></div>
         <span class="">or</span>
       </div>
-      <div class="signin-third-party-list">
-        <button>Third party sign in option</button>
-        <button>Third party sign in option</button>
-        <button>Third party sign in option</button>
+      <div class="signup-third-party-list">
+        <button>Third party sign up option</button>
+        <button>Third party sign up option</button>
+        <button>Third party sign up option</button>
       </div>
 
     </main>
