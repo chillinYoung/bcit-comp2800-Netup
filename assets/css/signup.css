@@ -1,8 +1,20 @@
-body {
+.body-signup {
+  font-family: 'Open Sans', sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  display: grid;
   grid-template-rows: 4.7rem 16rem auto 2.5rem;
+  grid-template-areas:
+    "header"
+    "figure-signup-bg"
+    "main-signup"
+    "footer";
 }
 
-.figure-bg {
+.figure-signup-bg {grid-area: figure-signup-bg;}
+.main-signup {grid-area: main-signup;}
+
+.figure-signup-bg {
   background-image: url("../images/balloon.jpg");
   background-size: cover;
   display: flex;
@@ -15,7 +27,7 @@ body {
   border-bottom: 5px solid white;
 }
 
-.figure-overtext {
+.figure-signup-overtext {
   width: 40%;
   color: var(--color-bright-text);
   font-size: 2rem;
@@ -25,12 +37,15 @@ body {
   text-align: right;
 }
 
-.figure-overtext span {
+.figure-signup-overtext span {
   display: block;
 }
 
-main {
-  display: block;
+.main-signup {
+  padding: 2rem 3.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .signup-signup {
@@ -49,18 +64,18 @@ main {
   color: var(--color-point-orange);
 }
 
-form {
+.form-signup {
   padding: 2rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-form label {
+.form-signup label {
   font-size: .9rem;
 }
 
-form div {
+.form-signup div {
   width: 15rem;
   display: flex;
   flex-direction: column;
@@ -68,7 +83,7 @@ form div {
   margin: .3rem;
 }
 
-form div input {
+.form-signup div input {
   border: 1px solid lightgray;
   border-radius: 5px;
   width: 100%;
@@ -122,7 +137,7 @@ form div input {
 
 /* tablet layout from here */
 @media (min-width: 640px) {
-  .figure-overtext {
+  .figure-signup-overtext {
     font-size: 2.3rem;
   }
 }
@@ -130,28 +145,28 @@ form div input {
 
 /* pc layout from here */
 @media (min-width: 1025px) {
-  body {
+  .body-signup {
     grid-template-columns: repeat(2, 1fr);
     grid-template-areas:
       "header header"
-      "figure main"
-      "figure main"
+      "figure-signup-bg main-signup"
+      "figure-signup-bg main-signup"
       "footer footer";
   }
 
-  .figure-bg {
+  .figure-signup-bg {
     padding-right: 0;
     background-position: right;
     justify-content: flex-end;
   }
 
-  .figure-overtext {
+  .figure-signup-overtext {
     font-size: 2.5rem;
     text-align: right;
     padding: 0 7% 0 0;
   }
 
-  main {
+  .main-signup {
     display: flex;
     flex-direction: column;
     justify-content: center;
