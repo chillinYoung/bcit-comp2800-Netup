@@ -15,13 +15,18 @@
 header {grid-area: header;}
 footer {grid-area: footer;}
 
+body {
+  font-family: 'Open Sans', sans-serif;
+  min-height: 100vh;
+  margin: 0;
+}
+
 .body-index {
   font-family: 'Open Sans', sans-serif;
   min-height: 100vh;
-  font-family: Helvetica;
   margin: 0;
   display: grid;
-  grid-template-rows: 4.7rem auto auto 8rem;
+  grid-template-rows: 4.7rem auto auto auto;
   grid-template-areas:
     "header"
     "figure-index"
@@ -70,6 +75,8 @@ header {
 
 .header-signin {
   padding-left: .7rem;
+  color: var(--color-bright-white);
+  text-decoration: none;
 }
 
 .header-signin:hover {
@@ -117,13 +124,14 @@ nav {
   grid-area: figure-index-text;
   padding: 2rem 4rem;
   background-color: var(--color-point-yellow);
-  color: var(--color-dark-text);
+  color: var(--color-bright-text);
   font-size: 1.5rem;
   text-align: center;
   font-weight: bold;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  letter-spacing: -1px;
 }
 
 #figure-index-text span {
@@ -159,7 +167,7 @@ nav {
   box-shadow: .1rem .1rem .4rem dimgray;
   margin: 1.5rem;
   width: 80%;
-  border-radius: 9px;
+  border-radius: 5px;
   background-color: var(--color-bright-text);
   margin-left: auto;
   margin-right: auto;
@@ -168,7 +176,7 @@ nav {
 .video-post img {
   width: 100%;
   object-fit: cover;
-  border-radius: 9px 9px 0 0;
+  border-radius: 5px 5px 0 0;
 }
 
 .video-post div {
@@ -212,7 +220,7 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  background-color: var(--color-dark-text);
+  background-color: var(--color-point-mint);
   font-size: .9rem;
 }
 
@@ -224,18 +232,49 @@ footer ul {
 }
 
 footer ul a {
-  color: lightgray;
+  color: var(--color-dark-text);
   text-decoration: none;
 }
 
 .footer-info {
   color: var(--color-dim-text);
-  padding: 0 1rem;
+  padding: 0 1rem 1rem;
   display: flex;
   align-items: center;
   height: 2.5rem;
 }
 
+.yellow-btn {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--color-bright-text);
+  border: none;
+  border-radius: 5px;
+  width: 100px;
+  height: 2rem;
+  margin: 1rem;
+  background-color: var(--color-point-yellow)
+}
+
+.yellow-btn:hover {
+  background-color: var(--color-point-orange)
+}
+
+.gray-btn {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--color-bright-text);
+  border: none;
+  border-radius: 5px;
+  width: 100px;
+  height: 2rem;
+  margin: 1rem;
+  background-color: var(--color-dim-text)
+}
+
+.gray-btn:hover {
+  background-color: var(--color-point-mint)
+}
 
 /* tablet layout from here */
 @media (min-width: 640px) {
@@ -283,7 +322,7 @@ footer ul a {
   }
 
   .footer-info {
-    padding: 0 2rem;
+    padding: 0 2rem 1rem;
   }
 }
 
