@@ -1,8 +1,41 @@
- <!-- Card containing the sign-in UI -->
- <div>
-   <h2>Don't have an account? <a href="/signup">Sign Up</a></h2>
+<body>
 
-   <div>
-     <input>
-   </div>
- </div>
+  <%- include('partials/navigation'); %>
+
+  <figure class="figure-bg">
+    <div class="figure-overtext">
+      <span>Please sign in to access your events.</span>
+    </div>
+  </figure>
+
+  <main>
+    <div class="signin-signup">
+      <span>Not signed up yet?</span>
+      <a href="/signup">Sign up</a>
+    </div>
+    <form method="post">
+      <div>
+        <label for="signin-email">Email:</label>
+        <input type="email" id="signin-email" name="signin-email" required>
+      </div>
+      <div>
+        <label for="signin-pw">Password:</label>
+        <input type="password" id="signin-pw" name="signin-pw" required>
+      </div>
+      <input id="signin-btn" class="yellow-btn" type="submit" value="Sign in">
+    </form>
+    <div class="signin-or">
+      <div class="horizontal-line"></div>
+      <span class="">or</span>
+    </div>
+    <div class="signin-third-party-list">
+      <button>Third party sign in option</button>
+      <button>Third party sign in option</button>
+      <button>Third party sign in option</button>
+    </div>
+
+  </main>
+
+  <%- include('partials/footer'); %>
+
+</body>
