@@ -1,39 +1,29 @@
-<body>
+<div class="body-signin">
 
   <%- include('partials/navigation'); %>
 
-  <figure class="figure-bg">
-    <div class="figure-overtext">
-      <span>Please sign in to access your events.</span>
+  <figure class="figure-signin-bg">
+    <div class="figure-signin-overtext">
+      <span>Please sign in to access your events</span>
     </div>
   </figure>
 
-  <main>
+  <main class="main-signin">
     <div class="signin-signup">
       <span>Not signed up yet?</span>
-      <a href="/signup">Sign up</a>
+      <a>Sign up</a>
     </div>
-    
-
-    <form action="/login" method="post">
+    <form class="form-signin" method="post">
       <div>
         <label for="signin-email">Email:</label>
-        <input type="email" 
-        id="signin-email" 
-        name="signin-email" required>
+        <input type="email" id="signin-email" name="signin-email" required>
       </div>
-
       <div>
         <label for="signin-pw">Password:</label>
-        <input type="password" 
-        id="signin-pw" 
-        name="signin-pw" required>
+        <input type="password" id="signin-pw" name="signin-pw" required>
       </div>
-      
       <input id="signin-btn" class="yellow-btn" type="submit" value="Sign in">
     </form>
-
-
     <div class="signin-or">
       <div class="horizontal-line"></div>
       <span class="">or</span>
@@ -48,4 +38,4 @@
 
   <%- include('partials/footer'); %>
 
-</body>
+</div>

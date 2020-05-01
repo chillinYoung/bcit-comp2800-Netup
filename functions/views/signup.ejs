@@ -1,67 +1,49 @@
-<body>
+<div class="body-signup">
 
   <%- include('partials/navigation'); %>
 
-  <form action="/signup" method="post" id="signup-form">
-    <div>
-      <input 
-      type="username" 
-      name="username" 
-      class="form-control" 
-      id="username" 
-      placeholder="Enter username"
-      value="<%= typeof username != 'undefined' ? username : ''%>"
-      >
+  <figure class="figure-signup-bg">
+    <div class="figure-signup-overtext">
+      <span>Join us today and enjoy all the events</span>
     </div>
+  </figure>
 
-    <div>
-      <input 
-      type="email" 
-      name="email" 
-      class="form-control" 
-      id="email" 
-      placeholder="Enter E-mail"
-      value="<%= typeof email != 'undefined' ? email : ''%>"
-      >
+  <main class="main-signup">
+    <div class="signup-signup">
+      <span>Already have an account?</span>
+      <a>Sign in</a>
     </div>
-
-    <div>
-      <input 
-      type="password" 
-      name="password" 
-      class="form-control" 
-      id="password" 
-      placeholder="Enter password"
-      value="<%= typeof password != 'undefined' ? password : ''%>"
-      >
-    </div>
-
-    <div>
-      <input 
-      type="password" 
-      name="password2"
-      class="form-control" 
-      id="password2" 
-      placeholder="Confirm password"
-      value="<%= typeof password2 != 'undefined' ? password2 : ''%>"
-      >
-    </div>
-
-    <div>
-      <div id="signup-btn-container">
-        <a href="/login"> 
-          <button type="button" name="back" value="back" 
-          id="back">Back To Login</button>
-        </a>
-        <button 
-        type="submit" 
-        >
-        Create
-      </button>
+    <form class="form-signup" method="post">
+      <div>
+        <label for="signup-fname">First Name:</label>
+        <input type="text" id="signup-fname" name="signup-fname" required>
       </div>
+      <div>
+        <label for="signup-lname">Last Name:</label>
+        <input type="text" id="signup-lname" name="signup-lname" required>
+      </div>
+      <div>
+        <label for="signup-email">Email:</label>
+        <input type="email" id="signup-email" name="signup-email" required>
+      </div>
+      <div>
+        <label for="signup-pw">Password:</label>
+        <input type="password" id="signup-pw" name="signup-pw" required>
+      </div>
+      <input id="signup-btn" class="yellow-btn" type="submit" value="Sign up">
+    </form>
+    <div class="signup-or">
+      <div class="horizontal-line"></div>
+      <span class="">or</span>
     </div>
-  </form>
+    <div class="signup-third-party-list">
+      <button>Third party sign up option</button>
+      <button>Third party sign up option</button>
+      <button>Third party sign up option</button>
+    </div>
+
+  </main>
 
   <%- include('partials/footer'); %>
 
-</body>
+</div>

@@ -1,60 +1,37 @@
- <header>
-  <div class="mobile-menu">
-    <span id="mobile-menu-open-btn" onclick="openMenu()">&#9776;</span>
-    <span id="mobile-menu-close-btn" onclick="closeMenu()">&#10005;</span>
-  </div>
-  <div class="header-title">
-    <a href="/">Netup</a>
-  </div>
-  <div class="header-nav">
-    <ul class="main-nav-links">
+
+<div class="body-index">
+
+  <%- include('partials/navigation'); %>
+
+  <figure class="figure-index">
+    <img id="figure-index-img" src="assets/images/lego.jpg" alt="Photo by Markus Spiske on Unsplash">
+    <div id="figure-index-text">
+      <span>Join a realtime online group meeting,</span>
+      <span>have fun with people all around the world.</span>
+    </div>
+  </figure>
+
+  <main class="main-index">
+    <%- include('partials/mainEvents'); %>
+  </main>
+
+  <footer>
+    <ul class="footer-nav">
       <li>
-        <a class="main-nav-link" href="/">About</a>
+        <a class="footer-nav-link" href="/">About</a>
       </li>
       <li>
-        <a class="main-nav-link" href="/">Topics</a>
+        <a class="footer-nav-link" href="/">Topics</a>
       </li>
       <li>
-        <a class="main-nav-link" href="/">Events</a>
+        <a class="footer-nav-link" href="/">Events</a>
       </li>
       <li>
-        <a class="main-nav-link" href="/">Contact</a>
+        <a class="footer-nav-link" href="/">Contact</a>
       </li>
     </ul>
-    <a href="/login" class="header-signin">Sign in</a>
-  </div>
-</header>
 
+    <%- include('partials/footer'); %>
+  </footer>
 
-<figure>
-  <img id="figure-img" src="/src/assets/images/lego.jpg" alt="Photo by Markus Spiske on Unsplash">
-  <div id="figure-text">
-    <span>Join a realtime online group meeting,</span>
-    <span>have fun with people all around the world.</span>
-  </div>
-</figure>
-
-<main>
- <%- include('partials/mainEvents'); %>
-</main>
-
-<footer>
-  <ul class="footer-nav">
-    <li>
-      <a class="footer-nav-link" href="/">About</a>
-    </li>
-    <li>
-      <a class="footer-nav-link" href="/">Topics</a>
-    </li>
-    <li>
-      <a class="footer-nav-link" href="/">Events</a>
-    </li>
-    <li>
-      <a class="footer-nav-link" href="/">Contact</a>
-    </li>
-  </ul>
-
-  <div class="footer-info">
-    <span class="footer-copyrights">&copy;2020 Netup. All Rights Reserved.</span>
-  </div>
-</footer>
+</div>
