@@ -1,8 +1,20 @@
-body {
+.body-signin {
+  font-family: 'Open Sans', sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  display: grid;
   grid-template-rows: 4.7rem 16rem auto 2.5rem;
+  grid-template-areas:
+    "header"
+    "figure-signin-bg"
+    "main-signin"
+    "footer";
 }
 
-.figure-bg {
+.figure-signin-bg {grid-area: figure-signin-bg;}
+.main-signin {grid-area: main-signin;}
+
+.figure-signin-bg {
   background-image: url("../images/cupcake.jpg");
   background-size: cover;
   display: flex;
@@ -15,7 +27,7 @@ body {
   border-bottom: 5px solid white;
 }
 
-.figure-overtext {
+.figure-signin-overtext {
   width: 40%;
   color: var(--color-bright-text);
   font-size: 2rem;
@@ -26,12 +38,15 @@ body {
   align-items: flex-start;
 }
 
-.figure-overtext span {
+.figure-signin-overtext span {
   display: block;
 }
 
-main {
-  display: block;
+.main-signin {
+  padding: 2rem 3.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .signin-signup {
@@ -50,18 +65,18 @@ main {
   color: var(--color-point-orange);
 }
 
-form {
+.form-signin {
   padding: 2rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-form label {
+.form-signin label {
   font-size: .9rem;
 }
 
-form div {
+.form-signin div {
   width: 15rem;
   display: flex;
   flex-direction: column;
@@ -69,7 +84,7 @@ form div {
   margin: .3rem;
 }
 
-form div input {
+.form-signin div input {
   border: 1px solid lightgray;
   border-radius: 5px;
   width: 100%;
@@ -123,7 +138,7 @@ form div input {
 
 /* tablet layout from here */
 @media (min-width: 640px) {
-  .figure-overtext {
+  .figure-signin-overtext {
     font-size: 2.3rem;
   }
 }
@@ -131,26 +146,21 @@ form div input {
 
 /* pc layout from here */
 @media (min-width: 1025px) {
-  body {
+  .body-signin {
     grid-template-columns: repeat(2, 1fr);
     grid-template-areas:
       "header header"
-      "figure main"
-      "figure main"
+      "figure-signin-bg main-signin"
+      "figure-signin-bg main-signin"
       "footer footer";
   }
 
-  .figure-bg {
-    padding-right: 0;
+  .figure-signin-bg {
+    padding: 0;
   }
 
-  .figure-overtext {
+  .figure-signin-overtext {
     font-size: 2.5rem;
-  }
-
-  main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    padding-left: 7%;
   }
 }
