@@ -49,6 +49,7 @@ const Database = {
 
   users:[
     {
+      id: 1,
       name: "lily",
       email: "lily@gmail.com",
       password: "test123",
@@ -72,6 +73,7 @@ const Database = {
       joinedEvents: []
     },
     {
+      id: 2,
       name: "young",
       email: "young@gmail.com",
       password: "test123",
@@ -80,6 +82,7 @@ const Database = {
       joinedEvents: []
     },
     {
+      id: 3,
       name: "antony",
       email: "antony@gmail.com",
       password: "test123",
@@ -96,6 +99,7 @@ const Database = {
       ]
     },
     {
+      id: 4,
       name: "james",
       email: "james@gmail.com",
       password: "test123",

@@ -6,9 +6,9 @@ const functions = require('firebase-functions');
 const express = require('express');
 const ejsLayouts = require('express-ejs-layouts');
 const admin = require("firebase-admin");
-const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
+const passport = require('passport');
 
 // initialize our mock database
 let db = require("./db/mockDatabase");
@@ -25,7 +25,7 @@ server.set('views', './views');
 server.set('view engine', 'ejs');
 
 // PASSPORT CONFIGURATION - FOR AUTHENTICATION
-// require('./config/passport_local')(passport);
+require('./config/passport_local')(passport);
 
 // EXPRESS-SESSION MIDDLEWARE ***********************************************************
 // it's a dependency for both passport and connect-flash messaging
@@ -56,10 +56,13 @@ server.use(flash());
 // CUSTOM MIDDLEWARE *********************************************************************
 
 server.use((req, res, next) => {
-  // set up global variables
+  // THIS IS FOR THE CREATE ACCOUNT MESSAGES
+
   res.locals.success_msg = req.flash('success_msg');
-  // NOT SURE WHAT THIS ERROR_MSG WILL BE UNLESS WE ARE HANDLING ANY ERROR WITH SETTING UP USER IN THE DATABASE
+  // this is for the create account page error messages
   res.locals.error_msg = req.flash('error_msg');
+
+  // THIS IS FOR THE AUTHENTICATION ERROR / SUCCESS MESSAGES FROM PASSPORT
   // global variable for the flash error for passport just returns an error
   res.locals.error = req.flash('error');
   // global variable for the flash error for passport when login succeeded
@@ -87,6 +90,15 @@ server.get('/signup', (req, res) => {
 server.post('/signup', (req, res) => {
   console.log(req.body);
   res.send("succesfully registered");
+})
+
+server.post('/login', (req, res, next) => {
+  passport.authenticate('local', {
+    successRedirect: '/accountPage',
+    failureRedirect: '/login',
+    failureFlash: true,
+    successFlash: true
+  })(req, res, next);
 })
 
 exports.app = functions.https.onRequest(server);
