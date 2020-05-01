@@ -1,0 +1,47 @@
+<div class="body-signin">
+
+  <%- include('partials/navigation'); %>
+
+  <figure class="figure-signin-bg">
+    <div class="figure-signin-overtext">
+      <span>Please sign in to access your events</span>
+    </div>
+  </figure>
+
+  <main class="main-signin">
+    <div class="signin-signup">
+      <span>Not signed up yet?</span>
+      <a href="/signup">Sign up</a>
+    </div>
+    
+    <%- include('partials/messages'); %>
+    <form action="/login" method="post" class="form-signin">
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" class="" 
+        id="email" 
+        name="email" required>
+      </div>
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" 
+        id="password" 
+        name="password" required>
+      </div>
+      <input id="signin-btn" class="yellow-btn" type="submit" value="Sign in">
+    </form>
+    <div class="signin-or">
+      <div class="horizontal-line"></div>
+      <span class="">or</span>
+    </div>
+    <div class="signin-third-party-list">
+      <button>Third party sign in option</button>
+      <button>Third party sign in option</button>
+      <button>Third party sign in option</button>
+    </div>
+
+  </main>
+
+  <%- include('partials/footer'); %>
+
+</div>
