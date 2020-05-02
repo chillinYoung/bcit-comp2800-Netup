@@ -21,6 +21,12 @@
         <a class="main-nav-link" href="/">Contact</a>
       </li>
     </ul>
-    <a href="/login" class="header-signin">Sign in</a>
+    <% if(user) { %>
+      <!-- THIS IS WHEN USER IS NOT LOGGED IN-->
+      <a href="/login" class="header-signin">Sign in</a>
+    <% } else { %>
+      <!-- THIS IS WHEN USER IS LOGGED IN-->
+      <a href="/signout" class="header-signin">Sign out</a>
+    <% } %>
   </div>
 </header>

@@ -9,6 +9,7 @@ const admin = require("firebase-admin");
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
+const checkAuth = require('./config/auth').ensureAuthenticated;
 
 // initialize our mock database
 let db = require("./db/mockDatabase");
@@ -73,23 +74,75 @@ server.use((req, res, next) => {
 
 // landing page handle
 server.get('/', (req, res) => {
+  let userSignedIn = null;
+    
+    if(req.user) {
+      userSignedIn = false;
+    } else {
+      userSignedIn = true;
+    }
+
+  console.log(req.user);
   const events = db.events;
-  res.render('index', {events: events});
+  res.render('index', {
+    events: events,
+    user: userSignedIn
+  });
 })
 
 // login handle
 server.get('/login', (req, res) => {
-  res.render('login');
+  let userSignedIn = null;
+    
+    if(req.user) {
+      userSignedIn = false;
+    } else {
+      userSignedIn = true;
+    }
+
+  console.log(req.user);
+  res.render('login', {user: userSignedIn});
 })
 
 // signup handle
 server.get('/signup', (req, res) => {
-  res.render('signup');
+  let userSignedIn = null;
+    
+  if(req.user) {
+    userSignedIn = false;
+  } else {
+    userSignedIn = true;
+  }
+
+  console.log(req.user);
+  res.render('signup', {user: userSignedIn});
 })
 
+// update db after signup
 server.post('/signup', (req, res) => {
   console.log(req.body);
   res.send("succesfully registered");
+})
+
+// user account page handle
+server.get('/accountPage', checkAuth,(req, res) => {
+  let userSignedIn = null;
+    
+  if(req.user) {
+    userSignedIn = false;
+  } else {
+    userSignedIn = true;
+  }
+
+  console.log(req.user);
+  res.render('accountPage', {user: userSignedIn});
+})
+
+// signout handle
+server.get('/signout', (req, res) => {
+  req.logout();
+  req.flash('success_msg', "logged out successfully");
+  res.redirect('/');
 })
 
 server.post('/login', (req, res, next) => {
