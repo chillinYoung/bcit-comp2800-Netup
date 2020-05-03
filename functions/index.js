@@ -1,4 +1,3 @@
-
 // Create and Deploy Your First Cloud Functions
 // https://firebase.google.com/docs/functions/write-firebase-functions
 
@@ -9,7 +8,10 @@ const admin = require("firebase-admin");
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
+
+// importing custom modules
 const checkAuth = require('./config/auth').ensureAuthenticated;
+const userController = require('./controller/userRoute');
 
 // initialize our mock database
 let db = require("./db/mockDatabase");
@@ -72,70 +74,36 @@ server.use((req, res, next) => {
   next();
 })
 
+// INDEX ROUTING - NON USER RELATED
 // landing page handle
 server.get('/', (req, res) => {
-  let userSignedIn = null;
-    
-    if(req.user) {
-      userSignedIn = false;
-    } else {
-      userSignedIn = true;
-    }
-
   console.log(req.user);
   const events = db.events;
-  res.render('index', {
+  res.render('pages/index', {
     events: events,
-    user: userSignedIn
+    user: userController.isLoggedIn(req.user)
   });
 })
 
+
 // login handle
 server.get('/login', (req, res) => {
-  let userSignedIn = null;
-    
-    if(req.user) {
-      userSignedIn = false;
-    } else {
-      userSignedIn = true;
-    }
-
-  console.log(req.user);
-  res.render('login', {user: userSignedIn});
+  res.render('pages/login', {user: userController.isLoggedIn(req.user)});
 })
 
 // signup handle
 server.get('/signup', (req, res) => {
-  let userSignedIn = null;
-    
-  if(req.user) {
-    userSignedIn = false;
-  } else {
-    userSignedIn = true;
-  }
-
-  console.log(req.user);
-  res.render('signup', {user: userSignedIn});
+  res.render('pages/signup', {user: userController.isLoggedIn(req.user)});
 })
 
 // update db after signup
 server.post('/signup', (req, res) => {
-  console.log(req.body);
   res.send("succesfully registered");
 })
 
 // user account page handle
 server.get('/accountPage', checkAuth,(req, res) => {
-  let userSignedIn = null;
-    
-  if(req.user) {
-    userSignedIn = false;
-  } else {
-    userSignedIn = true;
-  }
-
-  console.log(req.user);
-  res.render('accountPage', {user: userSignedIn});
+  res.render('pages/accountPage', {user: userController.isLoggedIn(req.user)});
 })
 
 // signout handle
