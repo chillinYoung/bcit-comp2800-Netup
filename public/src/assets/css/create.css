@@ -93,6 +93,16 @@
   justify-content: center;
 }
 
+.form-create-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: .3rem;
+  width: 80%;
+  min-width: 15rem;
+  max-width: 30rem;
+}
+
 .form-textarea-basic {
   font-family: 'Open Sans', sans-serif;
   width: 100%;

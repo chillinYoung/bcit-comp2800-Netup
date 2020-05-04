@@ -15,7 +15,7 @@
     </div>
 
     <form class="form-basic" method="post">
-      <div class="form-basic-container">
+      <div class="form-create-container">
         <label for="create-topic" class="form-label-basic">Choose Topic</label>
         <select class="form-input-basic" id="create-topic" name="create-topic" required>
           <option value selected>Select...</option>
@@ -24,19 +24,19 @@
           <option value="tech">Tech</option>
         </select>
       </div>
-      <div class="form-basic-container">
+      <div class="form-create-container">
         <label for="create-title" class="form-label-basic">Title:</label>
         <input class="form-input-basic" type="text" id="create-title" name="create-title" minlength="5" required>
       </div>
-      <div class="form-basic-container">
+      <div class="form-create-container">
         <label for="create-date" class="form-label-basic">Date:</label>
         <input class="form-input-basic" type="datetime-local" id="create-date" name="create-date" required>
       </div>
-      <div class="form-basic-container">
+      <div class="form-create-container">
         <label for="create-duration" class="form-label-basic">Session Duration:</label>
         <input class="form-input-basic" type="number" id="create-duration" name="create-duration" placeholder="(in minutes, max 1440 minutes)" max="1440" required>
       </div>
-      <div class="form-basic-container">
+      <div class="form-create-container">
         <label for="create-description" class="form-label-basic">Description:</label>
         <textarea class="form-textarea-basic" rows="5" minlength="50" style="resize: none;"></textarea>
       </div>
