@@ -3,7 +3,7 @@
   min-height: 100vh;
   margin: 0;
   display: grid;
-  grid-template-rows: 4.7rem 16rem auto 2.5rem;
+  grid-template-rows: auto 16rem auto 2.5rem;
   grid-template-areas:
     "header"
     "figure-signup-bg"
@@ -42,6 +42,7 @@
 }
 
 .main-signup {
+  min-height: 0;
   padding: 2rem 3.5rem 2.5rem;
   display: flex;
   flex-direction: column;
@@ -152,6 +153,10 @@
       "figure-signup-bg main-signup"
       "figure-signup-bg main-signup"
       "footer footer";
+  }
+  
+  .main-signup {
+    min-height: 80vh;
   }
 
   .figure-signup-bg {

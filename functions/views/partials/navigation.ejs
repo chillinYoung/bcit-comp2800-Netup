@@ -1,32 +1,52 @@
 <header>
-  <div class="mobile-menu">
-    <span id="mobile-menu-open-btn" onclick="openMenu()">&#9776;</span>
-    <span id="mobile-menu-close-btn" onclick="closeMenu()">&#10005;</span>
+  <div class="header">
+    <div class="mobile-menu">
+      <span class="mobile-menu-open-btn" onclick="openMenu()">&#9776;</span>
+      <span class="mobile-menu-close-btn" onclick="closeMenu()">&#10005;</span>
+    </div>
+    <div class="header-title">
+      <a href="/">Netup</a>
+    </div>
+    <div class="header-nav">
+      <ul class="main-nav-links">
+        <li>
+          <a class="main-nav-link" href="/">About</a>
+        </li>
+        <li>
+          <a class="main-nav-link" href="/">Topics</a>
+        </li>
+        <li>
+          <a class="main-nav-link" href="/">Events</a>
+        </li>
+        <li>
+          <a class="main-nav-link" href="/">My Account</a>
+        </li>
+      </ul>
+      <% if(user) { %>
+        <!-- THIS IS WHEN USER IS NOT LOGGED IN-->
+        <a href="/login" class="header-signin">Sign in</a>
+      <% } else { %>
+        <!-- THIS IS WHEN USER IS LOGGED IN-->
+        <a href="/signout" class="header-signin">Sign out</a>
+      <% } %>
+    </div>
   </div>
-  <div class="header-title">
-    <a href="/">Netup</a>
-  </div>
-  <div class="header-nav">
-    <ul class="main-nav-links">
+
+  <div class="mobile-nav">
+    <ul class="mobile-nav-links">
       <li>
-        <a class="main-nav-link" href="/">About</a>
+        <a class="mobile-nav-link" href="/">About</a>
       </li>
       <li>
-        <a class="main-nav-link" href="/">Topics</a>
+        <a class="mobile-nav-link" href="/">Topics</a>
       </li>
       <li>
-        <a class="main-nav-link" href="/">Events</a>
+        <a class="mobile-nav-link" href="/">Events</a>
       </li>
       <li>
-        <a class="main-nav-link" href="/">Contact</a>
+        <a class="mobile-nav-link" href="/">My Account</a>
       </li>
     </ul>
-    <% if(user) { %>
-      <!-- THIS IS WHEN USER IS NOT LOGGED IN-->
-      <a href="/login" class="header-signin">Sign in</a>
-    <% } else { %>
-      <!-- THIS IS WHEN USER IS LOGGED IN-->
-      <a href="/signout" class="header-signin">Sign out</a>
-    <% } %>
   </div>
 </header>
+
