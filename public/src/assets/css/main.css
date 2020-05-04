@@ -26,16 +26,18 @@ body {
   min-height: 100vh;
   margin: 0;
   display: grid;
-  grid-template-rows: auto auto auto auto;
+  grid-template-rows: auto auto auto auto auto;
   grid-template-areas:
     "header"
     "figure-index"
     "main-index"
+    "sitemap"
     "footer";
 }
 
 .figure-index {grid-area: figure-index;}
 .main-index {grid-area: main-index;}
+.sitemap {grid-area: sitemap;}
 
 .header {
   height: 4.7rem;
@@ -250,32 +252,57 @@ nav {
   font-size: .8rem;
 }
 
-footer {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  background-color: var(--color-point-mint);
-  font-size: .9rem;
+.sitemap {
+  background-color: white;
+  font-size: 1.2rem;
+  padding: 1.5rem 2.5rem;
+  background-color: var(--color-point-silver);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: .5rem 2rem;
 }
 
-footer ul {
+.footer-header {
+  color: var(--color-point-mint);
+  font-weight: bold;
+  margin-bottom: .2rem;
+}
+
+.footer-nav {
   padding-inline-start: 0;
   list-style-type: none;
-  padding: 0 1rem;
-  margin-top: 1.5rem;
+  margin: 0;
+  font-size: .9rem;
+  padding: .5rem .2rem;
 }
 
-footer ul a {
-  color: var(--color-dark-text);
+.footer-nav li {
+  padding: .1rem 0;
+}
+
+.footer-nav-link {
+  color: var(--color-point-mint);
   text-decoration: none;
 }
 
-.footer-info {
-  color: var(--color-dim-text);
-  padding: 0 1rem 1rem;
+.footer-nav-link:hover {
+  color: var(--color-point-orange);
+}
+
+footer {
+  background-color: var(--color-point-mint);
+  color: var(--color-dark-text);
+  font-size: .9rem;
+  padding: 0 2rem;
   display: flex;
   align-items: center;
   height: 2.5rem;
+}
+
+.footer-horizontal-line {
+  height: 1px;
+  background-color: var(--color-point-mint);
+  width: 100%;
 }
 
 .yellow-btn {
@@ -318,6 +345,7 @@ footer ul a {
       "header header header"
       "figure-index figure-index figure-index"
       "main-index main-index main-index"
+      "sitemap sitemap sitemap"
       "footer footer footer";
   }
 
@@ -366,12 +394,8 @@ footer ul a {
     padding: 0 .7rem;
   }
 
-  footer ul {
-    padding: 0 2rem;
-  }
-
-  .footer-info {
-    padding: 0 2rem 1rem;
+  .sitemap {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
@@ -388,6 +412,7 @@ footer ul a {
 
   .main-index {
     grid-template-columns: repeat(3, 1fr);
+    padding: 2rem 6% 2.5rem;
   }
 
   #figure-index-text {
@@ -399,6 +424,14 @@ footer ul a {
 
   #figure-index-text span {
     max-width: 16.25rem;
+  }
+
+  .sitemap {
+    padding: 1.5rem 10%;
+  }
+
+  footer {
+    padding: 0 9%;
   }
 }
 

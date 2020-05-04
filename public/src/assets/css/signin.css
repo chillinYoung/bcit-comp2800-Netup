@@ -142,10 +142,6 @@
   border-color: var(--color-point-yellow);
 }
 
-.footer-info {
-  padding: .25rem 2rem;
-}
-
 
 /* tablet layout from here */
 @media (min-width: 640px) {
@@ -167,7 +163,7 @@
   }
 
   .main-signin {
-    min-height: 80vh;
+    min-height: 79vh;
   }
 
   .figure-signin-bg {
