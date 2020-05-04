@@ -13,15 +13,15 @@ module.exports = function(passport) {
       let foundUser = null;
       users.forEach(user => {
         if (user.email !== email) {
-          return done(null, false, {message: "email is not registered"});
+          return done(null, false, {message: "Email is not registered."});
         }
 
         if (user.password !== password) {
-          return done(null, false, {message: "password is not correct"});
+          return done(null, false, {message: "Password is not correct."});
         }
 
         foundUser = user;
-        return done(null, foundUser, {message: `welcome back ${user.name}`});
+        return done(null, foundUser, {message: `Welcome back ${user.name}.`});
       })
 
     })
