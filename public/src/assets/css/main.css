@@ -305,6 +305,35 @@ footer {
   width: 100%;
 }
 
+.form-basic {
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-label-basic {
+  font-size: .9rem;
+}
+
+.form-basic-container {
+  width: 15rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: .3rem;
+}
+
+.form-input-basic {
+  font-family: 'Open Sans', sans-serif;
+  box-sizing: border-box;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  width: 100%;
+  height: 1.7rem;
+  padding: 0 .5rem;
+}
+
 .yellow-btn {
   font-size: 1rem;
   font-weight: bold;
