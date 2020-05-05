@@ -12,6 +12,7 @@ const passport = require('passport');
 // importing custom modules
 const checkAuth = require('./config/auth').ensureAuthenticated;
 const userController = require('./controller/userRoute');
+const mainController = require('./controller/mainRoute');
 
 // initialize our mock database
 let db = require("./db/mockDatabase");
@@ -76,8 +77,10 @@ server.use((req, res, next) => {
 
 // INDEX ROUTING - NON USER RELATED
 // landing page handle
+// TODO: NEED UPDATE WHEN ACTUAL DB IS READY
 server.get('/', (req, res) => {
   console.log(req.user);
+  console.log(db);
   const events = db.events;
   res.render('pages/index', {
     events: events,
@@ -96,10 +99,9 @@ server.get('/signup', (req, res) => {
   res.render('pages/signup', {user: userController.isLoggedIn(req.user)});
 })
 
-// update db after signup
-server.post('/signup', (req, res) => {
-  res.send("succesfully registered");
-})
+// registration (signup) handle
+// TODO: NEED TO UPDATE WHEN ACTUAL DB IS READY
+server.post('/signup', mainController.createAccount);
 
 // create event page
 server.get('/create', (req, res) => {

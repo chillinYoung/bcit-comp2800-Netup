@@ -13,25 +13,72 @@
       <span>Already have an account?</span>
       <a href="/login">Sign in</a>
     </div>
-    <form class="form-basic" method="post">
+
+    <form action="/signup" class="form-basic" method="post">
       <div class="form-basic-container">
         <label for="signup-fname" class="form-label-basic">First Name:</label>
-        <input type="text" id="signup-fname" name="signup-fname" class="form-input-basic" required>
+        <input 
+        type="text" 
+        id="signup-fname" 
+        name="fname" 
+        class="form-input-basic"
+        value="<%= typeof fname != 'undefined' ? fname : ''%>"
+        required>
       </div>
+
       <div class="form-basic-container">
         <label for="signup-lname" class="form-label-basic">Last Name:</label>
-        <input type="text" id="signup-lname" name="signup-lname" class="form-input-basic" required>
+        <input 
+        type="text" 
+        id="signup-lname" 
+        name="lname" 
+        class="form-input-basic" 
+        value="<%= typeof lname != 'undefined' ? lname : ''%>"
+        required>
       </div>
+
       <div class="form-basic-container">
         <label for="signup-email" class="form-label-basic">Email:</label>
-        <input type="email" id="signup-email" name="signup-email" class="form-input-basic" required>
+        <input 
+        type="email" 
+        id="signup-email" 
+        name="email" 
+        class="form-input-basic"
+        value="<%= typeof email != 'undefined' ? email : ''%>"
+        required>
       </div>
+
       <div class="form-basic-container">
         <label for="signup-pw" class="form-label-basic">Password:</label>
-        <input type="password" id="signup-pw" name="signup-pw" class="form-input-basic" required>
+        <input 
+        type="password"
+        id="pw1"
+        name="pw1"
+        class="form-input-basic"
+        value="<%= typeof pw1 != 'undefined' ? pw1 : ''%>"
+        required>
       </div>
+
+      <div class="form-basic-container">
+        <label for="signup-pw" class="form-label-basic">Confirm Password:</label>
+        <input 
+        type="password" 
+        id="pw2" 
+        name="pw2" 
+        class="form-input-basic"
+        value="<%= typeof pw2 != 'undefined' ? pw2 : ''%>"
+        required>
+      </div>
+
+      <!-- error message when account information doesn't meet requirements -->
+      <div class="caution-msg">
+        <%- include('../partials/messages'); %>
+      </div>
+
       <input id="signup-btn" class="yellow-btn" type="submit" value="Sign up">
+
     </form>
+
     <div class="signup-or">
       <div class="horizontal-line"></div>
       <span class="">or</span>
