@@ -108,6 +108,11 @@ server.get('/create', (req, res) => {
   res.render('pages/createEvent', {user: userController.isLoggedIn(req.user)});
 })
 
+// my events page
+server.get('/myevents', (req, res) => {
+  res.render('pages/myEvents', {user: userController.isLoggedIn(req.user)});
+})
+
 // user account page handle
 server.get('/accountPage', checkAuth,(req, res) => {
   res.render('pages/accountPage', {user: userController.isLoggedIn(req.user)});
