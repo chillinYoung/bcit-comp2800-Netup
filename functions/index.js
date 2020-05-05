@@ -108,14 +108,9 @@ server.get('/create', (req, res) => {
   res.render('pages/createEvent', {user: userController.isLoggedIn(req.user)});
 })
 
-// my events page
-server.get('/myevents', (req, res) => {
-  res.render('pages/myEvents', {user: userController.isLoggedIn(req.user)});
-})
-
 // user account page handle
-server.get('/accountPage', checkAuth,(req, res) => {
-  res.render('pages/accountPage', {user: userController.isLoggedIn(req.user)});
+server.get('/myevents', checkAuth,(req, res) => {
+  res.render('pages/myevents', {user: userController.isLoggedIn(req.user)});
 })
 
 // signout handle
@@ -127,7 +122,7 @@ server.get('/signout', (req, res) => {
 
 server.post('/login', (req, res, next) => {
   passport.authenticate('local', {
-    successRedirect: '/accountPage',
+    successRedirect: '/myevents',
     failureRedirect: '/login',
     failureFlash: true,
     successFlash: true
