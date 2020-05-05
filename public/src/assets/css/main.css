@@ -200,13 +200,18 @@ nav {
 }
 
 .video-post {
-  box-shadow: .1rem .1rem .4rem dimgray;
+  border: 1px solid gainsboro;
   margin: 1.5rem;
   width: 80%;
   border-radius: 5px;
   background-color: var(--color-bright-text);
   margin-left: auto;
   margin-right: auto;
+  cursor: pointer;
+}
+
+.video-post:hover {
+  box-shadow: .1rem .1rem .5rem lightgray;
 }
 
 .video-post img {
