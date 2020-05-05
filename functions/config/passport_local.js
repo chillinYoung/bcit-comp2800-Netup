@@ -11,18 +11,26 @@ module.exports = function(passport) {
   passport.use(
     new LocalStrategy({usernameField: 'email'}, (email, password, done) => {
       let foundUser = null;
+      error = '';
       users.forEach(user => {
-        if (user.email !== email) {
-          return done(null, false, {message: "Email is not registered."});
-        }
+        if(user.email === email && user.password === password) {
+          foundUser = user;
+        } else {
+          if (user.email !== email) {
+            error = "email is not registered"
+          }
 
-        if (user.password !== password) {
-          return done(null, false, {message: "Password is not correct."});
+          if (user.password !== password) {
+            error = "password is not registered"
+          }
         }
+      });
 
-        foundUser = user;
-        return done(null, foundUser, {message: `Welcome back ${user.name}.`});
-      })
+      if(foundUser) {
+        return done(null, foundUser, {message: "Welcome back"})
+      } else {
+        return done(null, false, {message: error});
+      }
 
     })
   );
@@ -30,6 +38,7 @@ module.exports = function(passport) {
   // need to serializeUser
 
   passport.serializeUser((user, done) => {
+    console.log(user);
     done(null, user.id);
   })
 
@@ -38,6 +47,8 @@ module.exports = function(passport) {
     let foundUser = null;
     users.forEach(user => {
       if(user.id === id) {
+        console.log("user id: " + user.id)
+        console.log("id: " + id)
         foundUser = user;
       }
     })
