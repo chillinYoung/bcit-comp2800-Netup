@@ -7,28 +7,55 @@
     <div class="header-title">
       <a href="/">Netup</a>
     </div>
+
     <div class="header-nav">
       <ul class="main-nav-links">
         <li>
-          <a class="main-nav-link" href="/">About</a>
+          <span class="main-nav-link">About</span>
+          <div class="main-nav-dropdown">
+            <a href="/">Netup</a>
+            <a href="/">Our Team</a>
+          </div>
         </li>
         <li>
-          <a class="main-nav-link" href="/">Topics</a>
+          <span class="main-nav-link">Topics</span>
+          <div class="main-nav-dropdown">
+            <a href="/">Social</a>
+            <a href="/">Health</a>
+            <a href="/">Tech</a>
+          </div>
         </li>
         <li>
-          <a class="main-nav-link" href="/">Events</a>
+          <span class="main-nav-link">Events</span>
+          <div class="main-nav-dropdown">
+            <a href="/">some menu</a>
+            <a href="/">empty menu</a>
+            <a href="/">something menu</a>
+          </div>
         </li>
         <li>
-          <a class="main-nav-link" href="/myevents">My Account</a>
+          <span class="main-nav-link">Help</span>
+          <div class="main-nav-dropdown">
+            <a href="/">FAQ</a>
+            <a href="/">Feeback</a>
+          </div>
+        </li>
+        <li>
+          <% if(user) { %>
+            <!-- THIS IS WHEN USER IS NOT LOGGED IN-->
+            <a href="/login" class="main-nav-signin">Sign in</a>
+
+          <% } else { %>
+            <span class="main-nav-link main-nav-white">My Account</span>
+            <div class="main-nav-dropdown">
+              <a href="/myevents">My Events</a>
+              <a href="/myevents">My Friends</a>
+              <a href="/signout" class="main-nav-yellow">Sign out</a>
+            </div>
+          <% } %>
         </li>
       </ul>
-      <% if(user) { %>
-        <!-- THIS IS WHEN USER IS NOT LOGGED IN-->
-        <a href="/login" class="header-signin">Sign in</a>
-      <% } else { %>
-        <!-- THIS IS WHEN USER IS LOGGED IN-->
-        <a href="/signout" class="header-signin">Sign out</a>
-      <% } %>
+
     </div>
   </div>
 

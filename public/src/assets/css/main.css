@@ -76,16 +76,6 @@ body {
   color: var(--color-point-orange);
 }
 
-.header-signin {
-  padding-left: .7rem;
-  color: var(--color-bright-white);
-  text-decoration: none;
-}
-
-.header-signin:hover {
-  color: var(--color-point-orange);
-  cursor: pointer;
-}
 
 nav {
   padding: 0 1rem;
@@ -114,13 +104,73 @@ nav {
   margin: 0;
 }
 
-.main-nav-link {
-  text-decoration: none;
-  color: var(--color-dark-text);
+/* testing */
+.main-nav-links li {
+  position: relative;
+  display: inline-block;
 }
 
-.main-nav-link:hover {
+.main-nav-links li:hover .main-nav-dropdown {
+  display: block;
+}
+
+.main-nav-links li:hover .main-nav-link:after {
+  position: absolute;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  border-width: 9px;
+  margin-left: -9px;
+  border-bottom-color: white;
+  bottom: -.9rem;
+}
+
+.main-nav-link {
+  color: var(--color-dark-text);
+  padding: 1rem .7rem;
+}
+
+.main-nav-dropdown {
+  display: none;
+  position: absolute;
+  background-color: white;
+  z-index: 1;
+  margin-top: .9rem;
+  text-align: left;
+  border-radius: 3px;
+  padding: .5rem .7rem;
+}
+
+.main-nav-dropdown a {
+  text-decoration: none;
+  display: block;
+  color: var(--color-point-mint);
+  margin: .1rem 0;
+  white-space: nowrap;
+}
+
+.main-nav-dropdown a:hover {
   color: var(--color-point-orange);
+}
+
+.main-nav-signin {
+  padding-left: .7rem;
+  color: var(--color-bright-white);
+  text-decoration: none;
+}
+
+.main-nav-signin:hover {
+  color: var(--color-point-orange);
+  cursor: pointer;
+}
+
+.main-nav-dropdown .main-nav-yellow {
+  color: var(--color-point-yellow);
+}
+
+.main-nav-white {
+  color: var(--color-bright-text);
+  padding-right: 0;
 }
 
 .mobile-nav {
@@ -422,10 +472,6 @@ footer {
 
   .main-nav-links {
     display: flex;
-  }
-
-  .main-nav-link {
-    padding: 0 .7rem;
   }
 
   .sitemap {

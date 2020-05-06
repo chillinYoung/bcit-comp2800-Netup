@@ -129,7 +129,7 @@
 }
 
 .events-sort-select:hover {
-  color: var(--color-point-mint);
+  color: var(--color-point-orange);
 }
 
 .events-event-list {
@@ -151,7 +151,7 @@
   padding-left: 1rem;
 }
 
-.events-event-list-text div {
+.events-event-list-text div:first-child {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -164,7 +164,7 @@
   font-size: 1.2rem;
   outline: none;
   cursor: pointer;
-  padding: .1rem;
+  padding: .1rem .3rem .1rem .5rem;
   border-radius: 50%;
 }
 
@@ -176,6 +176,37 @@
   font-size: .8rem;
   margin: 0;
   line-height: 1rem;
+}
+
+.events-event-list-option {
+  position: relative;
+  display: inline-block;
+}
+
+.events-event-list-dropdown {
+  display: none;
+  position: absolute;
+  background-color: var(--color-point-silver);
+  padding: .3rem .5rem;
+  z-index: 1;
+  right: 1.1rem;
+  top: 0;
+  border-radius: 3px;
+}
+
+.events-event-list-dropdown a {
+  text-decoration: none;
+  display: block;
+  color: var(--color-dark-text);
+  font-size: .8rem;
+}
+
+.events-event-list-dropdown a:hover {
+  color: var(--color-point-orange);
+}
+
+.events-event-list-option:hover .events-event-list-dropdown {
+  display: block;
 }
 
 .long-yellow-btn {
