@@ -1,14 +1,14 @@
 <!-- THIS IS FOR ANY OTHER ERROR MESSAGES OR SUCCESS MESSAGES OUTSIDE PASSPORT -->
 
-
 <!-- THIS IS FOR HANDLING ERRORS IN THE CREATE_ACCOUNT PAGE - NOT USING CONNECT-FLASH -->
 <% if(typeof errors != 'undefined') { %>
   <% errors.forEach((error) => { %>
 
     <!-- Please keep this structure with classname -->
-    <div class="main-notification">
+    <div class="main-notification-error">
       <span><%= error.msg %></span>
     </div>
+    <script src="/src/assets/js/note-error.js" async></script>
 
   <% }); %>
 <% } %>
@@ -19,9 +19,11 @@
 <!-- SHOW MESSAGE IF SUCCESS_MSG IS NOT AN EMPTY STRING -->
   
   <!-- Please keep this structure with classname -->
-  <div class="main-notification">
+  <div class="main-notification-success">
     <span><%= success_msg %></span>
   </div>
+  <script src="/src/assets/js/note-success.js" async></script>
+
 <% } %>
 
 
@@ -31,9 +33,11 @@
   <!-- SHOW MESSAGE IF SUCCESS_MSG IS NOT AN EMPTY STRING -->
 
   <!-- Please keep this structure with classname -->
-  <div class="main-notification">
+  <div class="main-notification-error">
     <span><%= error %></span>
   </div>
+  <script src="/src/assets/js/note-error.js" async></script>
+
 <% } %>
 
 <!-- THIS IS FOR HANDLING SUCCESS MESSAGE WITH AUTHENTICATION USING PASSPORT -->
@@ -42,7 +46,8 @@
   <!-- SHOW MESSAGE IF SUCCESS_MSG IS NOT AN EMPTY STRING -->
 
   <!-- Please keep this structure with classname -->
-  <div class="main-notification">
+  <div class="main-notification-success">
     <span><%= success %></span>
   </div>
+  <script src="/src/assets/js/note-success.js" async></script>
 <% } %>

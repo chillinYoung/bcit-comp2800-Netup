@@ -39,7 +39,7 @@ body {
 .main-index {grid-area: main-index;}
 .sitemap {grid-area: sitemap;}
 
-.main-notification {
+.main-notification-error {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,7 +48,17 @@ body {
   transition: height 1s;
 }
 
-.main-notification span {
+.main-notification-success {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-point-yellow);
+  height: 0;
+  transition: height 1s;
+}
+
+.main-notification-error span,
+.main-notification-success span {
   display: inline-block;
   height: 100%;
   overflow: hidden;
