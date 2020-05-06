@@ -116,7 +116,7 @@ server.get('/myevents', checkAuth,(req, res) => {
 // signout handle
 server.get('/signout', (req, res) => {
   req.logout();
-  req.flash('success_msg', "logged out successfully");
+  req.flash('success_msg', "Logged out successfully");
   res.redirect('/');
 })
 
