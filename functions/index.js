@@ -88,7 +88,6 @@ server.get('/', (req, res) => {
   });
 })
 
-
 // login handle
 server.get('/login', (req, res) => {
   res.render('pages/login', {user: userController.isLoggedIn(req.user)});
@@ -107,6 +106,9 @@ server.post('/signup', mainController.createAccount);
 server.get('/create', (req, res) => {
   res.render('pages/createEvent', {user: userController.isLoggedIn(req.user)});
 })
+
+// post handle for create page event
+server.post('/create', userController.createEvent);
 
 // user account page handle
 server.get('/myevents', checkAuth,(req, res) => {
