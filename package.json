@@ -1,0 +1,22 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "y",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lilyyanglt/COMP-2800-Team-DTC-10-Netup.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lilyyanglt/COMP-2800-Team-DTC-10-Netup/issues"
+  },
+  "homepage": "https://github.com/lilyyanglt/COMP-2800-Team-DTC-10-Netup#readme",
+  "dependencies": {
+    "mongoose": "^5.9.12"
+  }
+}

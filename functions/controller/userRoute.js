@@ -1,11 +1,19 @@
 let db = require("../db/mockDatabase");
 
+let schema = require("../db/mongooseSchema");
+
 module.exports = {
   isLoggedIn: (user) => {
-    return user ? false : true; 
+    return user ? false : true;
   },
-  createEvent: (req, res) =>{
-    const {eventTopic, eventName, eventDate, eventDuration, eventDetails } = req.body;
+  createEvent: (req, res) => {
+    const {
+      eventTopic,
+      eventName,
+      eventDate,
+      eventDuration,
+      eventDetails,
+    } = req.body;
     let userExistingEvents = null;
     const hostName = req.user.name;
     console.log(req.user.name);
@@ -19,50 +27,49 @@ module.exports = {
       eventDuration: eventDuration,
       eventDetails: eventDetails,
       participants: [],
-      eventDate: eventDate
-    }
+      eventDate: eventDate,
+    };
 
-    db.users.forEach(user => {
-      if(user.name === hostName) {
-        userExistingEvents = user.hostedEvents
+    db.users.forEach((user) => {
+      if (user.name === hostName) {
+        userExistingEvents = user.hostedEvents;
       }
-    })
+    });
 
     // checking if there's any events user already hosting
-    if(userExistingEvents.length > 0) {
+    if (userExistingEvents.length > 0) {
       // check if the new event matches any event inside of the user hosted events
       let isExitingEvent = false;
-      userExistingEvents.forEach(event => {
+      userExistingEvents.forEach((event) => {
         if (event.eventDate === eventDate) {
           isExitingEvent = true;
         }
       });
 
-      if(isExitingEvent) {
+      if (isExitingEvent) {
         // it will cause an error message to show if the event already exists
-        req.flash('error_msg', "You already created this same event");
+        req.flash("error_msg", "You already created this same event");
         // res.render('pages/myevents', {user: userController.isLoggedIn(req.user)});
-        res.redirect('/create');
+        res.redirect("/create");
       } else {
         // if no event conflict, then add event to events collection
         // if no event conflict, then add event to user.hosted event document
-        db.events.push(newEvent)
+        db.events.push(newEvent);
         req.user.hostedEvents.push(newEvent);
         console.log(db.events);
         console.log(req.user);
-        req.flash('success_msg', "Event added!");
-        res.redirect('/myevents');
+        req.flash("success_msg", "Event added!");
+        res.redirect("/myevents");
       }
-
     } else {
       // if user doesn' even have any existing events, then add to events
       // and to their hostedEvents document
-      db.events.push(newEvent)
+      db.events.push(newEvent);
       req.user.hostedEvents.push(newEvent);
       console.log(db.events);
       console.log(req.user);
-      req.flash('success_msg', "Event added!");
-      res.redirect('/myevents');
+      req.flash("success_msg", "Event added!");
+      res.redirect("/myevents");
     }
-  }
+  },
 };

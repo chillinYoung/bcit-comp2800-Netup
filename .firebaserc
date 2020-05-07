@@ -1,6 +1,7 @@
 {
   "projects": {
     "default": "fir-project-test-8aeac",
-    "netup": "netup-7ff3b"
+    "netup": "netup-7ff3b",
+    "staging": "netup-7ff3b"
   }
 }
