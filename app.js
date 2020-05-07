@@ -103,7 +103,7 @@ server
   .delete(mongooseFunctions.deleteUser);
 
 //index handle
-server.get("", mongooseFunctions.setUpIndex);
+server.get("/", mongooseFunctions.setUpIndex);
 
 // login handle
 server.get("/login", (req, res) => {
@@ -116,8 +116,10 @@ server.get("/signup", (req, res) => {
 });
 
 // registration (signup) handle
-// TODO: NEED TO UPDATE WHEN ACTUAL DB IS READY
 server.post("/signup", mainController.createAccount);
+
+// post handle for create page event
+server.post('/create', userController.createEvent);
 
 // create event page
 server.get("/create", (req, res) => {
