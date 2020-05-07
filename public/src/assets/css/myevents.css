@@ -112,7 +112,7 @@
   margin: 1rem 0;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   padding-bottom: 1rem;
   border-bottom: 1px solid lightgray;
 }
@@ -125,6 +125,7 @@
 
 .events-event-list-text {
   padding-left: 1rem;
+  width: 100%;
 }
 
 .events-event-list-text div:first-child {
