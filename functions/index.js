@@ -1,18 +1,20 @@
 // Create and Deploy Your First Cloud Functions
 // https://firebase.google.com/docs/functions/write-firebase-functions
 
-const functions = require('firebase-functions');
-const express = require('express');
-const ejsLayouts = require('express-ejs-layouts');
+const functions = require("firebase-functions");
+const express = require("express");
+const ejsLayouts = require("express-ejs-layouts");
 const admin = require("firebase-admin");
-const flash = require('connect-flash');
-const session = require('express-session');
-const passport = require('passport');
+const flash = require("connect-flash");
+const session = require("express-session");
+const passport = require("passport");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 
 // importing custom modules
-const checkAuth = require('./config/auth').ensureAuthenticated;
-const userController = require('./controller/userRoute');
-const mainController = require('./controller/mainRoute');
+const checkAuth = require("./config/auth").ensureAuthenticated;
+const userController = require("./controller/userRoute");
+const mainController = require("./controller/mainRoute");
 
 // initialize our mock database
 let db = require("./db/mockDatabase");
@@ -25,21 +27,23 @@ const server = express();
 
 // ejs middleware
 server.use(ejsLayouts);
-server.set('views', './views');
-server.set('view engine', 'ejs');
+server.set("views", "./views");
+server.set("view engine", "ejs");
 
 // PASSPORT CONFIGURATION - FOR AUTHENTICATION
-require('./config/passport_local')(passport);
+require("./config/passport_local")(passport);
 
 // EXPRESS-SESSION MIDDLEWARE ***********************************************************
 // it's a dependency for both passport and connect-flash messaging
 
-server.set('trust proxy', 1) // trust first proxy
-server.use(session({
-  secret: 'keyboard cat',
-  resave: true,
-  saveUninitialized: true,
-}))
+server.set("trust proxy", 1); // trust first proxy
+server.use(
+  session({
+    secret: "keyboard cat",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
 
 // PASSPORT MIDDLEWARE *******************************************************************
 // dependent on express session so must put this middleware after express-session
@@ -51,8 +55,7 @@ server.use(passport.session());
 // body parser
 
 server.use(express.json());
-server.use(express.urlencoded({extended: false}));
-
+server.use(express.urlencoded({ extended: false }));
 
 // CONNECT-FLASH MIDDLEWARE **************************************************************
 server.use(flash());
@@ -62,73 +65,91 @@ server.use(flash());
 server.use((req, res, next) => {
   // THIS IS FOR THE CREATE ACCOUNT MESSAGES
 
-  res.locals.success_msg = req.flash('success_msg');
+  res.locals.success_msg = req.flash("success_msg");
   // this is for the create account page error messages
-  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error_msg = req.flash("error_msg");
 
   // THIS IS FOR THE AUTHENTICATION ERROR / SUCCESS MESSAGES FROM PASSPORT
   // global variable for the flash error for passport just returns an error
-  res.locals.error = req.flash('error');
+  res.locals.error = req.flash("error");
   // global variable for the flash error for passport when login succeeded
-  res.locals.success = req.flash('success');
+  res.locals.success = req.flash("success");
 
   next();
-})
+});
+const mongooseFunctions = require("./db/mongooseFunctions");
 
-// INDEX ROUTING - NON USER RELATED
-// landing page handle
-// TODO: NEED UPDATE WHEN ACTUAL DB IS READY
-server.get('/', (req, res) => {
-  console.log(req.user);
-  console.log(db);
-  const events = db.events;
-  res.render('pages/index', {
-    events: events,
-    user: userController.isLoggedIn(req.user)
-  });
-})
+// Connect to events collection in database with mongodb.
+server
+  .route("/events")
+  .get(mongooseFunctions.getEvent)
+  .post(mongooseFunctions.postEvent)
+  .delete(mongooseFunctions.deleteEvent);
+
+// connect with users collection in mongoDB.
+server
+  .route("/users")
+  .get(mongooseFunctions.getUser)
+  .post(mongooseFunctions.postUser)
+  .delete(mongooseFunctions.deleteUser);
+
+// Connect with a specific event in events collection.
+server
+  .route("/events/:eventId")
+  .get(mongooseFunctions.findEvent)
+  .put(mongooseFunctions.replaceEvent)
+  .patch(mongooseFunctions.updateEvent)
+  .delete(mongooseFunctions.deleteEvent);
+
+// Interact with specific user in users collection
+server
+  .route("/users/:userId")
+  .get(mongooseFunctions.findUser)
+  .put(mongooseFunctions.replaceUser)
+  .patch(mongooseFunctions.updateUser)
+  .delete(mongooseFunctions.deleteUser);
+
+//index handle
+server.get("", mongooseFunctions.setUpIndex);
 
 // login handle
-server.get('/login', (req, res) => {
-  res.render('pages/login', {user: userController.isLoggedIn(req.user)});
-})
+server.get("/login", (req, res) => {
+  res.render("pages/login", { user: userController.isLoggedIn(req.user) });
+});
 
 // signup handle
-server.get('/signup', (req, res) => {
-  res.render('pages/signup', {user: userController.isLoggedIn(req.user)});
-})
+server.get("/signup", (req, res) => {
+  res.render("pages/signup", { user: userController.isLoggedIn(req.user) });
+});
 
 // registration (signup) handle
 // TODO: NEED TO UPDATE WHEN ACTUAL DB IS READY
-server.post('/signup', mainController.createAccount);
+server.post("/signup", mainController.createAccount);
 
 // create event page
-server.get('/create', (req, res) => {
-  res.render('pages/createEvent', {user: userController.isLoggedIn(req.user)});
-})
-
-// post handle for create page event
-server.post('/create', userController.createEvent);
+server.get("/create", (req, res) => {
+  res.render("pages/createEvent", {
+    user: userController.isLoggedIn(req.user),
+  });
+});
 
 // user account page handle
-server.get('/myevents', checkAuth,(req, res) => {
-  res.render('pages/myevents', {user: userController.isLoggedIn(req.user)});
-})
+server.get("/myevents", mongooseFunctions.prepareEvent);
 
 // signout handle
-server.get('/signout', (req, res) => {
+server.get("/signout", (req, res) => {
   req.logout();
-  req.flash('success_msg', "Logged out successfully");
-  res.redirect('/');
-})
+  req.flash("success_msg", "Logged out successfully");
+  res.redirect("/");
+});
 
-server.post('/login', (req, res, next) => {
-  passport.authenticate('local', {
-    successRedirect: '/myevents',
-    failureRedirect: '/login',
+server.post("/login", (req, res, next) => {
+  passport.authenticate("local", {
+    successRedirect: "/myevents",
+    failureRedirect: "/login",
     failureFlash: true,
-    successFlash: true
+    successFlash: true,
   })(req, res, next);
-})
+});
 
 exports.app = functions.https.onRequest(server);

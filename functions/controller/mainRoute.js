@@ -2,22 +2,33 @@ const userController = require('./userRoute');
 
 // initialize our mock database
 let db = require("../db/mockDatabase");
+const schema = require("../db/mongooseSchema")
+
+// load users from db
+let users = db.users;
+schema.User.find({}, (err, results) =>{
+  if (!err) {
+      users = Array.from(results);
+  } else {
+      res.send(err);
+  }
+})
 
 module.exports = {
   createAccount: (req, res) => {
     const { fname, lname, email, pw1, pw2 } = req.body;
     let errors = [];
-    // console.log(req.body);
+    console.log(req.body);
     // check if passwords match
     if (pw1 !== pw2) {
       errors.push({msg: "Passwords must match"})
-      // console.log(errors)
+      console.log(errors)
     }
   
     // check if passwords are at least 6 characters long
     if (pw1.length <= 6 || pw1.length >= 10) {
       errors.push({msg: "Passwords must be between 6 - 10 characters"})
-      // console.log(errors)
+      console.log(errors)
     }
   
     if (errors.length > 0) {
@@ -34,7 +45,7 @@ module.exports = {
     } else {
       // check db if user exist
       let userFound = null;
-      db.users.forEach(user => {
+      users.forEach(user => {
         if (user.email === email) {
           userFound = true;
         }
@@ -53,17 +64,24 @@ module.exports = {
           user: userController.isLoggedIn(req.user)
         });
       } else {
+        // If the email doesn't exist in DB, 
+        //then can add the new user
+            let newUser = new schema.User({
+            name: `${fname} ${lname}`,
+            email: email,
+            password: pw1,
+            interests: [],
+            hostedEvents: [],
+            joinedEvents: []
+          })
+          newUser.save(err => {
+            if (!err) {
+              console.log("Successfully added new user!");
+            } else {
+              console.log(err);
+            }
+          })
         
-        // user not found, free to update db
-        db.users.push({
-          id: db.users.length + 1,
-          name: `${fname} ${lname}`,
-          email: email,
-          password: pw1,
-          interests: [],
-          hostedEvents: [],
-          joinedEvents: []
-        })
         req.flash('success_msg', "Successfully created account");
         res.redirect('/');
   
