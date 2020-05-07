@@ -1,0 +1,45 @@
+.body-netup {
+  font-family: 'Open Sans', sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  display: grid;
+  grid-template-rows: 4.7rem auto auto auto auto;
+  grid-template-areas:
+    "header"
+    "figure-netup-bg"
+    "main-netup-container"
+    "sitemap-container"
+    "footer";
+}
+
+.figure-netup-bg {grid-area: figure-netup-bg;}
+.main-netup-container {grid-area: main-netup-container;}
+
+.main-netup-container {
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+}
+
+.main-netup {
+  width: 100%;
+  padding: 2rem 2rem 3rem;
+}
+
+
+/* tablet layout from here */
+@media (min-width: 640px) {
+  .main-netup {
+    max-width: 860px
+  }
+
+}
+
+
+/* pc layout from here */
+@media (min-width: 1025px) {
+  .main-netup {
+    max-width: 1170px
+  }
+  
+}

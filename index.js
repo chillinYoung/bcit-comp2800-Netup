@@ -106,6 +106,16 @@ server
 //index handle
 server.get("/", mongooseFunctions.setUpIndex);
 
+// about netup
+server.get('/netup', (req, res) => {
+  res.render('pages/aboutNetup', {user: userController.isLoggedIn(req.user)});
+})
+
+// about our team
+server.get('/team', (req, res) => {
+  res.render('pages/aboutTeam', {user: userController.isLoggedIn(req.user)});
+})
+
 // login handle
 server.get("/login", (req, res) => {
   res.render("pages/login", { user: userController.isLoggedIn(req.user) });
