@@ -61,14 +61,14 @@ const Database = {
           eventName: "coding party",
           hostName: "lily",
           participants: [],
-          eventDate: 'May 21, 2020'},
+          eventDate: '2020-05-20T10:00'},
         { 
           id: 2,
           eventTopic: "social",
           eventName: "Coffee Time with Barista",
           hostName: "lily",
           participants: [],
-          eventDate: "May 10, 2020"},
+          eventDate: '2020-05-20T22:00'},
       ],
       joinedEvents: []
     },
