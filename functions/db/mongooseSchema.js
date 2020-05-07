@@ -26,8 +26,8 @@ const userSchema = {
   email: String,
   password: String,
   interests: [String],
-  hostedEvents: [String],
-  joinedEvents: [String],
+  hostedEvents: [Object],
+  joinedEvents: [Object],
 };
 
 const User = mongoose.model("User", userSchema);

@@ -1,5 +1,4 @@
 <div class="body-create">
-
   <%- include('../partials/navigation'); %>
 
   <figure class="figure-create-bg">
@@ -9,15 +8,19 @@
   </figure>
 
   <main class="main-create">
-
     <div class="figure-create-header">
       <span>Create a New Event</span>
     </div>
 
-    <form class="form-basic" method="post">
+    <form action="/create" class="form-basic" method="post">
       <div class="form-create-container">
         <label for="create-topic" class="form-label-basic">Choose Topic</label>
-        <select class="form-input-basic" id="create-topic" name="eventTopic" required>
+        <select
+          class="form-input-basic"
+          id="create-topic"
+          name="eventTopic"
+          required
+        >
           <option value selected>Select...</option>
           <option value="social">Social</option>
           <option value="health">Health</option>
@@ -26,49 +29,59 @@
       </div>
       <div class="form-create-container">
         <label for="create-title" class="form-label-basic">Title:</label>
-        <input class="form-input-basic" 
-        type="text" 
-        id="create-title" 
-        name="eventName" 
-        minlength="5" 
-        required>
+        <input
+          class="form-input-basic"
+          type="text"
+          id="create-title"
+          name="eventName"
+          minlength="5"
+          required
+        />
       </div>
       <div class="form-create-container">
         <label for="create-date" class="form-label-basic">Date:</label>
-        <input class="form-input-basic" 
-        type="datetime-local" i
-        d="create-date" 
-        name="eventDate" 
-        required>
+        <input
+          class="form-input-basic"
+          type="datetime-local"
+          i
+          d="create-date"
+          name="eventDate"
+          required
+        />
       </div>
       <div class="form-create-container">
-        <label for="create-duration" class="form-label-basic">Session Duration:</label>
-        <input class="form-input-basic" 
-        type="number" 
-        id="create-duration" 
-        name="eventDuration" 
-        placeholder="(in minutes, max 1440 minutes)" 
-        max="1440" 
-        required>
+        <label for="create-duration" class="form-label-basic"
+          >Session Duration:</label
+        >
+        <input
+          class="form-input-basic"
+          type="number"
+          id="create-duration"
+          name="eventDuration"
+          placeholder="(in minutes, max 1440 minutes)"
+          max="1440"
+          required
+        />
       </div>
       <div class="form-create-container">
-        <label for="create-description" class="form-label-basic">Description:</label>
-        <textarea class="form-textarea-basic" 
-        rows="5" 
-        minlength="50" 
-        style="resize: none;"
-        id="event-details"
-        name="eventDetails"></textarea>
+        <label for="create-description" class="form-label-basic"
+          >Description:</label
+        >
+        <textarea
+          class="form-textarea-basic"
+          rows="5"
+          minlength="50"
+          style="resize: none;"
+          id="event-details"
+          name="eventDetails"
+        ></textarea>
       </div>
-      <input id="create-btn" class="yellow-btn" type="submit" value="Create">
+      <input id="create-btn" class="yellow-btn" type="submit" value="Create" />
     </form>
-
-
   </main>
-  
+
   <figure class="figure-create-bg-left"></figure>
   <figure class="figure-create-bg-right"></figure>
 
   <%- include('../partials/sitemap'); %>
-
 </div>

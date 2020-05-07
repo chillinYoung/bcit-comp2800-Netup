@@ -1,5 +1,4 @@
 let db = require("../db/mockDatabase");
-
 let schema = require("../db/mongooseSchema");
 
 module.exports = {
@@ -19,7 +18,7 @@ module.exports = {
     console.log(req.user.name);
     // check user db to make sure no conflicting events hosted by same user
 
-    let newEvent = {
+    let newEvent = new schema.Event({
       id: db.events.length + 1,
       eventTopic: eventTopic,
       eventName: eventName,
@@ -28,16 +27,22 @@ module.exports = {
       eventDetails: eventDetails,
       participants: [],
       eventDate: eventDate,
-    };
-
-    db.users.forEach((user) => {
-      if (user.name === hostName) {
-        userExistingEvents = user.hostedEvents;
+      image: "/src/aessst/images/lego.jpg",
+    });
+    schema.User.find({}, (err, foundUser) => {
+      if (!err) {
+        let users = Array.from(foundUser);
+        users.forEach((user) => {
+          if (user.name === hostName) {
+            userExistingEvents = user.hostedEvents;
+          }
+        });
+      } else {
+        console.log(err);
       }
     });
-
     // checking if there's any events user already hosting
-    if (userExistingEvents.length > 0) {
+    if (userExistingEvents) {
       // check if the new event matches any event inside of the user hosted events
       let isExitingEvent = false;
       userExistingEvents.forEach((event) => {
@@ -54,7 +59,16 @@ module.exports = {
       } else {
         // if no event conflict, then add event to events collection
         // if no event conflict, then add event to user.hosted event document
+
+        newEvent.save((err) =>
+          err ? console.log(err) : console.log("Successfully added new user.")
+        );
         db.events.push(newEvent);
+
+        schema.User.find({ name: newEvent.hostName }, (err, foundUser) => {
+          foundUser.hostedEvents.push(newEvent);
+        });
+
         req.user.hostedEvents.push(newEvent);
         console.log(db.events);
         console.log(req.user);
@@ -64,6 +78,9 @@ module.exports = {
     } else {
       // if user doesn' even have any existing events, then add to events
       // and to their hostedEvents document
+      newEvent.save((err) =>
+        err ? console.log(err) : console.log("Successfully added new user.")
+      );
       db.events.push(newEvent);
       req.user.hostedEvents.push(newEvent);
       console.log(db.events);

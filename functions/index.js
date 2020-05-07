@@ -152,4 +152,6 @@ server.post("/login", (req, res, next) => {
   })(req, res, next);
 });
 
+server.post("/create", userController.createEvent);
+
 exports.app = functions.https.onRequest(server);
