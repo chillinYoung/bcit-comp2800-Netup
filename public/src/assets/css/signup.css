@@ -3,7 +3,7 @@
   min-height: 100vh;
   margin: 0;
   display: grid;
-  grid-template-rows: 4.7rem 32vh auto auto;
+  grid-template-rows: 4.7rem auto auto auto;
   grid-template-areas:
     "header"
     "figure-signup-bg"
@@ -24,6 +24,8 @@
   width: 100%;
   margin: 0;
   box-sizing: border-box;
+  min-height: 16rem;
+  height: 32vh;
 }
 
 .figure-signup-overtext {
@@ -124,23 +126,21 @@
   
   .main-signup {
     min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .figure-signup-bg {
     padding-right: 0;
     background-position: right;
     justify-content: flex-end;
+    height: auto;
   }
 
   .figure-signup-overtext {
     font-size: 2.5rem;
     text-align: right;
     padding: 0 7% 0 0;
-  }
-
-  .main-signup {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
   }
 }

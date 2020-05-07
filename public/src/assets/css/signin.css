@@ -3,7 +3,7 @@
   min-height: 100vh;
   margin: 0;
   display: grid;
-  grid-template-rows: 4.7rem 32vh auto auto;
+  grid-template-rows: 4.7rem auto auto auto;
   grid-template-areas:
     "header"
     "figure-signin-bg"
@@ -18,12 +18,14 @@
   background-image: url("../images/cupcake.jpg");
   background-size: cover;
   display: flex;
-  justify-content: flex-start;
-  padding: 0 10%;
+  justify-content: flex-end;
+  padding: 0;
   align-items: center;
   width: 100%;
   margin: 0;
   box-sizing: border-box;
+  min-height: 16rem;
+  height: 32vh;
 }
 
 .figure-signin-overtext {
@@ -32,9 +34,8 @@
   font-size: 2rem;
   font-weight: bold;
   letter-spacing: -1px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  padding: 0 7% 0;
+  text-align: right;
 }
 
 .figure-signin-overtext span {
@@ -42,7 +43,7 @@
 }
 
 .main-signin {
-  padding: 2rem 3.5rem 3rem;
+  padding: 2rem 3.5rem 2.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -133,14 +134,21 @@
 
   .main-signin {
     min-height: 79vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .figure-signin-bg {
-    padding: 0;
+    padding-right: 0;
+    background-position: right;
+    justify-content: flex-end;
+    height: auto;
   }
 
   .figure-signin-overtext {
     font-size: 2.5rem;
-    padding-left: 7%;
+    text-align: right;
+    padding: 0 7% 0 0;
   }
 }

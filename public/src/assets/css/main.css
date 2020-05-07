@@ -20,6 +20,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   min-height: 100vh;
   margin: 0;
+  overscroll-behavior: none;
 }
 
 .body-index {
@@ -32,13 +33,13 @@ body {
     "header"
     "figure-index"
     "main-index"
-    "sitemap"
+    "sitemap-container"
     "footer";
 }
 
 .figure-index {grid-area: figure-index;}
 .main-index {grid-area: main-index;}
-.sitemap {grid-area: sitemap;}
+.sitemap-container {grid-area: sitemap-container;}
 
 .main-notification-error {
   display: flex;
@@ -78,6 +79,7 @@ header {
   box-sizing: border-box;
   z-index: 1;
   border-bottom: 5px solid white;
+  background-color: var(--color-point-mint);
 }
 
 .header {
@@ -85,9 +87,12 @@ header {
   display: grid;
   align-items: center;
   grid-template-columns: repeat(3, 1fr);
-  background-color: var(--color-point-mint);
-  padding: 0 1rem;
+  padding: 0 1.5rem;
+  max-width: 1170px;
+  position: relative;
+  left: 50%;
   color: var(--color-bright-text);
+  transform: translateX(-50%);
 }
 
 .header-nav {
@@ -168,6 +173,7 @@ nav {
 .main-nav-link {
   color: var(--color-dark-text);
   padding: 1rem .7rem;
+  cursor: pointer;
 }
 
 .main-nav-dropdown {
@@ -224,7 +230,7 @@ nav {
 .mobile-nav-links {
   list-style-type: none;
   padding-inline-start: 0;
-  padding: .3rem 1.5rem 1rem;
+  padding: .3rem 2.5rem 1rem;
   margin: 0;
   height: 0;
   transition: height .5s;
@@ -307,18 +313,21 @@ nav {
 
 .main-index {
   background-color: white;
-  padding: 2rem 1rem 2.5rem;
+  padding: 2rem 1.5rem 2.5rem;
   display: grid;
   grid-template-columns: 1fr;
+  max-width: 580px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  align-items: center;
+  justify-items: center;
 }
 
 .video-post {
-  margin: 1.5rem;
-  width: 80%;
+  width: 100%;
   border-radius: 5px;
   background-color: var(--color-bright-text);
-  margin-left: auto;
-  margin-right: auto;
   cursor: pointer;
 }
 
@@ -365,13 +374,17 @@ nav {
 }
 
 .sitemap {
-  background-color: white;
   font-size: 1.2rem;
-  padding: 1.5rem 2.5rem;
-  background-color: var(--color-point-silver);
+  padding: 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: .5rem 2rem;
+}
+
+.sitemap-container {
+  background-color: var(--color-point-silver);
+  font-size: 1.2rem;
+  padding: 1.5rem 2rem;
   border-top: 5px solid white;
 }
 
@@ -402,12 +415,17 @@ nav {
   color: var(--color-point-orange);
 }
 
+
 .footer-only {
   border-top: 5px solid white;
 }
 
 footer {
-  background-color: var(--color-point-mint);
+  background-color: var(--color-point-mint);  
+  width: 100%;
+}
+
+.footer-container {
   color: var(--color-dark-text);
   font-size: .9rem;
   padding: 0 2rem;
@@ -484,14 +502,14 @@ footer {
 }
 
 /* tablet layout from here */
-@media (min-width: 540px) {
+@media (min-width: 640px) {
   .body-index {
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas:
       "header header header"
       "figure-index figure-index figure-index"
       "main-index main-index main-index"
-      "sitemap sitemap sitemap"
+      "sitemap-container sitemap-container sitemap-container"
       "footer footer footer";
   }
 
@@ -506,6 +524,7 @@ footer {
     background-color: var(--color-point-mint);
     padding: 0 2rem;
     color: var(--color-bright-text);
+    max-width: 860px;
   }
 
   .mobile-nav {
@@ -524,8 +543,12 @@ footer {
   }
 
   .main-index {
-    padding: 2rem 3.5rem 2.5rem;
+    max-width: 860px;
+    padding: 2rem 2rem 2.5rem;
     grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1.5rem;
+    align-items: center;
+    justify-items: center;
   }
 
   .mobile-menu {
@@ -544,9 +567,17 @@ footer {
 
 /* pc layout from here */
 @media (min-width: 1025px) {
+  .header {
+    max-width: 1170px;
+  }
+
   .main-index {
+    max-width: 1170px;
     grid-template-columns: repeat(3, 1fr);
-    padding: 2rem 6% 2.5rem;
+    grid-gap: 3rem;
+    padding: 2rem 2rem 2.5rem;
+    align-items: center;
+    justify-items: center;
   }
 
   .figure-index-text {
@@ -555,11 +586,17 @@ footer {
   }
 
   .sitemap {
-    padding: 1.5rem 10%;
+    max-width: 1170px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
-  footer {
-    padding: 0 9%;
+  .footer-container {
+    max-width: 1170px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 

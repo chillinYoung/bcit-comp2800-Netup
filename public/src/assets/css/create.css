@@ -8,7 +8,7 @@
     "header"
     "figure-create-bg"
     "main-create"
-    "sitemap"
+    "sitemap-container"
     "footer";
 }
 
@@ -16,7 +16,7 @@
 .figure-create-bg-left {grid-area: figure-create-bg-left;}
 .figure-create-bg-right {grid-area: figure-create-bg-right;}
 .main-create {grid-area: main-create;}
-.sitemap {grid-area: sitemap;}
+.sitemap-container {grid-area: sitemap-container;}
 
 .figure-create-bg {
   background-image: url("../images/macarons.jpg");
@@ -140,7 +140,7 @@
       "header header header header"
       "figure-create-bg-left main-create main-create figure-create-bg-right"
       "figure-create-bg-left main-create main-create figure-create-bg-right"
-      "sitemap sitemap sitemap sitemap"
+      "sitemap-container sitemap-container sitemap-container sitemap-container"
       "footer footer footer footer";
   }
 

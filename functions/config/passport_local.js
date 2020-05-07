@@ -38,7 +38,7 @@ module.exports = function(passport) {
   // need to serializeUser
 
   passport.serializeUser((user, done) => {
-    console.log(user);
+    // console.log(user);
     done(null, user.id);
   })
 
@@ -47,8 +47,8 @@ module.exports = function(passport) {
     let foundUser = null;
     users.forEach(user => {
       if(user.id === id) {
-        console.log("user id: " + user.id)
-        console.log("id: " + id)
+        // console.log("user id: " + user.id)
+        // console.log("id: " + id)
         foundUser = user;
       }
     })
