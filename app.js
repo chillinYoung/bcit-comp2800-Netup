@@ -12,9 +12,6 @@ const checkAuth = require("./config/auth").ensureAuthenticated;
 const userController = require("./controller/userRoute");
 const mainController = require("./controller/mainRoute");
 
-// initialize our mock database
-let db = require("./db/mockDatabase");
-
 // instantiate express app
 const server = express();
 
