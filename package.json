@@ -7,7 +7,7 @@
     "start": "nodemon app.js"
   },
   "engines": {
-    "node": "8"
+    "node": "12.x"
   },
   "dependencies": {
     "connect-flash": "^0.1.1",
