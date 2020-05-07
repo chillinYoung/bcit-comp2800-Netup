@@ -1,15 +1,11 @@
-// Create and Deploy Your First Cloud Functions
-// https://firebase.google.com/docs/functions/write-firebase-functions
-
-const functions = require("firebase-functions");
-const express = require("express");
-const ejsLayouts = require("express-ejs-layouts");
-const admin = require("firebase-admin");
-const flash = require("connect-flash");
-const session = require("express-session");
-const passport = require("passport");
+const express = require('express');
+const ejsLayouts = require('express-ejs-layouts');
+const flash = require('connect-flash');
+const session = require('express-session');
+const passport = require('passport');
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const PORT = 5050;
 
 // importing custom modules
 const checkAuth = require("./config/auth").ensureAuthenticated;
@@ -19,11 +15,11 @@ const mainController = require("./controller/mainRoute");
 // initialize our mock database
 let db = require("./db/mockDatabase");
 
-// Firebase initializer
-const firebaseApp = admin.initializeApp(functions.config().firebase);
-
 // instantiate express app
 const server = express();
+
+// set up to use static files
+server.use(express.static("public"));
 
 // ejs middleware
 server.use(ejsLayouts);
@@ -152,4 +148,6 @@ server.post("/login", (req, res, next) => {
   })(req, res, next);
 });
 
-exports.app = functions.https.onRequest(server);
+server.listen(PORT, () => {
+  console.log(`http://localhost:${PORT}`)
+})
