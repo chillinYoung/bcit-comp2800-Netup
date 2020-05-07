@@ -3,12 +3,13 @@
   min-height: 100vh;
   margin: 0;
   display: grid;
-  grid-template-rows: 4.7rem 32vh auto auto;
+  grid-template-rows: 4.7rem 32vh auto auto auto;
   grid-template-areas:
     "header"
     "figure-create-bg"
     "main-create"
     "sitemap"
+    "footer";
 }
 
 .figure-create-bg {grid-area: figure-create-bg;}

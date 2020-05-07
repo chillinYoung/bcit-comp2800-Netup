@@ -53,7 +53,7 @@
             <span class="main-nav-link main-nav-white">My Account</span>
             <div class="main-nav-dropdown">
               <a href="/myevents">My Events</a>
-              <a href="/myevents">My Friends</a>
+              <a href="/">My Friends</a>
               <a href="/signout" class="main-nav-yellow">Sign out</a>
             </div>
           <% } %>
@@ -66,18 +66,49 @@
   <div class="mobile-nav">
     <ul class="mobile-nav-links">
       <li>
-        <a class="mobile-nav-link" href="/">About</a>
+        <span class="mobile-nav-header">About</span>
+        <div class="mobile-nav-container">
+          <a  class="mobile-nav-link" href="/">Netup</a>
+          <a  class="mobile-nav-link" href="/">Our Team</a>
+        </div>
       </li>
       <li>
-        <a class="mobile-nav-link" href="/">Topics</a>
+        <span class="mobile-nav-header">Topics</span>
+        <div class="mobile-nav-container">
+          <a  class="mobile-nav-link" href="/">Social</a>
+          <a  class="mobile-nav-link" href="/">Health</a>
+          <a  class="mobile-nav-link" href="/">Tech</a>
+        </div>
       </li>
       <li>
-        <a class="mobile-nav-link" href="/">Events</a>
+        <span class="mobile-nav-header">Events</span>
+        <div class="mobile-nav-container">
+          <a  class="mobile-nav-link" href="/">some menu</a>
+          <a  class="mobile-nav-link" href="/">empty menu</a>
+          <a  class="mobile-nav-link" href="/">something menu</a>
+        </div>
       </li>
       <li>
-        <a class="mobile-nav-link" href="/myevents">My Account</a>
+        <span class="mobile-nav-header">Help</span>
+        <div class="mobile-nav-container">
+          <a  class="mobile-nav-link" href="/">FAQ</a>
+          <a  class="mobile-nav-link" href="/">Feeback</a>
+        </div>
+      </li>
+      <li>
+        <% if(user) { %>
+          <!-- THIS IS WHEN USER IS NOT LOGGED IN-->
+          <a  class="mobile-nav-signin" href="/login">Sign in</a>
+
+        <% } else { %>
+          <span class="mobile-nav-header mobile-nav-white">My Account</span>
+          <div class="mobile-nav-container">
+            <a  class="mobile-nav-link" href="/myevents">My Events</a>
+            <a  class="mobile-nav-link" href="/">My Friends</a>
+            <a  class="mobile-nav-link mobile-nav-yellow" href="/signout">Sign out</a>
+          </div>
+        <% } %>
       </li>
     </ul>
   </div>
 </header>
-
