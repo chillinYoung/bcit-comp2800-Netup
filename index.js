@@ -1,29 +1,23 @@
-// Create and Deploy Your First Cloud Functions
-// https://firebase.google.com/docs/functions/write-firebase-functions
-
-const functions = require("firebase-functions");
-const express = require("express");
-const ejsLayouts = require("express-ejs-layouts");
-const admin = require("firebase-admin");
-const flash = require("connect-flash");
-const session = require("express-session");
-const passport = require("passport");
-const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
+const express = require('express');
+const ejsLayouts = require('express-ejs-layouts');
+const flash = require('connect-flash');
+const session = require('express-session');
+const passport = require('passport');
+let PORT = process.env.PORT;
+if(PORT == null || PORT == "") {
+  PORT = 5050;
+}
 
 // importing custom modules
 const checkAuth = require("./config/auth").ensureAuthenticated;
 const userController = require("./controller/userRoute");
 const mainController = require("./controller/mainRoute");
 
-// initialize our mock database
-let db = require("./db/mockDatabase");
-
-// Firebase initializer
-const firebaseApp = admin.initializeApp(functions.config().firebase);
-
 // instantiate express app
 const server = express();
+
+// set up to use static files
+server.use(express.static("public"));
 
 // ejs middleware
 server.use(ejsLayouts);
@@ -110,7 +104,7 @@ server
   .delete(mongooseFunctions.deleteUser);
 
 //index handle
-server.get("", mongooseFunctions.setUpIndex);
+server.get("/", mongooseFunctions.setUpIndex);
 
 // login handle
 server.get("/login", (req, res) => {
@@ -123,8 +117,10 @@ server.get("/signup", (req, res) => {
 });
 
 // registration (signup) handle
-// TODO: NEED TO UPDATE WHEN ACTUAL DB IS READY
 server.post("/signup", mainController.createAccount);
+
+// post handle for create page event
+server.post('/create', userController.createEvent);
 
 // create event page
 server.get("/create", (req, res) => {
@@ -152,4 +148,6 @@ server.post("/login", (req, res, next) => {
   })(req, res, next);
 });
 
-exports.app = functions.https.onRequest(server);
+server.listen(PORT, () => {
+  console.log(`http://localhost:${PORT}`)
+})
