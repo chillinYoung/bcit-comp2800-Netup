@@ -6,17 +6,24 @@
   grid-template-rows: 4.7rem auto auto auto;
   grid-template-areas:
     "header"
+    "figure-team-bg"
     "main-team-container"
     "sitemap-container"
     "footer";
 }
 
 .main-team-container {grid-area: main-team-container;}
+.figure-team-bg {grid-area: figure-signin-bg;}
 
 .main-team-container {
   min-height: 70vh;
   display: flex;
   justify-content: center;
+}
+
+.team-title {
+  font-weight: bold;
+  font-size: 3rem;
 }
 
 .main-team {
@@ -26,8 +33,13 @@
 
 .team-members {  
   display: grid;
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: repeat(4, auto);
   place-items: start;
+  grid-gap: 2rem;
+}
+
+.team-member {
+  margin: 1rem 0 3rem;
 }
 
 .team-member img {
@@ -35,12 +47,30 @@
   border-radius: 50%;
   transition: transform 0.8s;
   transform-style: preserve-3d;
+  border: 1rem double var(--color-point-mint);
+  box-sizing: border-box;
 }
 
 .team-member img:hover {
   transform: rotateY(180deg) scaleX(-1);
   filter: brightness(30%);
 }
+
+.team-member-text {
+  font-size: 1.1rem;
+  text-align: justify;
+}
+
+.team-member-text p {
+  margin: 0;
+}
+
+.team-member-text span {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--color-point-mint);
+}
+
 
 
 
