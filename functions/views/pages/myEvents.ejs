@@ -31,7 +31,7 @@
 
         <div class="events-block hosted-events">
           <% for (let i = 0; i < events.length; i++) { %>
-            <% if (user.name.localeCompare(events[i].hostName) == 0) { %>
+            <% if (currentUser.name.localeCompare(events[i].hostName) == 0) { %>
           <div class="events-event-list">
             <img src="<%= events[i].image %>" />
             <div class="events-event-list-text">
@@ -67,7 +67,8 @@
 
         <div class="events-block joined-events">
           <% for (let i = 0; i < events.length; i++) { %>
-
+            <% events[i].participants.forEach( participant => { %>
+            <% if (currentUser.name.localeCompare(participant) == 0) { %>
           <div class="events-event-list">
             <img src="<%= events[i].image %>" />
             <div class="events-event-list-text">
@@ -85,7 +86,7 @@
               <p><%= events[i].description %></p>
             </div>
           </div>
-          <% } %>
+          <% } }) } %>
         </div>
       </div>
     </div>
