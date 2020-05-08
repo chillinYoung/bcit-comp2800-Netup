@@ -6,6 +6,7 @@ module.exports = {
     return user ? false : true;
   },
   createEvent: (req, res) => {
+    console.log(req.user);
     const {
       eventTopic,
       eventName,
@@ -23,11 +24,11 @@ module.exports = {
       eventTopic: eventTopic,
       eventName: eventName,
       hostName: hostName,
-      eventDuration: eventDuration,
-      eventDetails: eventDetails,
+      duration: eventDuration,
+      description: eventDetails,
       participants: [],
       eventDate: eventDate,
-      image: "/src/aessst/images/lego.jpg",
+      image: "/src/assets/images/lego.jpg",
     });
     schema.User.find({}, (err, foundUser) => {
       if (!err) {

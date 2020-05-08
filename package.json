@@ -18,5 +18,6 @@
   "homepage": "https://github.com/lilyyanglt/COMP-2800-Team-DTC-10-Netup#readme",
   "dependencies": {
     "mongoose": "^5.9.12"
-  }
+  },
+  "keywords": []
 }
