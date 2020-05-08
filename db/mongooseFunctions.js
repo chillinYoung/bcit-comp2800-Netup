@@ -49,16 +49,17 @@ let mongooseFunctions = {
     });
   },
   prepareEvent: (req, res) => {
-    db.Event.find({}, (err, foundEvent) => {
-      if (!err) {
-        res.render("pages/myevents", {
-          user: userController.isLoggedIn(req.user),
-          events: Array.from(foundEvent),
-        });
-      } else {
-        res.send(err);
-      }
-    });
+    // db.Event.find({}, (err, foundEvent) => {
+    //   if (!err) {
+    //     res.render("pages/myevents", {
+    //       user: userController.isLoggedIn(req.user),
+    //       events: Array.from(foundEvent),
+    //     });
+    //   } else {
+    //     res.send(err);
+    //   }
+    // });
+    res.render('pages/myEvents', {user: userController.isLoggedIn(req.user)});
   },
   postUser: function (req, res) {
     let newUser = new User({
