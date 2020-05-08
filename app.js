@@ -3,7 +3,10 @@ const ejsLayouts = require('express-ejs-layouts');
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
-const PORT = 5050 || process.env.PORT;
+let PORT = process.env.PORT;
+if(PORT == null || port == "") {
+  PORT = 5050;
+}
 
 // importing custom modules
 const checkAuth = require("./config/auth").ensureAuthenticated;
