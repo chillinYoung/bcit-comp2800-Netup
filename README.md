@@ -4,7 +4,7 @@
 ## Start Guide
 
 1. Install dependencies `npm install`
-2. Start the app `npm start`
+2. Start the app `npm run dev`
 3. Go to http://localhost:5050 to view the app
 
 

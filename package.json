@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -28,5 +29,8 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lilyyanglt/COMP-2800-Team-DTC-10-Netup.git"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.3"
   }
 }

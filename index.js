@@ -3,18 +3,25 @@ const ejsLayouts = require('express-ejs-layouts');
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
+
+// instantiate express app
+const server = express();
+
 let PORT = process.env.PORT;
 if(PORT == null || PORT == "") {
   PORT = 5050;
 }
 
+server.listen(PORT, () => {
+  console.log(`http://localhost:${PORT}`)
+})
+
+
 // importing custom modules
 const checkAuth = require("./config/auth").ensureAuthenticated;
 const userController = require("./controller/userRoute");
 const mainController = require("./controller/mainRoute");
-
-// instantiate express app
-const server = express();
+const mongooseFunctions = require("./db/mongooseFunctions");
 
 // set up to use static files
 server.use(express.static("public"));
@@ -71,7 +78,7 @@ server.use((req, res, next) => {
 
   next();
 });
-const mongooseFunctions = require("./db/mongooseFunctions");
+
 
 // Connect to events collection in database with mongodb.
 server
@@ -140,7 +147,7 @@ server.get("/create", (req, res) => {
 });
 
 // user account page handle
-server.get("/myevents", mongooseFunctions.prepareEvent);
+server.get("/myevents", checkAuth, mongooseFunctions.prepareEvent);
 
 // signout handle
 server.get("/signout", (req, res) => {
@@ -158,6 +165,3 @@ server.post("/login", (req, res, next) => {
   })(req, res, next);
 });
 
-server.listen(PORT, () => {
-  console.log(`http://localhost:${PORT}`)
-})

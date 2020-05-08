@@ -21,7 +21,7 @@ module.exports = function (passport) {
               }
 
               if (user.password !== password) {
-                error = "password is not registered";
+                error = "password does not match";
               }
             }
           });
