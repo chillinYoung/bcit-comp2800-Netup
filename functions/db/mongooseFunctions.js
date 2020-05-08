@@ -124,10 +124,10 @@ let mongooseFunctions = {
       }
     });
   },
-  deleteEvent: function (req, res) {
+  deleteEvent: (req, res) => {
     db.Event.deleteOne({ _id: req.params.eventId }, function (err) {
       if (!err) {
-        res.send("Successfully deleted event");
+        res.redirect("/myevents");
       } else {
         res.send(err);
       }

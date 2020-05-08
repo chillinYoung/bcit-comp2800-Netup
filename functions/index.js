@@ -136,6 +136,8 @@ server.get("/create", (req, res) => {
 // user account page handle
 server.get("/myevents", mongooseFunctions.prepareEvent);
 
+server.get("/deleteEvent/:eventId", mongooseFunctions.deleteEvent);
+
 // signout handle
 server.get("/signout", (req, res) => {
   req.logout();
