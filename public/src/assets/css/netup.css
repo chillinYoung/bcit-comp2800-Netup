@@ -6,13 +6,11 @@
   grid-template-rows: 4.7rem auto auto auto auto;
   grid-template-areas:
     "header"
-    "figure-netup-bg"
     "main-netup-container"
     "sitemap-container"
     "footer";
 }
 
-.figure-netup-bg {grid-area: figure-netup-bg;}
 .main-netup-container {grid-area: main-netup-container;}
 
 .main-netup-container {
