@@ -56,7 +56,7 @@ let mongooseFunctions = {
           currentUser: req.user,
           events: Array.from(foundEvent),
         });
-      } else {}
+      } else {
         res.send(`LOGGING DATABASE ERROR ${err}`);
       }
     });
