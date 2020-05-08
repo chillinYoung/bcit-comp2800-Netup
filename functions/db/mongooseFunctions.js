@@ -52,7 +52,7 @@ let mongooseFunctions = {
     db.Event.find({}, (err, foundEvent) => {
       if (!err) {
         res.render("pages/myevents", {
-          user: userController.isLoggedIn(req.user),
+          user: req.user,
           events: Array.from(foundEvent),
         });
       } else {
