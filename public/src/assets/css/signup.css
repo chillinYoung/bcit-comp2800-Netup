@@ -3,7 +3,7 @@
   min-height: 100vh;
   margin: 0;
   display: grid;
-  grid-template-rows: 4.7rem 16rem auto 2.5rem;
+  grid-template-rows: 4.7rem auto auto auto;
   grid-template-areas:
     "header"
     "figure-signup-bg"
@@ -23,8 +23,9 @@
   align-items: center;
   width: 100%;
   margin: 0;
-  border-top: 5px solid white;
-  border-bottom: 5px solid white;
+  box-sizing: border-box;
+  min-height: 16rem;
+  height: 32vh;
 }
 
 .figure-signup-overtext {
@@ -62,33 +63,6 @@
 
 .signup-signup a:hover {
   color: var(--color-point-orange);
-}
-
-.form-signup {
-  padding: 2rem 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.form-signup label {
-  font-size: .9rem;
-}
-
-.form-signup div {
-  width: 15rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin: .3rem;
-}
-
-.form-signup div input {
-  border: 1px solid lightgray;
-  border-radius: 5px;
-  width: 100%;
-  height: 1.7rem;
-  padding: 0 .5rem;
 }
 
 .signup-or {
@@ -130,10 +104,6 @@
   border-color: var(--color-point-yellow);
 }
 
-.footer-info {
-  padding: .25rem 2rem;
-}
-
 
 /* tablet layout from here */
 @media (min-width: 640px) {
@@ -153,22 +123,24 @@
       "figure-signup-bg main-signup"
       "footer footer";
   }
+  
+  .main-signup {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 
   .figure-signup-bg {
     padding-right: 0;
     background-position: right;
     justify-content: flex-end;
+    height: auto;
   }
 
   .figure-signup-overtext {
     font-size: 2.5rem;
     text-align: right;
     padding: 0 7% 0 0;
-  }
-
-  .main-signup {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
   }
 }
