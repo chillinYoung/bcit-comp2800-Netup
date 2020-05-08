@@ -4,7 +4,7 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
 let PORT = process.env.PORT;
-if(PORT == null || port == "") {
+if(PORT == null || PORT == "") {
   PORT = 5050;
 }
 
