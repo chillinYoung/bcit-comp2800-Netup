@@ -69,7 +69,6 @@
 }
 
 .main-events {
-  min-height: 0;
   padding: 2rem 2rem 3rem;
   display: flex;
   flex-direction: column;
