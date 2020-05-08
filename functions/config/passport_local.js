@@ -48,10 +48,9 @@ module.exports = function (passport) {
 
   // need to deserializeUser
   passport.deserializeUser((id, done) => {
-    let users;
     db.User.find({}, (err, results) => {
       if (!err) {
-        users = Array.from(results);
+        let users = Array.from(results);
 
         let foundUser = null;
         users.forEach((user) => {
