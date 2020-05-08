@@ -51,7 +51,7 @@ let mongooseFunctions = {
   prepareEvent: (req, res) => {
     db.Event.find({}, (err, foundEvent) => {
       if (!err) {
-        res.render("pages/myevents", {
+        res.render("pages/myEvents", {
           user: userController.isLoggedIn(req.user),
           currentUser: req.user,
           events: Array.from(foundEvent),
