@@ -63,7 +63,10 @@ node_modules/
 
 # dotenv environment variables file
 .env
+/*.env
 
 # Mac
 .DS_Store
 .gitignore
+
+.now

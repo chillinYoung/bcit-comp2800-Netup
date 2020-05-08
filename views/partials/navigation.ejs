@@ -1,0 +1,114 @@
+<header>
+  <!-- for notification message such as 'successfully signed out' -->
+  <%- include('../partials/messages'); %>
+
+  <!-- main header start from here -->
+  <div class="header">
+    <div class="mobile-menu">
+      <span class="mobile-menu-open-btn" onclick="openMenu()">&#9776;</span>
+      <span class="mobile-menu-close-btn" onclick="closeMenu()">&#10005;</span>
+    </div>
+    <div class="header-title">
+      <a href="/">Netup</a>
+    </div>
+
+    <div class="header-nav">
+      <ul class="main-nav-links">
+        <li>
+          <span class="main-nav-link">About</span>
+          <div class="main-nav-dropdown">
+            <a href="/netup">Netup</a>
+            <a href="/team">Our Team</a>
+          </div>
+        </li>
+        <li>
+          <span class="main-nav-link">Topics</span>
+          <div class="main-nav-dropdown">
+            <a href="/">Social</a>
+            <a href="/">Health</a>
+            <a href="/">Tech</a>
+          </div>
+        </li>
+        <li>
+          <span class="main-nav-link">Events</span>
+          <div class="main-nav-dropdown">
+            <a href="/">some menu</a>
+            <a href="/">empty menu</a>
+            <a href="/">something menu</a>
+          </div>
+        </li>
+        <li>
+          <span class="main-nav-link">Help</span>
+          <div class="main-nav-dropdown">
+            <a href="/">FAQ</a>
+            <a href="/">Feeback</a>
+          </div>
+        </li>
+        <li>
+          <% if(user) { %>
+            <!-- THIS IS WHEN USER IS NOT LOGGED IN-->
+            <a href="/login" class="main-nav-signin">Sign in</a>
+
+          <% } else { %>
+            <span class="main-nav-link main-nav-white">My Account</span>
+            <div class="main-nav-dropdown">
+              <a href="/myevents">My Events</a>
+              <a href="/">My Friends</a>
+              <a href="/signout" class="main-nav-yellow">Sign out</a>
+            </div>
+          <% } %>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+  <div class="mobile-nav">
+    <ul class="mobile-nav-links">
+      <li>
+        <span class="mobile-nav-header">About</span>
+        <div class="mobile-nav-container">
+          <a  class="mobile-nav-link" href="/netup">Netup</a>
+          <a  class="mobile-nav-link" href="/team">Our Team</a>
+        </div>
+      </li>
+      <li>
+        <span class="mobile-nav-header">Topics</span>
+        <div class="mobile-nav-container">
+          <a  class="mobile-nav-link" href="/">Social</a>
+          <a  class="mobile-nav-link" href="/">Health</a>
+          <a  class="mobile-nav-link" href="/">Tech</a>
+        </div>
+      </li>
+      <li>
+        <span class="mobile-nav-header">Events</span>
+        <div class="mobile-nav-container">
+          <a  class="mobile-nav-link" href="/">some menu</a>
+          <a  class="mobile-nav-link" href="/">empty menu</a>
+          <a  class="mobile-nav-link" href="/">something menu</a>
+        </div>
+      </li>
+      <li>
+        <span class="mobile-nav-header">Help</span>
+        <div class="mobile-nav-container">
+          <a  class="mobile-nav-link" href="/">FAQ</a>
+          <a  class="mobile-nav-link" href="/">Feeback</a>
+        </div>
+      </li>
+      <li>
+        <% if(user) { %>
+          <!-- THIS IS WHEN USER IS NOT LOGGED IN-->
+          <a  class="mobile-nav-signin" href="/login">Sign in</a>
+
+        <% } else { %>
+          <span class="mobile-nav-header mobile-nav-white">My Account</span>
+          <div class="mobile-nav-container">
+            <a  class="mobile-nav-link" href="/myevents">My Events</a>
+            <a  class="mobile-nav-link" href="/">My Friends</a>
+            <a  class="mobile-nav-link mobile-nav-yellow" href="/signout">Sign out</a>
+          </div>
+        <% } %>
+      </li>
+    </ul>
+  </div>
+</header>
