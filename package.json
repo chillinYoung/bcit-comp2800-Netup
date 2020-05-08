@@ -2,9 +2,9 @@
   "name": "netup",
   "version": "1.0.0",
   "description": "an app for comp2800",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -24,5 +24,9 @@
   },
   "engines": {
     "node": "12.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lilyyanglt/COMP-2800-Team-DTC-10-Netup.git"
   }
 }

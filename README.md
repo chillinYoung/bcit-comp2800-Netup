@@ -3,39 +3,9 @@
 
 ## Start Guide
 
-1. Ensure you have firebase-tools installed as your cli
-
-```
-npm install -g firebase-tools
-```
-
-2. Go into the functions folder and install the npm packages
-
-```
-cd functions
-npm install
-```
-3. Go back to the main directory by `cd -`
-
-4. If you are not already logged into your firebase account, you need to first login
-
-```
-firebase login
-```
-
-5. Pick a project to run this app
-
-```
-firebase use --add
-```
-
-6. Type in the following command to serve up the app locally
-
-```
-firebase serve --only hosting,functions
-```
-
-7. Open your browser and type: http://localhost:5000 
+1. Install dependencies `npm install`
+2. Start the app `npm start`
+3. Go to http://localhost:5050 to view the app
 
 
 ## DTC Team 10 Members
@@ -52,7 +22,3 @@ firebase serve --only hosting,functions
 ## Version
 
 - 1.0.0
-
-
-
-
