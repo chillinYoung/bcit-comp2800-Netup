@@ -16,6 +16,7 @@
       <a class="long-yellow-btn" href="/create">Create a New Event</a>
 
       <div class="events-blocks">
+        <!-- JOINED EVENTS -->
         <div class="events-header">
           <span>Hosted Events</span>
           <select
@@ -30,28 +31,40 @@
         </div>
 
         <div class="events-block hosted-events">
+          <% let hostedEmpty = true %>
           <% for (let i = 0; i < events.length; i++) { %>
             <% if (currentUser.name.localeCompare(events[i].hostName) == 0) { %>
-          <div class="events-event-list">
-            <img src="<%= events[i].image %>" />
-            <div class="events-event-list-text">
-              <div>
-                <span><%= events[i].eventName %></span>
-                <div class="events-event-list-option">
-                  <button class="events-event-list-btn">&#8942;</button>
-                  <div class="events-event-list-dropdown">
-                    <a href="/">Details</a>
-                    <a href="/">Edit</a>
-                    <a href="/deleteEvent/<%= events[i]._id %>">Delete</a>
+            <% hostedEmpty = false %>
+            <div class="events-event-list">
+              <img src="<%= events[i].image %>" />
+              <div class="events-event-list-text">
+                <div>
+                  <span><%= events[i].eventName %></span>
+                  <div class="events-event-list-option">
+                    <button class="events-event-list-btn">&#8942;</button>
+                    <div class="events-event-list-dropdown">
+                      <a href="/">Details</a>
+                      <a href="/">Edit</a>
+                      <a href="/deleteEvent/<%= events[i]._id %>">Delete</a>
+                    </div>
                   </div>
                 </div>
+                <p><%= events[i].description %></p>
               </div>
-              <p><%= events[i].description %></p>
             </div>
-          </div>
           <% }} %>
         </div>
 
+        <!-- show this message if there are no hosted events (TEMPORARY) -->
+        <% if(hostedEmpty) { %>
+          <div class="events-no-events">
+            <span>You don't have any hosted events yet.</span>
+          </div>
+        <% } %>
+
+
+
+        <!-- JOINED EVENTS -->
         <div class="events-header">
           <span>Joined Events</span>
           <select
@@ -66,28 +79,38 @@
         </div>
 
         <div class="events-block joined-events">
+          <% let joinedEmpty = true %>
           <% for (let i = 0; i < events.length; i++) { %>
             <% events[i].participants.forEach( participant => { %>
             <% if (currentUser.name.localeCompare(participant) == 0) { %>
-          <div class="events-event-list">
-            <img src="<%= events[i].image %>" />
-            <div class="events-event-list-text">
-              <div>
-                <span><%= events[i].eventName %></span>
-                <div class="events-event-list-option">
-                  <button class="events-event-list-btn">&#8942;</button>
-                  <div class="events-event-list-dropdown">
-                    <a href="/">Details</a>
-                    <a href="/">Edit</a>
-                    <a href="/">Delete</a>
+            <% joinedEmpty = false %>
+            <div class="events-event-list">
+              <img src="<%= events[i].image %>" />
+              <div class="events-event-list-text">
+                <div>
+                  <span><%= events[i].eventName %></span>
+                  <div class="events-event-list-option">
+                    <button class="events-event-list-btn">&#8942;</button>
+                    <div class="events-event-list-dropdown">
+                      <a href="/">Details</a>
+                      <a href="/">Edit</a>
+                      <a href="/">Delete</a>
+                    </div>
                   </div>
                 </div>
+                <p><%= events[i].description %></p>
               </div>
-              <p><%= events[i].description %></p>
             </div>
-          </div>
           <% } }) } %>
         </div>
+
+        <!-- show this message if there are no joined events (TEMPORARY) -->
+         <% if(joinedEmpty) { %>
+          <div class="events-no-events">
+            <span>You don't have any joined events yet.</span>
+          </div>
+        <% } %>
+
       </div>
     </div>
   </main>

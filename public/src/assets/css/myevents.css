@@ -113,6 +113,16 @@
   color: var(--color-point-orange);
 }
 
+.events-no-events {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 18vh;
+  background-color: #dfdce380;
+  margin: .7rem;
+  border-radius: 10px;
+}
+
 .events-event-list {
   margin: 1rem 0;
   display: flex;
@@ -155,6 +165,7 @@
 }
 
 .events-event-list-text p {
+  overflow-wrap: anywhere;
   font-size: 0.8rem;
   margin: 0;
   line-height: 1rem;
