@@ -62,9 +62,9 @@
 }
 
 .team-culture {
+  width: 75%;
   padding: 1rem 3rem 2.2rem;
   margin-bottom: 2.5rem;
-  text-align: justify;
   font-size: 1.2rem;
   border-bottom: 1px solid lightgray;
 }
@@ -154,7 +154,6 @@
 
 .team-member-text {
   font-size: 1.1rem;
-  text-align: justify;
 }
 
 .team-member-text p {
@@ -232,16 +231,16 @@
 
   .team-members {  
     display: grid;
-    grid-template-rows: repeat(1, auto);
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, auto);
+    grid-template-columns: repeat(2, 1fr);
     place-items: start;
     grid-gap: 0 2rem;
-    /*grid-template-areas:
-    "";*/
+    width: 75%;
   }
 
   .team-member img {
     border: .6rem double var(--color-point-mint);
+    width: 70%;
   }
 
   .main-team {
