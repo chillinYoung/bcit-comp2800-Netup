@@ -110,6 +110,11 @@ server
   .patch(mongooseFunctions.updateUser)
   .delete(mongooseFunctions.deleteUser);
 
+// temporary routes
+server.get('/comingsoon', (req, res) => {
+  res.sendFile(__dirname + '/public/comingsoon.html');
+})
+
 //index handle
 server.get("/", mongooseFunctions.setUpIndex);
 
@@ -168,4 +173,10 @@ server.post("/login", (req, res, next) => {
 });
 
 server.post("/create", userController.createEvent);
+
+
+// 404 page route (Please keep at the very bottom)
+server.use(function (req, res, next) {
+  res.status(404).sendFile(__dirname + '/public/404.html');
+})
 
