@@ -79,15 +79,35 @@
 
 .allevents-filter {
   width: 100%;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.allevents-filter-select {
+
 }
 
 .allevents-titlesearch {
   display: flex;
   justify-content: space-between;
+  flex-grow: 1;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  margin-left: 1rem;
 }
 
+.allevents-titlesearch span {
+  padding: 0 0 0 .3rem;
+}
+
+.allevents-titlesearch input {
+  width: 100%;
+  border: none;
+  outline: none;
+}
 
 
 
@@ -103,6 +123,11 @@
 
   .main-allevents {
     min-height: 30vh;
+  }
+
+  .allevents-filter {
+    padding: 0 2rem;
+    max-width: 860px;
   }
 }
 
@@ -138,6 +163,10 @@
     max-width: 1170px;
     width: 100%;
     background-color: white;
+  }
+
+  .allevents-filter {
+    max-width: 1170px;
   }
 
   .figure-allevents-bg {
