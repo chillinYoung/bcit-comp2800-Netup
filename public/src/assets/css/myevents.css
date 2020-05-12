@@ -170,6 +170,8 @@
   font-size: 0.8rem;
   margin: 0;
   line-height: 1rem;
+  max-height: 4rem;
+  overflow: hidden;
 }
 
 .myevents-event-list-option {
