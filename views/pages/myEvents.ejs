@@ -30,8 +30,10 @@
         </div>
 
         <div class="events-block hosted-events">
+          <% let hostedEmpty = true %>
           <% for (let i = 0; i < events.length; i++) { %>
-            <% if (currentUser.name.localeCompare(events[i].hostName) == 0) { %>
+            <% if (currentUser._id == (events[i].hostId)) { %>
+              <% hostedEmpty = false %>
           <div class="events-event-list">
             <img src="<%= events[i].image %>" />
             <div class="events-event-list-text">
@@ -52,6 +54,14 @@
           <% }} %>
         </div>
 
+        <!-- show this message if there are no hosted events (TEMPORARY) -->
+        <% if(hostedEmpty) { %>
+          <div class="myevents-no-events">
+            <span>You don't have any hosted events yet.</span>
+          </div>
+        <% } %>
+
+        <!-- JOINED EVENTS -->
         <div class="events-header">
           <span>Joined Events</span>
           <select
@@ -66,9 +76,11 @@
         </div>
 
         <div class="events-block joined-events">
+          <% let joinedEmpty = true %>
           <% for (let i = 0; i < events.length; i++) { %>
             <% events[i].participants.forEach( participant => { %>
             <% if (currentUser.name.localeCompare(participant) == 0) { %>
+              <% joinedEmpty = false %>
           <div class="events-event-list">
             <img src="<%= events[i].image %>" />
             <div class="events-event-list-text">
@@ -88,6 +100,12 @@
           </div>
           <% } }) } %>
         </div>
+        <!-- show this message if there are no joined events (TEMPORARY) -->
+          <% if(joinedEmpty) { %>
+            <div class="myevents-no-events">
+              <span>You don't have any joined events yet.</span>
+            </div>
+        <% } %>
       </div>
     </div>
   </main>
