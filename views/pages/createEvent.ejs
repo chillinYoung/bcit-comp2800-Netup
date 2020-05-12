@@ -21,7 +21,7 @@
           name="eventTopic"
           required
         >
-          <option value selected>Select...</option>
+          <option selected>Select...</option>
           <option value="social">Social</option>
           <option value="health">Health</option>
           <option value="tech">Tech</option>
@@ -42,10 +42,19 @@
         <label for="create-date" class="form-label-basic">Date:</label>
         <input
           class="form-input-basic"
-          type="datetime-local"
-          i
-          d="create-date"
+          type="date"
+          id="create-date"
           name="eventDate"
+          required
+        />
+      </div>
+      <div class="form-create-container">
+        <label for="create-time" class="form-label-basic">Time:</label>
+        <input
+          class="form-input-basic"
+          type="time"
+          id="create-time"
+          name="eventTime"
           required
         />
       </div>
@@ -53,15 +62,22 @@
         <label for="create-duration" class="form-label-basic"
           >Session Duration:</label
         >
-        <input
+        <select
           class="form-input-basic"
-          type="number"
           id="create-duration"
           name="eventDuration"
-          placeholder="(in minutes, max 1440 minutes)"
-          max="1440"
           required
-        />
+        >
+          <option selected>Select...</option>
+
+          <option value="0.5">30 minutes</option>
+          <option value="1">1 hour</option>
+          <option value="1.5">1 hour 30 minutes</option>
+          <% for (let num = 2; num <= 12; num++) { %>
+            <option value="<%= num %>"><%= num %> hours</option>
+            <option value="<%= num + 0.5 %>"><%= num %> hours 30 minutes</option>
+          <% } %>
+        </select>
       </div>
       <div class="form-create-container">
         <label for="create-description" class="form-label-basic"
@@ -85,3 +101,4 @@
 
   <%- include('../partials/sitemap'); %>
 </div>
+
