@@ -3,6 +3,14 @@ const ejsLayouts = require('express-ejs-layouts');
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+require('dotenv').config();
+const passportLocalMongoose = require("passport-local-mongoose");
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const findOrCreate = require('mongoose-findorcreate');
+const schema = require("./db/mongooseSchema");
+
 
 // instantiate express app
 const server = express();
@@ -30,6 +38,9 @@ server.use(express.static("public"));
 server.use(ejsLayouts);
 server.set("views", "./views");
 server.set("view engine", "ejs");
+server.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 // PASSPORT CONFIGURATION - FOR AUTHENTICATION
 require("./config/passport_local")(passport);
@@ -50,11 +61,54 @@ server.use(
 // dependent on express session so must put this middleware after express-session
 server.use(passport.initialize());
 server.use(passport.session());
+const User = schema.User
+
+
+// Passport connection to google credentials
+passport.use(new GoogleStrategy({
+  clientID: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET,
+  callbackURL: "http://localhost:5050/auth/google/secrets",
+  userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
+},
+function(accessToken, refreshToken, profile, cb) {
+  console.log(profile);
+
+  User.findOrCreate({ googleId: profile.id, name: profile.displayName }, function (err, user) {
+    return cb(err, user);
+  });
+}
+));
+
+// Google authemtication route.
+server.get("/auth/google",
+  passport.authenticate('google', { scope: ["profile"] })
+);
+
+server.get("/auth/google/secrets",
+  passport.authenticate('google', { failureRedirect: "/login" }),
+  function(req, res) {
+    console.log(req.user)
+    // Successful authentication, redirect to myEvents.
+    res.redirect("/myEvents");
+  });
+
+  server.get("/auth/google",
+  passport.authenticate('google', { scope: ["profile"] })
+);
+
+server.get("/auth/google/secrets",
+  passport.authenticate('google', { failureRedirect: "/login" }),
+  function(req, res) {
+    console.log(req.user)
+    // Successful authentication, redirect to myEvents.
+    res.redirect("/myEvents");
+  });
+
 
 // REGISTRATION AND LOGIN ****************************************************************
 // this is used to parse form information so that we can see POST requests in json format
 // body parser
-
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
 
@@ -127,9 +181,6 @@ server.get('/netup', (req, res) => {
 server.get('/team', (req, res) => {
   res.render('pages/aboutTeam', {user: userController.isLoggedIn(req.user)});
 })
-
-// all events page
-server.get('/allevents', mongooseFunctions.setUpAllEvents);
 
 // login handle
 server.get("/login", (req, res) => {
