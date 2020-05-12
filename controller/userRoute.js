@@ -16,6 +16,7 @@ module.exports = {
     } = req.body;
     let userExistingEvents = null;
     const hostName = req.user.name;
+    const hostId = req.user._id;
     console.log(req.user.name);
     // check user db to make sure no conflicting events hosted by same user
 
@@ -24,6 +25,7 @@ module.exports = {
       eventTopic: eventTopic,
       eventName: eventName,
       hostName: hostName,
+      hostId: hostId,
       duration: eventDuration,
       description: eventDetails,
       participants: [],
@@ -34,7 +36,7 @@ module.exports = {
       if (!err) {
         let users = Array.from(foundUser);
         users.forEach((user) => {
-          if (user.name === hostName) {
+          if (user._id === hostId) {
             userExistingEvents = user.hostedEvents;
           }
         });
