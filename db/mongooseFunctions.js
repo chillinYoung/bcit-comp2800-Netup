@@ -188,6 +188,14 @@ let mongooseFunctions = {
       });
     });
   },
+  setUpAllEvents: (req, res) => {
+    db.Event.find({}, (err, foundEvents) => {
+      res.render("pages/allEvents", {
+        events: foundEvents,
+        user: userController.isLoggedIn(req.user),
+      });
+    });
+  },
 };
 
 module.exports = mongooseFunctions;

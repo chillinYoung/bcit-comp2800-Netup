@@ -128,6 +128,9 @@ server.get('/team', (req, res) => {
   res.render('pages/aboutTeam', {user: userController.isLoggedIn(req.user)});
 })
 
+// all events page
+server.get('/allevents', mongooseFunctions.setUpAllEvents);
+
 // login handle
 server.get("/login", (req, res) => {
   res.render("pages/login", { user: userController.isLoggedIn(req.user) });
