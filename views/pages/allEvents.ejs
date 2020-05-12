@@ -18,7 +18,7 @@
           <select
             id="all-events-topic-select"
             name="all-events-topic-select">
-            <option value selected>All Topics ▼</option>
+            <option value selected>All Topics</option>
             <option value="social">Social</option>
             <option value="health">Health</option>
             <option value="tech">Tech</option>
@@ -26,7 +26,7 @@
         </div>
         <div class="allevents-titlesearch">
           <span>&#128269;</span>
-          <input type="text" id="allevents-search-keyword">
+          <input type="text" id="allevents-search-keyword" onkeyup="eventsSearch()">
         </div>
       </div>    
   
@@ -39,3 +39,4 @@
 
   <%- include('../partials/sitemap'); %>
 </div>
+<script src="/src/assets/js/events_search.js" async></script>

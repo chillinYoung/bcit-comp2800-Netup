@@ -16,6 +16,7 @@
   grid-area: figure-myevents-bg;
 }
 .main-myevents-container {
+  background-color: var(--color-bg);
   grid-area: main-myevents-container;
 }
 .sitemap-container {
@@ -104,7 +105,7 @@
   border: none;
   font-weight: bold;
   color: var(--color-dim-text);
-  background-color: white;
+  background-color: var(--color-bg);
   outline: none;
   cursor: pointer;
 }
@@ -287,7 +288,7 @@
     min-height: 80vh;
     max-width: 1170px;
     width: 100%;
-    background-color: white;
+    background-color: var(--color-bg);
   }
 
   .figure-myevents-bg {
