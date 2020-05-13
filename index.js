@@ -62,12 +62,12 @@ server.use(
 );
 
 //Define MySQL parameter in Config.js file.
-const pool = mysql.createPool({
-  host     : config.host,
-  user     : config.username,
-  password : config.password,
-  database : config.database
-});
+// const pool = mysql.createPool({
+//   host     : config.host,
+//   user     : config.username,
+//   password : config.password,
+//   database : config.database
+// });
 
 // PASSPORT MIDDLEWARE *******************************************************************
 // dependent on express session so must put this middleware after express-session
@@ -176,14 +176,15 @@ server
 //index handle
 server.get("/", mongooseFunctions.setUpIndex);
 
-//login via Facebook
-// server.get('/auth/facebook', passport.authenticate('facebook',{scope:'email'}));
-server.get('/auth/facebook', passport.authenticate('facebook',{scope: ['email', 'user_friends']}));
+
+server.get('/auth/facebook',
+  passport.authenticate('facebook'));
 
 server.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { successRedirect : '/myevents', failureRedirect: '/login' }),
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
-    res.redirect('/');
+    // Successful authentication, redirect home.
+    res.redirect('/myevents');
   });
 
 //login via Github
