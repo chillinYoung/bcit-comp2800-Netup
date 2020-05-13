@@ -483,7 +483,8 @@ footer {
   width: 100px;
   height: 2rem;
   margin: 1rem;
-  background-color: var(--color-point-yellow)
+  background-color: var(--color-point-yellow);
+  -webkit-appearance: none;
 }
 
 .yellow-btn:hover {
