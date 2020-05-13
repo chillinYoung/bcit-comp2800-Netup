@@ -160,6 +160,8 @@ server.get("/create", (req, res) => {
 // user account page handle
 server.get("/myevents", checkAuth, mongooseFunctions.prepareEvent);
 
+server.get("/myfriends", checkAuth);
+
 server.get("/deleteEvent/:eventId", mongooseFunctions.deleteEvent);
 
 // signout handle

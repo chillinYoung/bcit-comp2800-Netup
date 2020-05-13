@@ -26,8 +26,8 @@ module.exports = {
     }
 
     // check if passwords are at least 6 characters long
-    if (pw1.length <= 6 || pw1.length >= 10) {
-      errors.push({ msg: "Passwords must be between 6 - 10 characters" });
+    if (pw1.length < 8) {
+      errors.push({ msg: "Password must be more than 8 characters"});
       console.log(errors);
     }
 

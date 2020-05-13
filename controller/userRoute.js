@@ -56,7 +56,7 @@ module.exports = {
 
       if (isExitingEvent) {
         // it will cause an error message to show if the event already exists
-        req.flash("error_msg", "You already created this same event");
+        req.flash("error", "You already created this same event");
         // res.render('pages/myevents', {user: userController.isLoggedIn(req.user)});
         res.redirect("/create");
       } else {

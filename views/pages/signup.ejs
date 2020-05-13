@@ -16,7 +16,7 @@
 
     <form action="/signup" class="form-basic" method="post">
       <div class="form-basic-container">
-        <label for="signup-fname" class="form-label-basic">First Name:</label>
+        <label for="signup-fname" class="form-label-basic">* First Name:</label>
         <input 
         type="text" 
         id="signup-fname" 
@@ -27,7 +27,7 @@
       </div>
 
       <div class="form-basic-container">
-        <label for="signup-lname" class="form-label-basic">Last Name:</label>
+        <label for="signup-lname" class="form-label-basic">* Last Name:</label>
         <input 
         type="text" 
         id="signup-lname" 
@@ -38,7 +38,7 @@
       </div>
 
       <div class="form-basic-container">
-        <label for="signup-email" class="form-label-basic">Email:</label>
+        <label for="signup-email" class="form-label-basic">* Email:</label>
         <input 
         type="email" 
         id="signup-email" 
@@ -49,7 +49,7 @@
       </div>
 
       <div class="form-basic-container">
-        <label for="signup-pw" class="form-label-basic">Password:</label>
+        <label for="signup-pw" class="form-label-basic">* Password:</label>
         <input 
         type="password"
         id="pw1"
@@ -57,10 +57,11 @@
         class="form-input-basic"
         value="<%= typeof pw1 != 'undefined' ? pw1 : ''%>"
         required>
+        <small>Must be more than 8 characters</small>
       </div>
 
       <div class="form-basic-container">
-        <label for="signup-pw" class="form-label-basic">Confirm Password:</label>
+        <label for="signup-pw" class="form-label-basic">* Confirm Password:</label>
         <input 
         type="password" 
         id="pw2" 
@@ -69,6 +70,8 @@
         value="<%= typeof pw2 != 'undefined' ? pw2 : ''%>"
         required>
       </div>
+
+      <small>* Required fields </small>
 
       <input id="signup-btn" class="yellow-btn" type="submit" value="Sign up">
 

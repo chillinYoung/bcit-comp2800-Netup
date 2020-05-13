@@ -18,16 +18,14 @@ module.exports = function (passport) {
             } else {
               if (user.email !== email) {
                 error = "email is not registered";
-              }
-
-              if (user.password !== password) {
+              } else if (user.password !== password) {
                 error = "password does not match";
               }
             }
           });
 
           if (foundUser) {
-            return done(null, foundUser, { message: "Welcome back" });
+            return done(null, foundUser, { message: `Welcome back ${foundUser.name}` });
           } else {
             return done(null, false, { message: error });
           }
