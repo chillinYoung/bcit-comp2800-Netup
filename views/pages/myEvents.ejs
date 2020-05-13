@@ -87,7 +87,7 @@
           <% let joinedEmpty = true %>
           <% for (let i = 0; i < events.length; i++) { %>
             <% events[i].participants.forEach( participant => { %>
-            <% if (currentUser.name.localeCompare(participant) == 0) { %>
+            <% if (currentUser.id == participant) { %>
             <% joinedEmpty = false %>
             <div class="myevents-event-list">
               <img src="<%= events[i].image %>" />

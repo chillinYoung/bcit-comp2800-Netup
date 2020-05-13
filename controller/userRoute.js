@@ -5,6 +5,10 @@ module.exports = {
   isLoggedIn: (user) => {
     return user ? false : true;
   },
+  userDetails: (user) => {
+    return user
+  }
+  ,
   createEvent: (req, res) => {
     console.log(req.user);
     const {

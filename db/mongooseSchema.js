@@ -26,7 +26,7 @@ const eventSchema = {
   eventName: String,
   hostName: String,
   hostId: String,
-  participants: [String],
+  participants: [Object],
   eventDate: Date,
   duration: Number,
   description: String,

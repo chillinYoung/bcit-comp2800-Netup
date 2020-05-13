@@ -311,6 +311,25 @@ server.get('/contact', (req, res) => {
 
 server.post('/send', mongooseFunctions.contactForm);
 
+server.post("/joinEvent", (req, res) => {
+  console.log("User id is " + req.user._id);
+  console.log("Event id is " + req.body.id);
+  schema.Event.updateOne({ _id: req.body.id }, {$push: {participants: req.user.id}},(err, foundEvent) => {
+    if (!err) {
+      console.log("Successfully updated event!");
+    } else {
+      res.send(err);
+    }
+  });
+  schema.User.updateOne({ _id: req.user.id }, {$push: {joinedEvents: req.body.id}},(err, foundEvent) => {
+    if (!err) {
+      console.log("Successfully updated event!");
+    } else {
+      res.send(err);
+    }
+  });
+})
+
 
 // 404 page route (Please keep at the very bottom)
 server.use(function (req, res, next) {
