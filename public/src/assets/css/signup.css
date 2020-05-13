@@ -81,7 +81,7 @@
   font-size: 1.3rem;
   top: -1rem;
   padding: 0 1rem;
-  background-color: white;
+  background-color: var(--color-bg);
 }
 
 .signup-third-party-list {
@@ -94,7 +94,7 @@
   width: 15rem;
   height: 2.5rem;
   margin: .5rem;
-  background-color: white;
+  background-color: var(--color-bg);
   border: .1rem solid var(--color-point-mint);
   border-radius: 5px;
   cursor: pointer;

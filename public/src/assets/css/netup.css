@@ -20,6 +20,7 @@
 }
 
 .main-netup {
+  background-color: var(--color-bg);
   width: 100%;
   padding: 3rem 2rem 2rem;
   display: flex;

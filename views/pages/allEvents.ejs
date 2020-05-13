@@ -1,0 +1,44 @@
+<img id="chrisFace" alt="surprise" src="/src/assets/images/chris_face.jpeg">
+
+<div class="body-allevents">
+  <%- include('../partials/navigation'); %>
+
+  <figure class="figure-allevents-bg">
+    <div class="figure-allevents-overtext">
+      <span>Events</span>
+    </div>
+  </figure>
+
+  <main class="main-allevents-container">
+    <div class="main-allevents">
+      <div class="figure-allevents-header">
+        <span>Events</span>
+      </div>
+
+      <div class="allevents-filter">
+        <div class="allevents-filter-select">
+          <select
+            id="all-events-topic-select"
+            name="all-events-topic-select">
+            <option value selected>All Topics</option>
+            <option value="social">Social</option>
+            <option value="health">Health</option>
+            <option value="tech">Tech</option>
+          </select>
+        </div>
+        <div class="allevents-titlesearch">
+          <span>&#128269;</span>
+          <input type="text" id="allevents-search-keyword" onkeyup="easterEgg()">
+        </div>
+      </div>    
+  
+      <div class="main-index">
+         <%- include('../partials/events'); %>
+    </div>
+
+  </main>
+
+  <%- include('../partials/sitemap'); %>
+</div>
+<script src="/src/assets/js/events_search.js" async></script>
+<script src="/src/assets/js/easter_egg.js" async></script>

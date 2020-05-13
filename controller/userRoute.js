@@ -11,6 +11,7 @@ module.exports = {
       eventTopic,
       eventName,
       eventDate,
+      eventTime,
       eventDuration,
       eventDetails,
     } = req.body;
@@ -28,7 +29,8 @@ module.exports = {
       description: eventDetails,
       participants: [],
       eventDate: eventDate,
-      image: "/src/assets/images/lego.jpg",
+      eventTime: eventTime,
+      image: "/src/assets/images/yoga.jpg",
     });
     schema.User.find({}, (err, foundUser) => {
       if (!err) {
@@ -47,7 +49,7 @@ module.exports = {
       // check if the new event matches any event inside of the user hosted events
       let isExitingEvent = false;
       userExistingEvents.forEach((event) => {
-        if (event.eventDate === eventDate) {
+        if (event.eventDate === eventDate && event.eventTime === eventTime) {
           isExitingEvent = true;
         }
       });
