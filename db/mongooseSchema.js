@@ -1,14 +1,11 @@
 //jshint esversion:6
 require('dotenv').config();
 const express = require("express");
-const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const mongoose = require("mongoose");
 require('dotenv').config();
-const express = require("express");
 const bodyParser = require("body-parser");
-const ejs = require("ejs");
 const session = require('express-session');
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
