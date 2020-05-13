@@ -1,10 +1,19 @@
 const searchInp = document.querySelector("#allevents-search-keyword");
+const titles = document.querySelectorAll(".video-post-title");
 
+function eventSearch() {
+  easterEgg();
 
-
-
-
-
+  titles.forEach(title => {
+    let target = title.innerHTML.toLowerCase();
+    if (!target.includes(searchInp.value)) {
+      title.parentNode.parentNode.style.display = "none";
+    }
+    if (target.includes(searchInp.value)) {
+      title.parentNode.parentNode.style.display = "block";      
+    }
+  })
+};
 
 
 // EASTER EGG
@@ -21,4 +30,4 @@ function easterEgg() {
   if (window.matchMedia("(max-width: 1024px)").matches) {
     hideChris();
   }
-}
+};
