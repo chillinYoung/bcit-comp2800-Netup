@@ -3,12 +3,18 @@ const ejsLayouts = require('express-ejs-layouts');
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
-const bodyParser = require("body-parser");
-require('dotenv').config();
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const config = require('./config/config');
+const mysql = require('mysql');
+const findOrCreate = require('mongoose-findorcreate');
 const schema = require("./db/mongooseSchema");
-
-
+const mongoose = require("mongoose");
+const passportLocalMongoose = require("passport-local-mongoose");
+require('dotenv').config();
+const GitHubStrategy = require('passport-github').Strategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 // instantiate express app
 const server = express();
@@ -54,6 +60,14 @@ server.use(
     saveUninitialized: true,
   })
 );
+
+//Define MySQL parameter in Config.js file.
+const pool = mysql.createPool({
+  host     : config.host,
+  user     : config.username,
+  password : config.password,
+  database : config.database
+});
 
 // PASSPORT MIDDLEWARE *******************************************************************
 // dependent on express session so must put this middleware after express-session
@@ -107,6 +121,8 @@ server.get("/auth/google/secrets",
 // REGISTRATION AND LOGIN ****************************************************************
 // this is used to parse form information so that we can see POST requests in json format
 // body parser
+
+server.use(express.static('public'));
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
 
@@ -131,6 +147,44 @@ server.use((req, res, next) => {
   next();
 });
 
+// Passport session setup.
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
+
+
+passport.use(new FacebookStrategy({
+  clientID: "559597601651836",
+  clientSecret: "404682cf8b29834311d8d275c8175a29",
+  callbackURL: "http://localhost:5050/auth/facebook/callback"
+},
+function(accessToken, refreshToken, profile, cb) {
+  User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+    return cb(err, user);
+  });
+}
+));
+
+//For facebook login
+server.use(cookieParser());
+server.use(session({ secret: 'keyboard cat', key: 'sid'}));
+
+//Github
+passport.use(new GitHubStrategy({
+  clientID: "bc9876b04ebf2a2a49df",
+  clientSecret: "a222cc9a6a23ededf73ee91a42890f99d886cdeb",
+  callbackURL: "http://localhost:5050/auth/github/callback"
+},
+function(accessToken, refreshToken, profile, cb) {
+  User.findOrCreate({ githubId: profile.id }, function (err, user) {
+    return cb(err, user);
+  });
+}
+));
 
 // Connect to events collection in database with mongodb.
 server
@@ -169,6 +223,27 @@ server.get('/comingsoon', (req, res) => {
 
 //index handle
 server.get("/", mongooseFunctions.setUpIndex);
+
+//login via Facebook
+// server.get('/auth/facebook', passport.authenticate('facebook',{scope:'email'}));
+server.get('/auth/facebook', passport.authenticate('facebook',{scope: ['email', 'user_friends']}));
+
+server.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { successRedirect : '/myevents', failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+  });
+
+//login via Github
+server.get('/auth/github',
+  passport.authenticate('github'));
+
+server.get('/auth/github/callback', 
+  passport.authenticate('github', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/myevents');
+  });
 
 // about netup
 server.get('/netup', (req, res) => {
