@@ -13,6 +13,8 @@ var mousePos = {
     MAX_PARTICLES = 400,
     colorCode = 0;
 
+    
+
 // init
 function startFireworks() {
     $("#fireworks").append(canvas);
