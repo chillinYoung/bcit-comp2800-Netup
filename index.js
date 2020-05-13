@@ -10,7 +10,6 @@ const config = require('./config/config');
 const mysql = require('mysql');
 const findOrCreate = require('mongoose-findorcreate');
 const schema = require("./db/mongooseSchema");
-const mongoose = require("mongoose");
 const passportLocalMongoose = require("passport-local-mongoose");
 require('dotenv').config();
 const GitHubStrategy = require('passport-github').Strategy;
@@ -229,7 +228,7 @@ server.get("/", mongooseFunctions.setUpIndex);
 server.get('/auth/facebook', passport.authenticate('facebook',{scope: ['email', 'user_friends']}));
 
 server.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { successRedirect : '/myevents', failureRedirect: '/login' }),
+  passport.authenticate('facebook', { successRedirect : '/myEvents', failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/');
   });
@@ -242,7 +241,7 @@ server.get('/auth/github/callback',
   passport.authenticate('github', { failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication, redirect home.
-    res.redirect('/myevents');
+    res.redirect('/myEvents');
   });
 
 // about netup
@@ -257,6 +256,10 @@ server.get('/team', (req, res) => {
 
 // all events page
 server.get('/allevents', mongooseFunctions.setUpAllEvents);
+server.get('/allEventsSuccess', (req, res)=> {
+  req.flash("success_msg", "Joined Event successfully");
+  res.redirect("/allevents")
+});
 
 // login handle
 server.get("/login", (req, res) => {
@@ -282,9 +285,10 @@ server.get("/create", (req, res) => {
 });
 
 // user account page handle
-server.get("/myevents", checkAuth, mongooseFunctions.prepareEvent);
+server.get("/myEvents", checkAuth, mongooseFunctions.prepareEvent);
 
 server.get("/deleteEvent/:eventId", mongooseFunctions.deleteEvent);
+server.get("/leaveEvent/:eventId", mongooseFunctions.leaveEvent);
 
 // signout handle
 server.get("/signout", (req, res) => {
@@ -295,7 +299,7 @@ server.get("/signout", (req, res) => {
 
 server.post("/login", (req, res, next) => {
   passport.authenticate("local", {
-    successRedirect: "/myevents",
+    successRedirect: "/myEvents",
     failureRedirect: "/login",
     failureFlash: true,
     successFlash: true,
@@ -323,11 +327,12 @@ server.post("/joinEvent", (req, res) => {
   });
   schema.User.updateOne({ _id: req.user.id }, {$push: {joinedEvents: req.body.id}},(err, foundEvent) => {
     if (!err) {
-      console.log("Successfully updated event!");
+      console.log("Success")
     } else {
       res.send(err);
     }
   });
+  console.log("Take that!!!");
 })
 
 

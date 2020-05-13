@@ -131,11 +131,27 @@ let mongooseFunctions = {
   deleteEvent: (req, res) => {
     db.Event.deleteOne({ _id: req.params.eventId }, function (err) {
       if (!err) {
-        res.redirect("/myevents");
+        res.redirect("/myEvents");
       } else {
         res.send(err);
       }
     });
+  },
+  leaveEvent: (req, res) => {
+    db.Event.updateOne({ _id: req.params.eventId }, {$pull: {participants: req.user.id}}, function (err) {
+      if (!err) {
+        console.log("Successfully left event!")
+      } else {
+        res.send(err);
+      }
+    });
+    db.User.updateOne({_id: req.user.id}, {$pull: {joinedEvents: req.params.eventId}}, (err)=> {
+      if (!err) {
+        res.redirect("/myEvents")
+      } else {
+        res.send(err);
+      }
+    })
   },
   findUser: function (req, res) {
     db.User.findOne({ _id: req.params.userId }, (err, foundUser) => {

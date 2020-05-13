@@ -7,7 +7,7 @@
           <span class="video-post-category"><%= event['eventTopic'].toUpperCase() %></span>
           <!-- button should have 'video-post-joined' class if the event is what user joined -->
           <!-- and innerHTML should be changed to 'Joined' -->
-          <button class="video-post-join" id="<%= event['_id'] %>" name="<%= event['_id'] %>" formmethod="post" formaction="/joinEvent">Join</button>
+          <button class="video-post-join" id=name="<%= event['_id'] %>"name="<%= event['_id'] %>" formmethod="post" formaction="/joinEvent">Join</button>
           <!-- <button class="video-post-joined" name="<%= event['id'] %>" formmethod="post" formaction="">Joined</button> -->
         </div>
         <span class="video-post-title"><%= event['eventName'] %></span>
