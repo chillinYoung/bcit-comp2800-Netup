@@ -193,15 +193,18 @@ let mongooseFunctions = {
       res.render("pages/allEvents", {
         events: foundEvents,
         user: userController.isLoggedIn(req.user),
+        topic: "all topics"
       });
     });
   },
   getEventByTopics: (req, res) => {
-    db.Event.find({eventTopic: req.params.topic})
+    let chosenTopic = req.params.topic;
+    db.Event.find({eventTopic: chosenTopic})
     .then(result => {
       res.render("pages/allEvents", {
         events: result,
-        user: userController.isLoggedIn(req.user)
+        user: userController.isLoggedIn(req.user),
+        topic: chosenTopic
       })
     })
     .catch(error => console.error(error));

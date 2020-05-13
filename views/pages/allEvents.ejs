@@ -17,14 +17,7 @@
 
       <div class="allevents-filter">
         <div class="allevents-filter-select">
-          <select
-            id="all-events-topic-select"
-            name="all-events-topic-select">
-            <option value selected>All Topics</option>
-            <option value="social">Social</option>
-            <option value="health">Health</option>
-            <option value="tech">Tech</option>
-          </select>
+          <%- include('../partials/topicFilter'); %>
         </div>
         <div class="allevents-titlesearch">
           <span>&#128269;</span>
