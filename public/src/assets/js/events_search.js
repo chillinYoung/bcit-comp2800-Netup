@@ -1,12 +1,24 @@
 const searchInp = document.querySelector("#allevents-search-keyword");
 
-function eventsSearch() {
+
+
+
+
+
+
+
+// EASTER EGG
+window.onresize = function() {easterEgg()};
+function easterEgg() {
   if (searchInp.value.toLowerCase().trim() == "karen") {
     changeColor();
-    //'<img id="chrisFace" alt="surprise" src="/src/assets/images/chris_face.jpeg">';
-    let chrisImage = document.querySelector("#chrisFace");
-    chrisImage.style.visibility = "visible";
-    moveChris(chrisImage);
+
+    if (window.matchMedia("(min-width: 1025px)").matches) {
+      visibleChris();  
+    }
+  }
+
+  if (window.matchMedia("(max-width: 1024px)").matches) {
+    hideChris();
   }
 }
-
