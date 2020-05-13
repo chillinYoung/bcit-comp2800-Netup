@@ -1,9 +1,16 @@
 
   <% events.forEach(event => { %>
+  <% console.log(event) %>
     <div class="video-post">
       <img src="<%= event['image'] %>" alt="Photo by Tyler Nix on Unsplash">
-      <div>
-        <span class="video-post-category"><%= event['eventTopic'].toUpperCase() %></span>
+      <div class="video-post-description">
+        <div>
+          <span class="video-post-category"><%= event['eventTopic'].toUpperCase() %></span>
+          <!-- button should have 'video-post-joined' class if the event is what user joined -->
+          <!-- and innerHTML should be changed to 'Joined' -->
+          <button class="video-post-join" name="<%= event['id'] %>" formmethod="post" formaction="">Join</button>
+          <!-- <button class="video-post-joined" name="<%= event['id'] %>" formmethod="post" formaction="">Joined</button> -->
+        </div>
         <span class="video-post-title"><%= event['eventName'] %></span>
         <span class="video-post-date"><%= event['eventDate'] %></span>
       </div>
