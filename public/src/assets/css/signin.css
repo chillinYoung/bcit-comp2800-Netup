@@ -98,7 +98,7 @@
   align-items: center;
 }
 
-.signin-third-party-list button {
+.signin-third-party-list a {
   width: 15rem;
   height: 2.5rem;
   margin: .5rem;
@@ -108,7 +108,7 @@
   cursor: pointer;
 }
 
-.signin-third-party-list button:hover {
+.signin-third-party-list a:hover {
   border-color: var(--color-point-yellow);
 }
 
