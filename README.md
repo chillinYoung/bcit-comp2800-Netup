@@ -4,9 +4,9 @@
 ## Start Guide
 
 1. Install dependencies `npm install`
-2. Start the app `npm run dev`
-3. Create a .env file in the same directory as index.js and Procfile.
-4. Add the two lines for google authentication, shared on slack (ask james).
+2. Create a .env file in the same directory as index.js and Procfile.
+3. Add the two lines for google authentication, shared on slack (ask james).
+4. Start the app `npm run dev`
 5. Go to http://localhost:5050 to view the app
 
 
