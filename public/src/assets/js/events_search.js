@@ -7,6 +7,7 @@ function eventsSearch() {
     let chrisImage = document.querySelector("#chrisFace");
     chrisImage.style.visibility = "visible";
     moveChris(chrisImage);
+    startFireworks();
   }
 }
 
