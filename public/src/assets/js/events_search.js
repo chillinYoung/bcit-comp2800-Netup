@@ -2,11 +2,6 @@ const searchInp = document.querySelector("#allevents-search-keyword");
 
 
 
-
-
-
-
-
 // EASTER EGG
 window.onresize = function() {easterEgg()};
 function easterEgg() {
@@ -14,7 +9,8 @@ function easterEgg() {
     changeColor();
 
     if (window.matchMedia("(min-width: 1025px)").matches) {
-      visibleChris();  
+      visibleChris(); 
+      startFireworks(); 
     }
   }
 
