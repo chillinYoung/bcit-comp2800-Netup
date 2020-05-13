@@ -303,7 +303,7 @@ server.post("/create", userController.createEvent);
 
 // contact form will be moved to it's own file later.
 server.get('/contact', (req, res) => {
-  res.render('pages/contact');
+  res.render('pages/contact', { user: userController.isLoggedIn(req.user) });
 });
 
 server.post('/send', mongooseFunctions.contactForm);
