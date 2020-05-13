@@ -196,6 +196,16 @@ let mongooseFunctions = {
       });
     });
   },
+  getEventByTopics: (req, res) => {
+    db.Event.find({eventTopic: req.params.topic})
+    .then(result => {
+      res.render("pages/allEvents", {
+        events: result,
+        user: userController.isLoggedIn(req.user)
+      })
+    })
+    .catch(error => console.error(error));
+  }
 };
 
 module.exports = mongooseFunctions;
