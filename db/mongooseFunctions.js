@@ -251,8 +251,8 @@ let mongooseFunctions = {
         }
         console.log('Message sent: %s', info.messageId);   
         console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-  
-        res.render('pages/contact', { user: userController.isLoggedIn(req.user) }, {msg:'Email has been sent'});
+        req.flash("success_msg", "Message sent successfully")
+        res.render('pages/contact', { user: userController.isLoggedIn(req.user) });
     });
     },
     setUpAllEvents: (req, res) => {

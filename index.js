@@ -162,7 +162,7 @@ passport.use(new FacebookStrategy({
   callbackURL: "http://localhost:5050/auth/facebook/callback"
 },
 function(accessToken, refreshToken, profile, cb) {
-  User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+  User.findOrCreate({ facebookId: profile.id, name: profile.displayName }, function (err, user) {
     return cb(err, user);
   });
 }
@@ -179,7 +179,7 @@ passport.use(new GitHubStrategy({
   callbackURL: "http://localhost:5050/auth/github/callback"
 },
 function(accessToken, refreshToken, profile, cb) {
-  User.findOrCreate({ githubId: profile.id }, function (err, user) {
+  User.findOrCreate({ githubId: profile.id, name: profile.displayName }, function (err, user) {
     return cb(err, user);
   });
 }
