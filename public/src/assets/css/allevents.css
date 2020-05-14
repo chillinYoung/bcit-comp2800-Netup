@@ -158,7 +158,7 @@
   .main-allevents-container {
     background-image: url("../images/thread2.jpg");
     background-position: top;
-    background-size: cover;
+    background-size: auto;
     display: flex;
     justify-content: center;
   }
