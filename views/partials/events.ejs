@@ -11,7 +11,7 @@
           <button class="video-post-join" name="<%= event['id'] %>" formmethod="post" formaction="">Join</button>
           <!-- <button class="video-post-joined" name="<%= event['id'] %>" formmethod="post" formaction="">Joined</button> -->
         </div>
-        <span class="video-post-title"><%= event['eventName'] %></span>
+        <a href="/eventdetails/<%= event['_id'] %>" class="video-post-title"><%= event['eventName'] %></a>
         <span class="video-post-date"><%= event['eventDate'] %></span>
       </div>
     </div>
