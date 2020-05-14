@@ -208,6 +208,17 @@ let mongooseFunctions = {
       })
     })
     .catch(error => console.error(error));
+  },
+  setUpEventDetails: (req, res) => {
+    // console.log(req.params.eventId);
+    db.Event.find({"_id": req.params.eventId})
+    .then(result => {
+      res.render("pages/eventDetails", {
+        events: result[0],
+        user: userController.isLoggedIn(req.user)
+      })
+    })
+    .catch(error => console.error(error));
   }
 };
 

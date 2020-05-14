@@ -134,6 +134,9 @@ server.get('/allevents', mongooseFunctions.setUpAllEvents);
 // handle for filtering for specific events
 server.get('/allevents/:topic', mongooseFunctions.getEventByTopics);
 
+// event details page for specific event
+server.get('/eventdetails/:eventId', mongooseFunctions.setUpEventDetails);
+
 // login handle
 server.get("/login", (req, res) => {
   res.render("pages/login", { user: userController.isLoggedIn(req.user) });

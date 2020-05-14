@@ -1,0 +1,53 @@
+<div class="body-details">
+  <%- include('../partials/navigation'); %>
+
+  <figure class="figure-details-bg">
+    <div class="figure-details-overtext">
+      <span><%= events.eventName %></span>
+    </div>
+  </figure>
+
+  <main class="main-details">
+    <div class="figure-details-header">
+      <span><%= events.eventName %></span>
+    </div>
+
+    <div class="details-container">
+      <div class="details-row">
+        <img src="<%= events.image %>">
+      </div>
+
+      <div class="details-row">
+        <span class="details-label">Topic:</span>
+        <span class="details-contents"><%= events.eventTopic %></span>
+      </div>
+
+      <div class="details-row">
+        <span class="details-label">Host:</span>
+        <span class="details-contents"><%= events.hostName %></span>
+      </div>
+      
+      <div class="details-row">
+        <span class="details-label">Date:</span>
+        <span class="details-contents"><%= events.eventDate %></span>
+      </div>
+
+      <div class="details-row">
+        <span class="details-label">Duration:</span>
+        <span class="details-contents"><%= events.duration %> hour(s)</span>
+      </div>
+
+      <div class="details-row">
+        <span class="details-label">Description:</span>
+        <span class="details-contents"><%= events.description %></span>
+      </div>
+    </div>
+
+  </main>
+
+  <figure class="figure-details-bg-left"></figure>
+  <figure class="figure-details-bg-right"></figure>
+
+  <%- include('../partials/sitemap'); %>
+</div>
+
