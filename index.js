@@ -269,6 +269,11 @@ server.get("/login", (req, res) => {
   res.render("pages/login", { user: userController.isLoggedIn(req.user) });
 });
 
+server.get("/loginRequired", (req, res) => {
+  req.flash("success_msg", "Users must login first");
+  res.redirect("/login")
+})
+
 // signup handle
 server.get("/signup", (req, res) => {
   res.render("pages/signup", { user: userController.isLoggedIn(req.user) });
@@ -321,22 +326,21 @@ server.get('/contact', (req, res) => {
 server.post('/send', mongooseFunctions.contactForm);
 
 server.post("/joinEvent", (req, res) => {
-  console.log("User id is " + req.user._id);
-  console.log("Event id is " + req.body.id);
+  if (!req.user) {
+    res.send(error)
+  } else {
   schema.Event.updateOne({ _id: req.body.id }, {$push: {participants: req.user.id}},(err) => {
-    if (!err) {
-      console.log("Successfully updated event!");
-    } else {
-      res.send(err);
-    }
+    if (err) {
+      res.send(err)
+    } 
   });
   schema.User.updateOne({ _id: req.user.id }, {$push: {joinedEvents: req.body.id}},(err) => {
-    if (!err) {
-      console.log("Success")
-    } else {
+    if (err) {
       res.send(err);
-    }
-  });
+    } 
+  }).then(result => res.json('Success'))
+  .catch(error => console.error(error));
+}
 })
 
 

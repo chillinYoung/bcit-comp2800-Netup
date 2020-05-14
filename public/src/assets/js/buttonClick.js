@@ -16,7 +16,7 @@ $(document).ready(function(){
         done(function(data){
         })
         .fail(function(error){
-            console.log(error);
+            window.location.assign("/loginRequired");
         })
     })
 })
