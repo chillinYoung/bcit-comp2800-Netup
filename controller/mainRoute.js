@@ -1,5 +1,7 @@
 const userController = require("./userRoute");
-const md5 = require("md5");
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
+
 
 // initialize our mock database
 const schema = require("../db/mongooseSchema");
@@ -61,10 +63,13 @@ module.exports = {
           } else {
             // If the email doesn't exist in DB,
             //then can add the new user
+            bcrypt.hash(pw1, saltRounds, function(err, hash) {
+
+
             let newUser = new schema.User({
               name: `${fname} ${lname}`,
               email: email,
-              password: md5(pw1),
+              password: hash,
               interests: [],
               hostedEvents: [],
               joinedEvents: [],
@@ -79,6 +84,7 @@ module.exports = {
 
             req.flash("success_msg", "Successfully created account");
             res.redirect("/");
+          });
           }
         }
       } else {
