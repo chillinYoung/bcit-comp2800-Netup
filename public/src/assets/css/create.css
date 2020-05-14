@@ -110,6 +110,12 @@
   padding: .5rem;
 }
 
+.required-fields-text {
+  font-size: .9rem;
+  color: var(--color-dim-text);
+  padding: .5rem .3rem 0 0;
+}
+
 /* tablet layout from here */
 @media (min-width: 640px) {
   .figure-create-overtext {
