@@ -3,7 +3,6 @@ const titles = document.querySelectorAll(".video-post-title");
 
 function eventSearch() {
   easterEgg();
-
   titles.forEach(title => {
     let target = title.innerHTML.toLowerCase();
     if (!target.includes(searchInp.value)) {
@@ -23,7 +22,8 @@ function easterEgg() {
     changeColor();
 
     if (window.matchMedia("(min-width: 1025px)").matches) {
-      visibleChris();  
+      visibleChris(); 
+      startFireworks(); 
     }
   }
 
