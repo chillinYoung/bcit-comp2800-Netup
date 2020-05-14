@@ -323,21 +323,20 @@ server.post('/send', mongooseFunctions.contactForm);
 server.post("/joinEvent", (req, res) => {
   console.log("User id is " + req.user._id);
   console.log("Event id is " + req.body.id);
-  schema.Event.updateOne({ _id: req.body.id }, {$push: {participants: req.user.id}},(err, foundEvent) => {
+  schema.Event.updateOne({ _id: req.body.id }, {$push: {participants: req.user.id}},(err) => {
     if (!err) {
       console.log("Successfully updated event!");
     } else {
       res.send(err);
     }
   });
-  schema.User.updateOne({ _id: req.user.id }, {$push: {joinedEvents: req.body.id}},(err, foundEvent) => {
+  schema.User.updateOne({ _id: req.user.id }, {$push: {joinedEvents: req.body.id}},(err) => {
     if (!err) {
       console.log("Success")
     } else {
       res.send(err);
     }
   });
-  console.log("Take that!!!");
 })
 
 
