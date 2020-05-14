@@ -1,4 +1,6 @@
 const userController = require("./userRoute");
+const md5 = require("md5");
+
 
 // initialize our mock database
 let db = require("../db/mockDatabase");
@@ -69,7 +71,7 @@ module.exports = {
         let newUser = new schema.User({
           name: `${fname} ${lname}`,
           email: email,
-          password: pw1,
+          password: md5(pw1),
           interests: [],
           hostedEvents: [],
           joinedEvents: [],

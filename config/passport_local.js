@@ -1,4 +1,5 @@
 const db = require("../db/mongooseSchema");
+const md5 = require("md5");
 const LocalStrategy = require("passport-local").Strategy;
 
 // the passport we are passing in is going to be in the main index.js file
@@ -13,7 +14,7 @@ module.exports = function (passport) {
           let foundUser = null;
           error = "";
           users.forEach((user) => {
-            if (user.email === email && user.password === password) {
+            if (user.email === email && user.password === md5(password)) {
               foundUser = user;
             } else {
               if (user.email !== email) {
