@@ -327,7 +327,7 @@ server.post('/send', mongooseFunctions.contactForm);
 
 server.post("/joinEvent", (req, res) => {
   if (!req.user) {
-    res.send(error)
+    console.error(err)
   } else {
   schema.Event.updateOne({ _id: req.body.id }, {$push: {participants: req.user.id}},(err) => {
     if (err) {
