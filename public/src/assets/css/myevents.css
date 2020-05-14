@@ -103,6 +103,7 @@
 
 .myevents-sort-select {
   -webkit-appearance: none;
+  -webkit-appearance: menulist;
   border: none;
   font-weight: bold;
   color: var(--color-dim-text);
