@@ -137,6 +137,7 @@ let mongooseFunctions = {
       res.render("pages/index", {
         events: foundEvents,
         user: userController.isLoggedIn(req.user),
+        currentUser: req.user
       });
     });
   }
@@ -191,6 +192,7 @@ let mongooseFunctions = {
         res.render("pages/allEvents", {
           events: foundEvents,
           user: userController.isLoggedIn(req.user),
+          currentUser: req.user,
           topic: "all topics"
         });
       });
