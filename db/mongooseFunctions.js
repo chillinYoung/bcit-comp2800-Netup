@@ -207,6 +207,7 @@ let mongooseFunctions = {
       res.render("pages/allEvents", {
         events: result,
         user: userController.isLoggedIn(req.user),
+        currentUser: req.user,
         topic: chosenTopic
       })
     })
