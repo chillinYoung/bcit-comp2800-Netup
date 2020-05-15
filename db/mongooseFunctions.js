@@ -220,9 +220,7 @@ let mongooseFunctions = {
       </ul>
       <h3>Message</h3>
       <p>${req.body.message}</p>
-    `;
-  
-    // create reusable transporter object using the default SMTP transport
+    `;  
     let transporter = nodemailer.createTransport({
       service: 'gmail',
       secure: false, // true for 465, false for other ports
@@ -239,12 +237,11 @@ let mongooseFunctions = {
     let mailOptions = {
         from: `"Nodemailer Contact" ${req.body.email}`, // sender address
         to: 'netupTestEmail@gmail.com', // list of receivers
-        subject: 'User Contact Request', // Subject line
-        text: 'Feedback sent!', // plain text body
-        html: output // html body
+        subject: 'User Contact Request', 
+        text: 'Feedback sent!', 
+        html: output 
     };
   
-    // send mail with defined transport object
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             return console.log(error);
