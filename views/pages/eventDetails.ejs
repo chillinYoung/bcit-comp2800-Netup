@@ -44,20 +44,16 @@
 
 
       <% if (!currentUser) { %>
-        <button class="details-join-btn" id="<%= events.id %>" name="<%= events.id %>" formmethod="post" formaction="/joinEvent">Join</button>
+        <button class="details-join-btn" id="<%= events.id %>" name="<%= events.id %>" formmethod="post" formaction="/joinEvent" onclick="joinToJoinedDetail('<%= events.id %>')">Join</button>
 
       <% } else if (currentUser && (events.hostId != currentUser._id)) { %>
         <% if (currentUser.joinedEvents.includes(events.id)) { %>
           <button class="details-joined-btn">Joined</button>
         <% } else { %>
-          <button class="details-join-btn" id="<%= events.id %>" name="<%= events.id %>" formmethod="post" formaction="/joinEvent">Join</button>
+          <button class="details-join-btn" id="<%= events.id %>" name="<%= events.id %>" formmethod="post" formaction="/joinEvent" onclick="joinToJoinedDetail('<%= events.id %>')">Join</button>
         <% } %>
 
       <% } %>
-
-
-
-
 
 
     </div>
