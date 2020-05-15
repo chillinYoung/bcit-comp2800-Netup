@@ -71,7 +71,7 @@ const User = schema.User
 passport.use(new GoogleStrategy({
   clientID: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
-  callbackURL: "https://powerful-reef-38539.herokuapp.com/auth/google/secrets",
+  callbackURL: "https://dtc10-netup.herokuapp.com/auth/google/secrets",
   userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
 },
 function(accessToken, refreshToken, profile, cb) {
@@ -108,7 +108,7 @@ server.get("/auth/google/secrets",
   passport.use(new FacebookStrategy({
     clientID: "559597601651836",
     clientSecret: "404682cf8b29834311d8d275c8175a29",
-    callbackURL: "https://powerful-reef-38539.herokuapp.com/auth/facebook/callback"
+    callbackURL: "https://dtc10-netup.herokuapp.com/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, cb) {
     User.findOrCreate({ facebookId: profile.id, name: profile.displayName }, function (err, user) {
@@ -135,7 +135,7 @@ server.get('/auth/facebook/callback',
   passport.use(new GitHubStrategy({
     clientID: "bc9876b04ebf2a2a49df",
     clientSecret: "a222cc9a6a23ededf73ee91a42890f99d886cdeb",
-    callbackURL: "https://powerful-reef-38539.herokuapp.com/auth/github/callback"
+    callbackURL: "https://dtc10-netup.herokuapp.com/auth/github/callback"
   },
   function(accessToken, refreshToken, profile, cb) {
     User.findOrCreate({ githubId: profile.id, name: profile.displayName }, function (err, user) {
