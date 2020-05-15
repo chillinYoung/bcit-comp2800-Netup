@@ -20,10 +20,11 @@ window.onresize = function() {easterEgg()};
 function easterEgg() {
   if (searchInp.value.toLowerCase().trim() == "karen") {
     changeColor();
+    startFireworks(); 
+
 
     if (window.matchMedia("(min-width: 1025px)").matches) {
       visibleChris(); 
-      startFireworks(); 
     }
   }
 
