@@ -1,13 +1,9 @@
 //jshint esversion:6
 require('dotenv').config();
 const express = require("express");
-const ejs = require("ejs");
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const mongoose = require("mongoose");
 require('dotenv').config();
-const bodyParser = require("body-parser");
-const session = require('express-session');
-const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 const findOrCreate = require('mongoose-findorcreate');
 
@@ -43,6 +39,8 @@ const userSchema = new mongoose.Schema({
   hostedEvents: [Object],
   joinedEvents: [Object],
   googleId: String,
+  githubId: String,
+  facebookId: String,
   secret: String
 });
 userSchema.plugin(passportLocalMongoose);

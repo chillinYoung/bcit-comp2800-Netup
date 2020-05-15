@@ -3,7 +3,6 @@ const ejsLayouts = require('express-ejs-layouts');
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
-const FacebookStrategy = require('passport-facebook').Strategy;
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const config = require('./config/config');
@@ -12,6 +11,8 @@ const schema = require("./db/mongooseSchema");
 require('dotenv').config();
 const GitHubStrategy = require('passport-github').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
+
 
 // instantiate express app
 const server = express();
@@ -59,12 +60,12 @@ server.use(
 );
 
 //Define MySQL parameter in Config.js file.
-const pool = mysql.createPool({
-  host     : config.host,
-  user     : config.username,
-  password : config.password,
-  database : config.database
-});
+// const pool = mysql.createPool({
+//   host     : config.host,
+//   user     : config.username,
+//   password : config.password,
+//   database : config.database
+// });
 
 // PASSPORT MIDDLEWARE *******************************************************************
 // dependent on express session so must put this middleware after express-session
@@ -102,9 +103,6 @@ server.get("/auth/google/secrets",
     res.redirect("/myEvents");
   });
 
-  server.get("/auth/google",
-  passport.authenticate('google', { scope: ["profile"] })
-);
 
 server.get("/auth/google/secrets",
   passport.authenticate('google', { failureRedirect: "/login" }),
@@ -113,6 +111,55 @@ server.get("/auth/google/secrets",
     // Successful authentication, redirect to myEvents.
     res.redirect("/myEvents");
   });
+
+  passport.use(new FacebookStrategy({
+    clientID: "559597601651836",
+    clientSecret: "404682cf8b29834311d8d275c8175a29",
+    callbackURL: "http://localhost:5050/auth/facebook/callback"
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    User.findOrCreate({ facebookId: profile.id, name: profile.displayName }, function (err, user) {
+      return cb(err, user);
+    });
+  }
+  ));
+  
+  //For facebook login
+  server.use(cookieParser());
+  server.use(session({ secret: 'keyboard cat', key: 'sid'}));
+  server.get('/auth/facebook',
+  passport.authenticate('facebook'));
+
+server.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { successRedirect : '/myEvents', failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/myevents');
+  });
+
+  
+  //Github
+  passport.use(new GitHubStrategy({
+    clientID: "bc9876b04ebf2a2a49df",
+    clientSecret: "a222cc9a6a23ededf73ee91a42890f99d886cdeb",
+    callbackURL: "http://localhost:5050/auth/github/callback"
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    User.findOrCreate({ githubId: profile.id, name: profile.displayName }, function (err, user) {
+      return cb(err, user);
+    });
+  }
+  ));
+  //login via Github
+  server.get('/auth/github',
+    passport.authenticate('github'));
+  
+  server.get('/auth/github/callback', 
+    passport.authenticate('github', { failureRedirect: '/login' }),
+    function(req, res) {
+      // Successful authentication, redirect home.
+      res.redirect('/myEvents');
+    });
 
 
 // REGISTRATION AND LOGIN ****************************************************************
@@ -154,34 +201,6 @@ passport.deserializeUser(function(obj, done) {
 });
 
 
-passport.use(new FacebookStrategy({
-  clientID: "559597601651836",
-  clientSecret: "404682cf8b29834311d8d275c8175a29",
-  callbackURL: "http://localhost:5050/auth/facebook/callback"
-},
-function(accessToken, refreshToken, profile, cb) {
-  User.findOrCreate({ facebookId: profile.id, name: profile.displayName }, function (err, user) {
-    return cb(err, user);
-  });
-}
-));
-
-//For facebook login
-server.use(cookieParser());
-server.use(session({ secret: 'keyboard cat', key: 'sid'}));
-
-//Github
-passport.use(new GitHubStrategy({
-  clientID: "bc9876b04ebf2a2a49df",
-  clientSecret: "a222cc9a6a23ededf73ee91a42890f99d886cdeb",
-  callbackURL: "http://localhost:5050/auth/github/callback"
-},
-function(accessToken, refreshToken, profile, cb) {
-  User.findOrCreate({ githubId: profile.id, name: profile.displayName }, function (err, user) {
-    return cb(err, user);
-  });
-}
-));
 
 // Connect to events collection in database with mongodb.
 server
@@ -199,26 +218,6 @@ server.get('/comingsoon', (req, res) => {
 //index handle
 server.get("/", mongooseFunctions.setUpIndex);
 
-//login via Facebook
-// server.get('/auth/facebook', passport.authenticate('facebook',{scope:'email'}));
-server.get('/auth/facebook', passport.authenticate('facebook',{scope: ['email', 'user_friends']}));
-
-server.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { successRedirect : '/myEvents', failureRedirect: '/login' }),
-  function(req, res) {
-    res.redirect('/');
-  });
-
-//login via Github
-server.get('/auth/github',
-  passport.authenticate('github'));
-
-server.get('/auth/github/callback', 
-  passport.authenticate('github', { failureRedirect: '/login' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/myEvents');
-  });
 
 // about netup
 server.get('/netup', (req, res) => {
