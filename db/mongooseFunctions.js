@@ -43,7 +43,7 @@ let mongooseFunctions = {
   prepareEvent: (req, res) => {
     db.Event.find({}, (err, foundEvent) => {
       if (!err) {
-        console.log(Array.from(foundEvent))
+        // console.log(Array.from(foundEvent))
         res.render("pages/myEvents", {
           user: userController.isLoggedIn(req.user),
           currentUser: req.user,
@@ -81,9 +81,12 @@ let mongooseFunctions = {
     });
   },
   updateEvent: (req, res) => {
-    db.Event.update({ _id: req.params.eventId }, { $set: req.body }, (err) => {
+    db.Event.updateOne(
+      { _id: req.params.eventId },
+      { $set: req.body }, (err) => {
       if (!err) {
-        res.send("Successfully updated event!");
+        res.redirect("/myEvents");
+        // res.send("Successfully updated event!");
       } else {
         res.send(err);
       }
