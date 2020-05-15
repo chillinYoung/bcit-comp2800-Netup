@@ -20,7 +20,15 @@ window.onresize = function() {easterEgg()};
 function easterEgg() {
   if (searchInp.value.toLowerCase().trim() == "karen") {
     changeColor();
-    startFireworks(); 
+    startFireworks();
+    setTimeout(function () {
+      document.querySelector('canvas').style.transition = "opacity 1s";
+      document.querySelector('canvas').style.opacity = "0";
+      setTimeout(function () {
+        document.querySelector('#fireworks').innerHTML = "";
+      }, 500);
+    }, 10000);
+
 
 
     if (window.matchMedia("(min-width: 1025px)").matches) {
