@@ -59,13 +59,6 @@ server.use(
   })
 );
 
-//Define MySQL parameter in Config.js file.
-// const pool = mysql.createPool({
-//   host     : config.host,
-//   user     : config.username,
-//   password : config.password,
-//   database : config.database
-// });
 
 // PASSPORT MIDDLEWARE *******************************************************************
 // dependent on express session so must put this middleware after express-session
