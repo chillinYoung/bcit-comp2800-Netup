@@ -5,11 +5,19 @@
       <div class="video-post-description">
         <div>
           <span class="video-post-category"><%= event['eventTopic'].toUpperCase() %></span>
-          <!-- button should have 'video-post-joined' class if the event is what user joined -->
-          <!-- and innerHTML should be changed to 'Joined' -->
-          <% if (!currentUser || event.hostId != currentUser._id) { %>
-          <button class="video-post-join" id="<%= event['_id'] %>"name="<%= event['_id'] %>" formmethod="post" formaction="/joinEvent">Join</button>
-        <% } %>
+
+          <% if (!currentUser) { %>
+            <button class="video-post-join" id="<%= event['_id'] %>" name="<%= event['_id'] %>" formmethod="post" formaction="/joinEvent" onclick="joinToJoined(<%= event['_id'] %>)">Join</button>
+
+          <% } else if (currentUser && (event.hostId != currentUser._id)) { %>
+            <% if (currentUser.joinedEvents.includes(event['_id'])) { %>
+              <button class="video-post-joined">Joined</button>
+            <% } else { %>
+              <button class="video-post-join" id="<%= event['_id'] %>" name="<%= event['_id'] %>" formmethod="post" formaction="/joinEvent" onclick="joinToJoined('<%= event['_id'] %>')">Join</button>
+            <% } %>
+
+          <% } %>
+
         </div>
         <a href="/eventdetails/<%= event['_id'] %>" class="video-post-title"><%= event['eventName'] %></a>
         <span class="video-post-date"><%= event['eventDate'] %></span>

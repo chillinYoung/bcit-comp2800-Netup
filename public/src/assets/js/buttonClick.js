@@ -10,7 +10,8 @@ $(document).ready(function(){
                 id: this.id,
             },
             success: function (response) {
-                window.location.assign("/allEventsSuccess");
+                // let's not relocate the page! I commented out this (from Young)
+                // window.location.assign("/allEventsSuccess");
              }
         }).
         done(function(data){

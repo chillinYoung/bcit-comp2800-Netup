@@ -131,6 +131,39 @@
   color: var(--color-dart-text);
 }
 
+.details-join-btn {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--color-bright-text);
+  border: none;
+  border-radius: 5px;
+  width: 80%;
+  height: 2rem;
+  margin: 2rem 0;
+  background-color: var(--color-point-yellow);
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.details-join-btn:hover {
+  background-color: var(--color-point-orange);
+}
+
+.details-joined-btn {
+  outline: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--color-bright-text);
+  border: none;
+  border-radius: 5px;
+  width: 80%;
+  height: 2rem;
+  margin: 2rem 0;
+  background-color: var(--color-dim-text);
+  -webkit-appearance: none;
+}
+
+
 
 /* tablet layout from here */
 @media (min-width: 640px) {

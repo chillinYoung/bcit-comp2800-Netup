@@ -219,7 +219,8 @@ let mongooseFunctions = {
     .then(result => {
       res.render("pages/eventDetails", {
         events: result[0],
-        user: userController.isLoggedIn(req.user)
+        user: userController.isLoggedIn(req.user),
+        currentUser: req.user
       })
     })
     .catch(error => console.error(error));

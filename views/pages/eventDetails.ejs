@@ -41,6 +41,25 @@
         <span class="details-label">Description:</span>
         <span class="details-contents"><%= events.description %></span>
       </div>
+
+
+      <% if (!currentUser) { %>
+        <button class="details-join-btn" id="<%= events.id %>" name="<%= events.id %>" formmethod="post" formaction="/joinEvent">Join</button>
+
+      <% } else if (currentUser && (events.hostId != currentUser._id)) { %>
+        <% if (currentUser.joinedEvents.includes(events.id)) { %>
+          <button class="details-joined-btn">Joined</button>
+        <% } else { %>
+          <button class="details-join-btn" id="<%= events.id %>" name="<%= events.id %>" formmethod="post" formaction="/joinEvent">Join</button>
+        <% } %>
+
+      <% } %>
+
+
+
+
+
+
     </div>
 
   </main>
