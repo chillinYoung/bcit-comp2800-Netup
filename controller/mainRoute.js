@@ -83,7 +83,7 @@ module.exports = {
             });
 
             req.flash("success_msg", "Successfully created account");
-            res.redirect("/");
+            res.redirect("/login");
           });
           }
         }
