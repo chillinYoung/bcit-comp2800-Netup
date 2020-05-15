@@ -5,10 +5,10 @@ function eventSearch() {
   easterEgg();
   titles.forEach(title => {
     let target = title.innerHTML.toLowerCase();
-    if (!target.includes(searchInp.value)) {
+    if (!target.includes(searchInp.value.toLowerCase())) {
       title.parentNode.parentNode.style.display = "none";
     }
-    if (target.includes(searchInp.value)) {
+    if (target.includes(searchInp.value.toLowerCase())) {
       title.parentNode.parentNode.style.display = "block";      
     }
   })
