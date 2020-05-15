@@ -140,8 +140,8 @@ let mongooseFunctions = {
         currentUser: req.user
       });
     });
-  }
-,
+  },
+
   contactForm: (req, res) => {
     const output = `
       <p>You have a new contact request</p>
@@ -186,34 +186,45 @@ let mongooseFunctions = {
         req.flash("success_msg", "Message sent successfully")
         res.render('pages/contact', { user: userController.isLoggedIn(req.user) });
     });
-    },
-    getAllEvents: (req, res) => {
-      db.Event.find({}, (err, foundEvents) => {
-        res.render("pages/allEvents", {
-          events: foundEvents,
-          user: userController.isLoggedIn(req.user),
-          currentUser: req.user,
-          topic: "all topics"
-        });
+  },
+  getAllEvents: (req, res) => {
+    db.Event.find({}, (err, foundEvents) => {
+      res.render("pages/allEvents", {
+        events: foundEvents,
+        user: userController.isLoggedIn(req.user),
+        currentUser: req.user,
+        topic: "all topics"
       });
-    },
-    getEventByTopics: (req, res) => {
-      let chosenTopic = req.params.topic;
-      db.Event.find({eventTopic: chosenTopic})
-      .then(result => {
-        res.render("pages/allEvents", {
-          events: result,
-          user: userController.isLoggedIn(req.user),
-          topic: chosenTopic
-        })
+    });
+  },
+  getEventByTopics: (req, res) => {
+    let chosenTopic = req.params.topic;
+    db.Event.find({eventTopic: chosenTopic})
+    .then(result => {
+      res.render("pages/allEvents", {
+        events: result,
+        user: userController.isLoggedIn(req.user),
+        topic: chosenTopic
       })
-    .catch(error => console.error(error));
+    })
+  .catch(error => console.error(error));
   },
   getEvent: (req, res) => {
     // console.log(req.params.eventId);
     db.Event.find({"_id": req.params.eventId})
     .then(result => {
       res.render("pages/eventDetails", {
+        events: result[0],
+        user: userController.isLoggedIn(req.user)
+      })
+    })
+    .catch(error => console.error(error));
+  },
+  editEvent: (req, res) => {
+    // console.log(req.params.eventId);
+    db.Event.find({"_id": req.params.eventId})
+    .then(result => {
+      res.render("pages/editEvent", {
         events: result[0],
         user: userController.isLoggedIn(req.user)
       })

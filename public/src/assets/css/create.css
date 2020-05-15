@@ -63,6 +63,7 @@
 .figure-create-overtext span {
   display: block;
   text-align: center;
+  text-shadow: 0 0 0.5px var(--color-dark-text);
 }
 
 .figure-create-header {
