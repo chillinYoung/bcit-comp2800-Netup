@@ -16,7 +16,6 @@
       <a class="long-yellow-btn" href="/create">Create a New Event</a>
 
       <div class="myevents-blocks">
-        <!-- JOINED EVENTS -->
         <div class="myevents-header">
           <span>Hosted Events</span>
           <select
@@ -33,7 +32,7 @@
         <div class="myevents-block hosted-myevents">
           <% let hostedEmpty = true %>
           <% for (let i = 0; i < events.length; i++) { %>
-            <% if (currentUser.name.localeCompare(events[i].hostName) == 0) { %>
+            <% if (currentUser._id == (events[i].hostId)) { %>
             <% hostedEmpty = false %>
             <div class="myevents-event-list">
               <img src="<%= events[i].image %>" />
@@ -88,7 +87,7 @@
           <% let joinedEmpty = true %>
           <% for (let i = 0; i < events.length; i++) { %>
             <% events[i].participants.forEach( participant => { %>
-            <% if (currentUser.name.localeCompare(participant) == 0) { %>
+            <% if (currentUser.id == participant) { %>
             <% joinedEmpty = false %>
             <div class="myevents-event-list">
               <img src="<%= events[i].image %>" />
@@ -100,7 +99,7 @@
                     <div class="myevents-event-list-dropdown">
                       <a href="/comingsoon">Details</a>
                       <a href="/comingsoon">Edit</a>
-                      <a href="/comingsoon">Delete</a>
+                      <a href="/leaveEvent/<%= events[i]._id %>">Leave Event</a>
                     </div>
                   </div>
                 </div>
