@@ -13,7 +13,6 @@ let mongooseFunctions = {
       }
     });
   },
-
   postEvent: function (req, res) {
     const newEvent = new db.Event({
       image: req.body.image,
@@ -36,15 +35,6 @@ let mongooseFunctions = {
     db.Event.deleteMany(function (err) {
       if (!err) {
         res.send("Successfully deleted all events");
-      } else {
-        res.send(err);
-      }
-    });
-  },
-  getUser: (req, res) => {
-    User.find({}, (err, foundUsers) => {
-      if (!err) {
-        res.send(foundUsers);
       } else {
         res.send(err);
       }
@@ -81,15 +71,6 @@ let mongooseFunctions = {
       }
     });
   },
-  deleteUser: (req, res) => {
-    User.deleteMany(function (err) {
-      if (!err) {
-        res.send("Successfully deleted all articles");
-      } else {
-        res.send(err);
-      }
-    });
-  },
   findEvent: function (req, res) {
     db.Event.findOne({ _id: req.params.eventId }, (err, foundEvent) => {
       if (foundEvent) {
@@ -98,26 +79,6 @@ let mongooseFunctions = {
         res.send("No articles matching that title was found.");
       }
     });
-  },
-  replaceEvent: (req, res) => {
-    db.Event.update(
-      { _id: req.params.eventId },
-      {
-        image: req.body.image,
-        alt: req.body.alt,
-        eventTopic: req.body.eventTopic,
-        eventName: req.body.eventName,
-        hostName: req.body.hostName,
-        participants: req.body.participants,
-        eventDate: req.body.participants,
-      },
-      { overwrite: true },
-      (err) => {
-        if (!err) {
-          res.send("Successfully updated event.");
-        }
-      }
-    );
   },
   updateEvent: (req, res) => {
     db.Event.update({ _id: req.params.eventId }, { $set: req.body }, (err) => {
@@ -162,38 +123,10 @@ let mongooseFunctions = {
       }
     });
   },
-  replaceUser: (req, res) => {
-    db.User.update(
-      { _id: req.params.userId },
-      {
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-        interests: req.body.interests,
-        hostedEvents: req.body.hostedEvents,
-        joinedEvents: req.body.joinedEvents,
-      },
-      { overwrite: true },
-      (err) => {
-        if (!err) {
-          res.send("Successfully updated user.");
-        }
-      }
-    );
-  },
   updateUser: (req, res) => {
     db.User.update({ _id: req.params.userId }, { $set: req.body }, (err) => {
       if (!err) {
         res.send("Successfully updated user!");
-      } else {
-        res.send(err);
-      }
-    });
-  },
-  deleteUser: function (req, res) {
-    db.User.deleteOne({ _id: req.params.userId }, function (err) {
-      if (!err) {
-        res.send("Successfully deleted user");
       } else {
         res.send(err);
       }
@@ -237,11 +170,12 @@ let mongooseFunctions = {
     let mailOptions = {
         from: `"Nodemailer Contact" ${req.body.email}`, // sender address
         to: 'netupTestEmail@gmail.com', // list of receivers
-        subject: 'User Contact Request', 
+        subject: 'User Contact Request', // Subject line
         text: 'Feedback sent!', 
         html: output 
     };
   
+    // send mail with defined transport object
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             return console.log(error);

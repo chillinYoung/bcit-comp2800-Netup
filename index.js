@@ -8,9 +8,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const config = require('./config/config');
 const mysql = require('mysql');
-const findOrCreate = require('mongoose-findorcreate');
 const schema = require("./db/mongooseSchema");
-const passportLocalMongoose = require("passport-local-mongoose");
 require('dotenv').config();
 const GitHubStrategy = require('passport-github').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
@@ -192,28 +190,6 @@ server
   .post(mongooseFunctions.postEvent)
   .delete(mongooseFunctions.deleteEvent);
 
-// connect with users collection in mongoDB.
-server
-  .route("/users")
-  .get(mongooseFunctions.getUser)
-  .post(mongooseFunctions.postUser)
-  .delete(mongooseFunctions.deleteUser);
-
-// Connect with a specific event in events collection.
-server
-  .route("/events/:eventId")
-  .get(mongooseFunctions.findEvent)
-  .put(mongooseFunctions.replaceEvent)
-  .patch(mongooseFunctions.updateEvent)
-  .delete(mongooseFunctions.deleteEvent);
-
-// Interact with specific user in users collection
-server
-  .route("/users/:userId")
-  .get(mongooseFunctions.findUser)
-  .put(mongooseFunctions.replaceUser)
-  .patch(mongooseFunctions.updateUser)
-  .delete(mongooseFunctions.deleteUser);
 
 // temporary routes
 server.get('/comingsoon', (req, res) => {
