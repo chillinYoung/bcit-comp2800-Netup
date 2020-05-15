@@ -259,6 +259,10 @@ server.get("/create", (req, res) => {
   });
 });
 
+// event details page for specific event
+server.get('/eventedit/:eventId', mongooseFunctions.editEvent);
+server.post('/update/:eventId', mongooseFunctions.updateEvent)
+
 // user account page handle
 server.get("/myEvents", checkAuth, mongooseFunctions.prepareEvent);
 
