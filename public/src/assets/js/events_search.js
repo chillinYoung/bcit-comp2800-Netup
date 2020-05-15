@@ -19,6 +19,8 @@ function eventSearch() {
 window.onresize = function() {easterEgg()};
 function easterEgg() {
   if (searchInp.value.toLowerCase().trim() == "karen") {
+    document.querySelector("#allevents-search-keyword").blur();
+    window.scrollTo(0,1);
     changeColor();
     startFireworks();
     setTimeout(function () {
