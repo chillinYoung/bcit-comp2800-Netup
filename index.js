@@ -202,13 +202,6 @@ passport.deserializeUser(function(obj, done) {
 
 
 
-// Connect to events collection in database with mongodb.
-server
-  .route("/events")
-  .get(mongooseFunctions.getEvent)
-  .post(mongooseFunctions.postEvent)
-  .delete(mongooseFunctions.deleteEvent);
-
 
 // temporary routes
 server.get('/comingsoon', (req, res) => {
@@ -230,7 +223,7 @@ server.get('/team', (req, res) => {
 })
 
 // all events page
-server.get('/allevents', mongooseFunctions.setUpAllEvents);
+server.get('/allevents', mongooseFunctions.getAllEvents);
 server.get('/allEventsSuccess', (req, res)=> {
   req.flash("success_msg", "Joined Event successfully");
   res.redirect("/allevents")
@@ -240,7 +233,10 @@ server.get('/allEventsSuccess', (req, res)=> {
 server.get('/allevents/:topic', mongooseFunctions.getEventByTopics);
 
 // event details page for specific event
-server.get('/eventdetails/:eventId', mongooseFunctions.setUpEventDetails);
+server.get('/eventdetails/:eventId', mongooseFunctions.getEvent);
+
+// event host page for specific event
+server.get('/host/:eventId', mongooseFunctions.getEvent);
 
 // login handle
 server.get("/login", (req, res) => {

@@ -144,6 +144,7 @@
 .myevents-event-list-text {
   padding-left: 1rem;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .myevents-event-list-text div:first-child {

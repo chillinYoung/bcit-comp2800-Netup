@@ -186,7 +186,7 @@ let mongooseFunctions = {
         res.render('pages/contact', { user: userController.isLoggedIn(req.user) });
     });
     },
-    setUpAllEvents: (req, res) => {
+    getAllEvents: (req, res) => {
       db.Event.find({}, (err, foundEvents) => {
         res.render("pages/allEvents", {
           events: foundEvents,
@@ -207,7 +207,7 @@ let mongooseFunctions = {
       })
     .catch(error => console.error(error));
   },
-  setUpEventDetails: (req, res) => {
+  getEvent: (req, res) => {
     // console.log(req.params.eventId);
     db.Event.find({"_id": req.params.eventId})
     .then(result => {
