@@ -1,0 +1,42 @@
+<img id="chrisFace" alt="surprise" src="/src/assets/images/chris_face.jpeg">
+
+<div class="body-allevents">
+  <%- include('../partials/navigation'); %>
+  <div id="fireworks"></div>
+
+  <figure class="figure-allevents-bg">
+    <div class="figure-allevents-overtext">
+      <span>Events</span>
+    </div>
+  </figure>
+
+  <main class="main-allevents-container">
+    <div class="main-allevents">
+      <div class="figure-allevents-header">
+        <span>Events</span>
+      </div>
+
+      <div class="allevents-filter">
+        <div class="allevents-filter-select">
+          <%- include('../partials/topicFilter'); %>
+        </div>
+        <div class="allevents-titlesearch">
+          <span>&#128269;</span>
+          <input type="text" id="allevents-search-keyword" onkeyup="eventSearch()">
+        </div>
+      </div>    
+  
+      <div class="main-index">
+         <%- include('../partials/events'); %>
+    </div>
+
+  </main>
+
+  <%- include('../partials/sitemap'); %>
+</div>
+<script type='text/javascript' src='https://code.jquery.com/jquery-3.5.0.min.js'></script>
+<script src="/src/assets/js/events_search.js" async></script>
+<script src="/src/assets/js/easter_egg.js" async></script>
+<script src="/src/assets/js/filtering.js" async></script>
+<script src="/src/assets/js/fireworks.js" async></script>
+<script src="/src/assets/js/buttonClick.js" async></script>

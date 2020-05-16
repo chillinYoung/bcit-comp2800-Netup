@@ -8,6 +8,7 @@
   --color-bright-text: #FFFFFF;
   --color-dark-text: #333333;
   --color-dim-text: #666666;
+  --color-bg: #FFFFFF;
 }
 
 /* layouts for mobile */
@@ -75,8 +76,8 @@ header {
   position: fixed;
   width: 100%;
   box-sizing: border-box;
-  z-index: 1;
-  border-bottom: 5px solid white;
+  z-index: 3;
+  border-bottom: 5px solid var(--color-bg);
   background-color: var(--color-point-mint);
 }
 
@@ -129,7 +130,7 @@ nav {
 
 .mobile-menu-open-btn {
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: 3rem;
   color: var(--color-dark-text);
 }
 
@@ -164,7 +165,7 @@ nav {
   content: " ";
   border-width: 9px;
   margin-left: -9px;
-  border-bottom-color: white;
+  border-bottom-color: var(--color-bg);
   bottom: -.9rem;
 }
 
@@ -177,7 +178,7 @@ nav {
 .main-nav-dropdown {
   display: none;
   position: absolute;
-  background-color: white;
+  background-color: var(--color-bg);
   z-index: 1;
   margin-top: .9rem;
   text-align: left;
@@ -228,7 +229,7 @@ nav {
 .mobile-nav-links {
   list-style-type: none;
   padding-inline-start: 0;
-  padding: .3rem 2.5rem 5rem;
+  padding: .3rem 2.5rem 10rem;
   margin: 0;
   height: 0;
   transition: height .5s;
@@ -277,6 +278,10 @@ nav {
   color: var(--color-point-yellow);
 }
 
+.mobile-nav-signin:hover {
+  color: var(--color-point-orange);
+}
+
 .figure-index-text {
   display: block;
   margin: auto;
@@ -311,7 +316,7 @@ nav {
 
 .main-index {
   align-items: start;
-  background-color: white;
+  background-color: var(--color-bg);
   padding: 2rem 1.5rem 2.5rem;
   display: grid;
   grid-template-columns: 1fr;
@@ -326,8 +331,7 @@ nav {
 .video-post {
   width: 100%;
   border-radius: 5px;
-  background-color: var(--color-bright-text);
-  cursor: pointer;
+  background-color: var(--color-bg);
 }
 
 .video-post img {
@@ -337,12 +341,42 @@ nav {
   border-radius: 5px;
 }
 
-.video-post div {
+.video-post-description {
   padding: .9rem .5rem 1.1rem;
   max-height: 7rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.video-post-description div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.video-post-description button {
+  -webkit-appearance: none;
+  width: 4rem;
+  border-radius: 5px;
+  border: none;
+  color: var(--color-bright-text);
+  font-weight: bold;
+  font-size: .9rem;
+  outline: none;
+}
+
+.video-post-join {
+  background-color: var(--color-point-yellow);
+  cursor: pointer;
+}
+
+.video-post-join:hover {
+  background-color: var(--color-point-orange);
+}
+
+.video-post-joined {
+  background-color: var(--color-dim-text);
+  cursor: initial;
 }
 
 .video-post span {
@@ -356,6 +390,7 @@ nav {
   font-family: 'Oswald', sans-serif;
   font-weight: bold;
   line-height: 1rem;
+  cursor: default;
 }
 
 .video-post-title {
@@ -364,6 +399,12 @@ nav {
   font-weight: bold;
   line-height: 1.2rem;
   font-size: 1.1rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.video-post-title:hover {
+  color: var(--color-point-orange);
 }
 
 .video-post-date {
@@ -371,6 +412,7 @@ nav {
   color: var(--color-dim-text);
   font-size: .8rem;
   line-height: 1rem;
+  cursor: default;
 }
 
 .sitemap {
@@ -385,7 +427,7 @@ nav {
   background-color: var(--color-point-silver);
   font-size: 1.2rem;
   padding: 1.5rem 2rem;
-  border-top: 5px solid white;
+  border-top: 5px solid var(--color-bg);
 }
 
 .footer-header {
@@ -478,7 +520,8 @@ footer {
   width: 100px;
   height: 2rem;
   margin: 1rem;
-  background-color: var(--color-point-yellow)
+  background-color: var(--color-point-yellow);
+  -webkit-appearance: none;
 }
 
 .yellow-btn:hover {

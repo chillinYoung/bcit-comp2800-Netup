@@ -1,4 +1,11 @@
+//jshint esversion:6
+require('dotenv').config();
+const express = require("express");
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const mongoose = require("mongoose");
+require('dotenv').config();
+const passportLocalMongoose = require("passport-local-mongoose");
+const findOrCreate = require('mongoose-findorcreate');
 
 // Connect with mongoose database
 mongoose.connect(
@@ -6,6 +13,7 @@ mongoose.connect(
   { useNewUrlParser: true,
   useUnifiedTopology: true }
 );
+mongoose.set("useCreateIndex", true);
 
 // Schema for events
 const eventSchema = {
@@ -13,7 +21,8 @@ const eventSchema = {
   eventTopic: String,
   eventName: String,
   hostName: String,
-  participants: [String],
+  hostId: String,
+  participants: [Object],
   eventDate: Date,
   duration: Number,
   description: String,
@@ -22,14 +31,20 @@ const eventSchema = {
 const Event = mongoose.model("Event", eventSchema);
 
 // Schema for mongoDB
-const userSchema = {
+const userSchema = new mongoose.Schema({
   name: String,
   email: String,
   password: String,
   interests: [String],
   hostedEvents: [Object],
   joinedEvents: [Object],
-};
+  googleId: String,
+  githubId: String,
+  facebookId: String,
+  secret: String
+});
+userSchema.plugin(passportLocalMongoose);
+userSchema.plugin(findOrCreate);
 
 const User = mongoose.model("User", userSchema);
 

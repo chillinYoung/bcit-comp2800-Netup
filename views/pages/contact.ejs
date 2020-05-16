@@ -1,0 +1,65 @@
+<div class="body-contact">
+  <%- include('../partials/navigation'); %>
+
+  <figure class="figure-contact-bg">
+    <div class="figure-contact-overtext">
+      <span>Contact Us</span>
+    </div>
+  </figure>
+
+  <main class="main-contact">
+    <div class="figure-contact-header">
+      <span>Contact Us</span>
+    </div>
+
+<!--     <div class="wrapper animated bounceInLeft"> -->
+
+      <div class="contact-netup">
+        <span class="contact-header">Netup</span>
+        <ul class="contact-netup-info">
+          <li><i class="fa fa-road"></i> 3700 Willingdon Avenue</li>
+          <li><i class="fa fa-phone"></i> (555) 555-5555</li>
+          <li><i class="fa fa-envelope"></i> netupTestEmail@gmail.com</li>
+        </ul>
+      </div>
+
+
+      <div class="contact-email">
+        <span class="contact-header">Email Us</span>
+
+        <form action="send" method="POST">
+          <div>
+            <label class="form-label-basic">Full Name: *</label>
+            <input class="form-input-basic" type="text" name="name" required>
+          </div>
+          <div>
+            <label class="form-label-basic">Company:</label>
+            <input class="form-input-basic" type="text" name="company">
+          </div>
+          <div>
+            <label class="form-label-basic">Email Address: *</label>
+            <input class="form-input-basic" type="email" name="email" required>
+          </div>
+          <div>
+            <label class="form-label-basic">Phone Number:</label>
+            <input class="form-input-basic" type="text" name="phone">
+          </div>
+          <div>
+            <label class="form-label-basic">Message: *</label>
+            <textarea class="form-textarea-basic" name="message" rows="5" required></textarea>
+          </div>
+          <span class="required-fields-text">* Required fields</span>
+          <input class="yellow-btn" type="submit" value="Submit">
+        </form>
+      </div>
+
+<!--     </div>
+    <div class="animated bounceInLeft"> -->
+<!--     </div> -->
+  </main>
+
+  <figure class="figure-contact-bg-left"></figure>
+  <figure class="figure-contact-bg-right"></figure>
+
+  <%- include('../partials/sitemap'); %>
+</div>

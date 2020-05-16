@@ -1,4 +1,4 @@
-.body-events {
+.body-myevents {
   font-family: "Open Sans", sans-serif;
   min-height: 100vh;
   margin: 0;
@@ -6,23 +6,24 @@
   grid-template-rows: 4.7rem auto auto auto auto;
   grid-template-areas:
     "header"
-    "figure-events-bg"
-    "main-events-container"
+    "figure-myevents-bg"
+    "main-myevents-container"
     "sitemap-container"
     "footer";
 }
 
-.figure-events-bg {
-  grid-area: figure-events-bg;
+.figure-myevents-bg {
+  grid-area: figure-myevents-bg;
 }
-.main-events-container {
-  grid-area: main-events-container;
+.main-myevents-container {
+  background-color: var(--color-bg);
+  grid-area: main-myevents-container;
 }
 .sitemap-container {
   grid-area: sitemap-container;
 }
 
-.figure-events-bg {
+.figure-myevents-bg {
   background-image: url("../images/calendar.jpg");
   background-size: cover;
   background-position: center;
@@ -37,7 +38,7 @@
   box-sizing: border-box;
 }
 
-.figure-events-overtext {
+.figure-myevents-overtext {
   width: 100%;
   color: var(--color-dim-text);
   font-size: 2rem;
@@ -48,11 +49,11 @@
   align-items: center;
 }
 
-.figure-events-overtext span {
+.figure-myevents-overtext span {
   display: block;
 }
 
-.figure-events-header {
+.figure-myevents-header {
   width: 100%;
   color: var(--color-dark-text);
   font-size: 2rem;
@@ -64,11 +65,11 @@
   margin: 2rem 0 1.5rem;
 }
 
-.figure-events-header span {
+.figure-myevents-header span {
   display: block;
 }
 
-.main-events {
+.main-myevents {
   padding: 2rem 2rem 3rem;
   display: flex;
   flex-direction: column;
@@ -76,18 +77,18 @@
   align-items: center;
 }
 
-.events-blocks {
+.myevents-blocks {
   display: block;
   width: 100%;
   min-width: 20rem;
   max-width: 30rem;
 }
 
-.events-block {
+.myevents-block {
   margin: 0.5rem 0 0;
 }
 
-.events-header {
+.myevents-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -95,25 +96,37 @@
   margin-top: 2rem;
 }
 
-.events-header span {
+.myevents-header span {
   font-weight: bold;
   font-size: 1.2rem;
 }
 
-.events-sort-select {
+.myevents-sort-select {
+  -webkit-appearance: none;
+  -webkit-appearance: menulist;
   border: none;
   font-weight: bold;
   color: var(--color-dim-text);
-  background-color: white;
+  background-color: var(--color-bg);
   outline: none;
   cursor: pointer;
 }
 
-.events-sort-select:hover {
+.myevents-sort-select:hover {
   color: var(--color-point-orange);
 }
 
-.events-event-list {
+.myevents-no-events {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 18vh;
+  background-color: #dfdce380;
+  margin: .7rem;
+  border-radius: 10px;
+}
+
+.myevents-event-list {
   margin: 1rem 0;
   display: flex;
   justify-content: space-between;
@@ -122,50 +135,54 @@
   border-bottom: 1px solid lightgray;
 }
 
-.events-event-list img {
+.myevents-event-list img {
   width: 8.4rem;
   height: 5.6rem;
   object-fit: cover;
 }
 
-.events-event-list-text {
+.myevents-event-list-text {
   padding-left: 1rem;
   width: 100%;
+  box-sizing: border-box;
 }
 
-.events-event-list-text div:first-child {
+.myevents-event-list-text div:first-child {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   font-weight: bold;
 }
 
-.events-event-list-text button {
+.myevents-event-list-text button {
   border: none;
   font-weight: bold;
   font-size: 1.2rem;
   outline: none;
   cursor: pointer;
   padding: 0.1rem 0.3rem 0.1rem 0.5rem;
-  border-radius: 50%;
+  background-color: var(--color-bg);
 }
 
-.events-event-list-text button:hover {
+.myevents-event-list-text button:hover {
   color: var(--color-point-orange);
 }
 
-.events-event-list-text p {
+.myevents-event-list-text p {
+  overflow-wrap: anywhere;
   font-size: 0.8rem;
   margin: 0;
   line-height: 1rem;
+  max-height: 4rem;
+  overflow: hidden;
 }
 
-.events-event-list-option {
+.myevents-event-list-option {
   position: relative;
   display: inline-block;
 }
 
-.events-event-list-dropdown {
+.myevents-event-list-dropdown {
   display: none;
   position: absolute;
   background-color: var(--color-point-silver);
@@ -176,18 +193,18 @@
   border-radius: 3px;
 }
 
-.events-event-list-dropdown a {
+.myevents-event-list-dropdown a {
   text-decoration: none;
   display: block;
   color: var(--color-dark-text);
   font-size: 0.8rem;
 }
 
-.events-event-list-dropdown a:hover {
+.myevents-event-list-dropdown a:hover {
   color: var(--color-point-orange);
 }
 
-.events-event-list-option:hover .events-event-list-dropdown {
+.myevents-event-list-option:hover .myevents-event-list-dropdown {
   display: block;
 }
 
@@ -221,11 +238,11 @@
 
 /* tablet layout from here */
 @media (min-width: 640px) {
-  .figure-events-overtext {
+  .figure-myevents-overtext {
     font-size: 2.3rem;
   }
 
-  .figure-events-bg {
+  .figure-myevents-bg {
     background-position: center;
   }
 }
@@ -236,63 +253,63 @@
     display: none;
   }
 
-  .figure-events-bg {
+  .figure-myevents-bg {
     display: none;
   }
 
-  .body-events {
+  .body-myevents {
     grid-template-areas:
       "header"
-      "main-events-container"
-      "main-events-container"
+      "main-myevents-container"
+      "main-myevents-container"
       "sitemap-container"
       "footer";
   }
 
-  .main-events-container {
+  .main-myevents-container {
     background-image: url("../images/calendar.jpg");
     background-position: center;
     background-size: cover;
   }
 
-  .events-block {
+  .myevents-block {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 3rem;
     margin: 0;
   }
 
-  .events-blocks {
+  .myevents-blocks {
     min-width: 47rem;
     max-width: 62rem;
   }
 
-  .main-events-container {
+  .main-myevents-container {
     display: flex;
     justify-content: center;
   }
 
-  .main-events {
+  .main-myevents {
     min-height: 80vh;
     max-width: 1170px;
     width: 100%;
-    background-color: white;
+    background-color: var(--color-bg);
   }
 
-  .figure-events-bg {
+  .figure-myevents-bg {
     padding: 0;
   }
 
-  .figure-events-overtext {
+  .figure-myevents-overtext {
     font-size: 2.5rem;
     padding-left: 7%;
   }
 
-  .figure-events-overtext {
+  .figure-myevents-overtext {
     display: none;
   }
 
-  .figure-events-header {
+  .figure-myevents-header {
     display: flex;
   }
 }

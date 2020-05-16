@@ -89,7 +89,7 @@
   font-size: 1.3rem;
   top: -1rem;
   padding: 0 1rem;
-  background-color: white;
+  background-color: var(--color-bg);
 }
 
 .signin-third-party-list {
@@ -98,19 +98,55 @@
   align-items: center;
 }
 
-.signin-third-party-list button {
+.signin-third-party-list a {
   width: 15rem;
   height: 2.5rem;
   margin: .5rem;
-  background-color: white;
-  border: .1rem solid var(--color-point-mint);
   border-radius: 5px;
   cursor: pointer;
+  text-decoration: none;
+  color: white;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 1rem;
 }
 
-.signin-third-party-list button:hover {
-  border-color: var(--color-point-yellow);
+.signin-third-party-list i {
+  padding: .5rem .5rem .5rem .7rem;
+  font-size: 1.7rem;
 }
+
+.third-party-google {
+  background-color: #D2342B;
+  border: 1px solid #9F2923;
+}
+
+.third-party-github {
+  background-color: #343434;
+  border: 1px solid #282828;
+}
+
+.third-party-facebook {
+  background-color: #2E4486;
+  border: 1px solid #243566;
+}
+
+.third-party-google span {
+  border-left: 1px solid #9F2923;
+  padding-left: .5rem;
+}
+
+.third-party-github span {
+  border-left: 1px solid #282828;
+  padding-left: .5rem;
+}
+
+.third-party-facebook span {
+  border-left: 1px solid #243566;
+  padding-left: .5rem;
+}
+
 
 
 /* tablet layout from here */

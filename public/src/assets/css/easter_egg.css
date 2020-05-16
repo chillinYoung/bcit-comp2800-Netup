@@ -1,0 +1,6 @@
+#chrisFace {
+  display: none;
+  width: 100px;
+  position: absolute;
+  z-index: 2;
+}

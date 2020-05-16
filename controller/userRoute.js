@@ -5,17 +5,23 @@ module.exports = {
   isLoggedIn: (user) => {
     return user ? false : true;
   },
+  userDetails: (user) => {
+    return user
+  }
+  ,
   createEvent: (req, res) => {
     console.log(req.user);
     const {
       eventTopic,
       eventName,
       eventDate,
+      eventTime,
       eventDuration,
       eventDetails,
     } = req.body;
     let userExistingEvents = null;
     const hostName = req.user.name;
+    const hostId = req.user._id;
     console.log(req.user.name);
     // check user db to make sure no conflicting events hosted by same user
 
@@ -24,17 +30,19 @@ module.exports = {
       eventTopic: eventTopic,
       eventName: eventName,
       hostName: hostName,
+      hostId: hostId,
       duration: eventDuration,
       description: eventDetails,
       participants: [],
       eventDate: eventDate,
-      image: "/src/assets/images/lego.jpg",
+      eventTime: eventTime,
+      image: "/src/assets/images/yoga.jpg",
     });
     schema.User.find({}, (err, foundUser) => {
       if (!err) {
         let users = Array.from(foundUser);
         users.forEach((user) => {
-          if (user.name === hostName) {
+          if (user._id === hostId) {
             userExistingEvents = user.hostedEvents;
           }
         });
@@ -47,14 +55,14 @@ module.exports = {
       // check if the new event matches any event inside of the user hosted events
       let isExitingEvent = false;
       userExistingEvents.forEach((event) => {
-        if (event.eventDate === eventDate) {
+        if (event.eventDate === eventDate && event.eventTime === eventTime) {
           isExitingEvent = true;
         }
       });
 
       if (isExitingEvent) {
         // it will cause an error message to show if the event already exists
-        req.flash("error_msg", "You already created this same event");
+        req.flash("error", "You already created this same event");
         // res.render('pages/myevents', {user: userController.isLoggedIn(req.user)});
         res.redirect("/create");
       } else {

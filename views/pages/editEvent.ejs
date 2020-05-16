@@ -1,0 +1,111 @@
+<div class="body-create">
+  <%- include('../partials/navigation'); %>
+
+  <figure class="figure-create-bg">
+    <div class="figure-create-overtext">
+      <span>Edit Event</span>
+    </div>
+  </figure>
+
+  <main class="main-create">
+    <div class="figure-create-header">
+      <span>Edit Event</span>
+    </div>
+
+    <form action="/update/<%= events.id %>" class="form-basic" method="post">
+      <div class="form-create-container">
+        <label for="create-topic" class="form-label-basic">Choose Topic *</label>
+        <select
+          class="form-input-basic"
+          id="edit-topic"
+          name="eventTopic"
+          required
+        >
+          <option selected>Select...</option>
+          <option value="social" <% if (events.eventTopic === 'social') { %>selected<% } %> >Social</option>
+          <option value="health" <% if (events.eventTopic === 'health') { %>selected<% } %> >Health</option>
+          <option value="tech" <% if (events.eventTopic === 'tech') { %>selected<% } %> >Tech</option>
+        </select>
+      </div>
+      <div class="form-create-container">
+        <label for="create-title" class="form-label-basic">Title: *</label>
+        <input
+          class="form-input-basic"
+          type="text"
+          id="edit-title"
+          name="eventName"
+          minlength="5"
+          placeholder="at least 5 characters"
+          value="<%= events.eventName %>"
+          required
+        />
+      </div>
+      <div class="form-create-container">
+        <label for="create-date" class="form-label-basic">Date: *</label>
+        <input
+          class="form-input-basic"
+          type="date"
+          id="edit-date"
+          name="eventDate"
+          value="<%= events.eventDate %>"
+          required
+        />
+      </div>
+      <div class="form-create-container">
+        <label for="create-time" class="form-label-basic">Time: *</label>
+        <input
+          class="form-input-basic"
+          type="time"
+          id="edit-time"
+          name="eventTime"
+          value="<%= events.eventTime %>"
+          required
+        />
+      </div>
+      <div class="form-create-container">
+        <label for="create-duration" class="form-label-basic"
+          >Session Duration: *</label
+        >
+        <select
+          class="form-input-basic"
+          id="edit-duration"
+          name="duration"
+          required
+        >
+          <option>Select...</option>
+          <option value="0.5" <% if (events.duration === 0.5) { %>selected<% } %> >30 minutes</option>
+          <option value="1" <% if (events.duration === 1) { %>selected<% } %> >1 hour</option>
+          <option value="1.5" <% if (events.duration === 1.5) { %>selected<% } %> >1 hour 30 minutes</option>
+
+          <% for (let num = 2; num <= 12; num++) { %>
+            <option value="<%= num %>" <% if (events.duration === num) { %>selected<% } %> ><%= num %> hours</option>
+            <option value="<%= num + 0.5 %>" <% if (events.duration === (num + 0.5)) { %>selected<% } %> ><%= num %> hours 30 minutes</option>
+          <% } %>
+        </select>
+      </div>
+
+      <div class="form-create-container">
+        <label for="create-description" class="form-label-basic"
+          >Description: *</label
+        >
+        <textarea
+          class="form-textarea-basic"
+          rows="5"
+          minlength="50"
+          style="resize: none;"
+          id="event-details"
+          name="description"
+          placeholder="at least 50 characters"
+        ><%= events.description %></textarea>
+      </div>
+      <span class="required-fields-text">* Required fields</span>
+      <input id="edit-btn" class="yellow-btn" type="submit" value="Update" />
+    </form>
+  </main>
+
+  <figure class="figure-create-bg-left"></figure>
+  <figure class="figure-create-bg-right"></figure>
+
+  <%- include('../partials/sitemap'); %>
+</div>
+

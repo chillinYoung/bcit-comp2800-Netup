@@ -1,0 +1,225 @@
+.body-details {
+  font-family: 'Open Sans', sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  display: grid;
+  grid-template-rows: 4.7rem 32vh auto auto auto;
+  grid-template-areas:
+    "header"
+    "figure-details-bg"
+    "main-details"
+    "sitemap-container"
+    "footer";
+}
+
+.figure-details-bg {grid-area: figure-details-bg;}
+.figure-details-bg-left {grid-area: figure-details-bg-left;}
+.figure-details-bg-right {grid-area: figure-details-bg-right;}
+.main-details {grid-area: main-details;}
+.sitemap-container {grid-area: sitemap-container;}
+
+.figure-details-bg {
+  background-image: url("../images/confetti.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  padding: 0 10%;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.figure-details-bg-left {
+  background-image: url("../images/confetti.jpg");
+  background-size: cover;
+  display: none;
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.figure-details-bg-right {
+  background-image: url("../images/confetti.jpg");
+  background-size: cover;
+  display: none;
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.figure-details-overtext {
+  width: 100%;
+  color: var(--color-dim-text);
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: -1px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.figure-details-overtext span {
+  display: block;
+  text-align: center;
+  background-color: #FFFFFF90;
+  border-radius: 10px;
+}
+
+.figure-details-header {
+  width: 100%;
+  color: var(--color-dim-text);
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: -1px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 0 1rem;
+  text-align: center;
+}
+
+.figure-details-header span {
+  display: block;
+  text-align: center;
+}
+
+.main-details {
+  min-height: 0;
+  padding: 2rem 3.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+
+
+.details-container {
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.details-row {
+  width: 80%;
+  font-size: 1rem;
+  margin: .7rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.details-row img {
+  width: 100%;
+  height: ;
+  border-radius: 5px;
+  margin-bottom: 2rem;
+}
+
+.details-label {
+  font-weight: bold;
+  display: inline-block;
+  font-size: 1.2rem;
+  color: var(--color-point-mint);
+}
+
+.details-contents {
+  display: inline-block;
+  padding: .1rem .4rem 0;
+  color: var(--color-dart-text);
+}
+
+.details-join-btn {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--color-bright-text);
+  border: none;
+  border-radius: 5px;
+  width: 80%;
+  height: 2rem;
+  margin: 2rem 0;
+  background-color: var(--color-point-yellow);
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.details-join-btn:hover {
+  background-color: var(--color-point-orange);
+}
+
+.details-joined-btn {
+  outline: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--color-bright-text);
+  border: none;
+  border-radius: 5px;
+  width: 80%;
+  height: 2rem;
+  margin: 2rem 0;
+  background-color: var(--color-dim-text);
+  -webkit-appearance: none;
+}
+
+
+
+/* tablet layout from here */
+@media (min-width: 640px) {
+  .figure-details-overtext {
+    font-size: 2.3rem;
+  }
+
+  .figure-details-bg {
+    background-position: center;
+  }
+}
+
+/* pc layout from here */
+@media (min-width: 1025px) {
+  .figure-details-bg {
+    display: none;
+  }
+
+  .figure-details-bg-left {
+    display: inline-block;
+    background-position: right;
+  }
+  
+  .figure-details-bg-right {
+    display: inline-block;
+    background-position: left;
+  }
+
+  .body-details {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:
+      "header header header header"
+      "figure-details-bg-left main-details main-details figure-details-bg-right"
+      "figure-details-bg-left main-details main-details figure-details-bg-right"
+      "sitemap-container sitemap-container sitemap-container sitemap-container"
+      "footer footer footer footer";
+  }
+
+  .main-details {
+    min-height: 79vh;
+  }
+
+  .figure-details-bg {
+    padding: 0;
+  }
+
+  .figure-details-overtext {
+    font-size: 2.5rem;
+    padding-left: 7%;
+  }
+
+  .figure-details-overtext {
+    display: none;
+  }
+
+  .figure-details-header {
+    display: flex;
+  }
+}

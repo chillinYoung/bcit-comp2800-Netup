@@ -1,0 +1,229 @@
+.body-contact {
+  font-family: 'Open Sans', sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  display: grid;
+  grid-template-rows: 4.7rem 32vh auto auto auto;
+  grid-template-areas:
+    "header"
+    "figure-contact-bg"
+    "main-contact"
+    "sitemap-container"
+    "footer";
+}
+
+.figure-contact-bg {grid-area: figure-contact-bg;}
+.figure-contact-bg-left {grid-area: figure-contact-bg-left;}
+.figure-contact-bg-right {grid-area: figure-contact-bg-right;}
+.main-contact {grid-area: main-contact;}
+.sitemap-container {grid-area: sitemap-container;}
+
+.figure-contact-bg {
+  background-image: url("../images/phone.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  padding: 0 10%;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.figure-contact-bg-left {
+  background-image: url("../images/phone_left.jpg");
+  background-size: cover;
+  background-position: right;
+  display: none;
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.figure-contact-bg-right {
+  background-image: url("../images/phone_right.jpg");
+  background-size: cover;
+  background-position: left;
+  display: none;
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.figure-contact-overtext {
+  width: 100%;
+  color: var(--color-bright-text);
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: -1px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.figure-contact-overtext span {
+  display: block;
+  text-align: center;
+  text-shadow: 0 0 .5px var(--color-dark-text);
+}
+
+.figure-contact-header {
+  width: 100%;
+  color: var(--color-dark-text);
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: -1px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 0 1rem;
+  text-align: center;
+}
+
+.figure-contact-header span {
+  display: block;
+  text-align: center;
+}
+
+.main-contact {
+  min-height: 0;
+  padding: 2rem 3.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.form-contact-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: .3rem;
+  width: 80%;
+  min-width: 15rem;
+  max-width: 30rem;
+}
+
+.form-textarea-basic {
+  font-family: 'Open Sans', sans-serif;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: .5rem;
+}
+
+.required-fields-text {
+  font-size: .9rem;
+  color: var(--color-dim-text);
+  padding: .5rem .3rem 0 0;
+}
+
+.contact-netup {
+  width: 80%;
+  margin: 1rem 0;
+}
+
+.contact-netup-info {
+  padding-inline-start: 0;
+  list-style-type: none;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+.contact-netup-info li {
+  
+}
+
+.contact-email {
+  width: 80%;
+  margin: 1rem 0;
+}
+
+.contact-email form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-email form div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: .3rem;
+  width: 100%;
+  min-width: 15rem;
+  max-width: 30rem;
+}
+
+.contact-header {
+  padding: 1rem 0 .5rem;
+  font-weight: bold;
+  display: inline-block;
+  font-size: 1.7rem;
+  color: var(--color-point-mint);
+
+}
+
+
+
+/* tablet layout from here */
+@media (min-width: 640px) {
+  .figure-contact-overtext {
+    font-size: 2.3rem;
+  }
+
+  .figure-contact-bg {
+    background-position: center;
+  }
+}
+
+
+/* pc layout from here */
+@media (min-width: 1025px) {
+  .figure-contact-bg {
+    display: none;
+  }
+
+  .figure-contact-bg-left {
+    display: inline-block;
+    background-position: right;
+  }
+  
+  .figure-contact-bg-right {
+    display: inline-block;
+    background-position: left;
+  }
+
+  .body-contact {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:
+      "header header header header"
+      "figure-contact-bg-left main-contact main-contact figure-contact-bg-right"
+      "figure-contact-bg-left main-contact main-contact figure-contact-bg-right"
+      "sitemap-container sitemap-container sitemap-container sitemap-container"
+      "footer footer footer footer";
+  }
+
+  .main-contact {
+    min-height: 79vh;
+  }
+
+  .figure-contact-bg {
+    padding: 0;
+  }
+
+  .figure-contact-overtext {
+    font-size: 2.5rem;
+    padding-left: 7%;
+  }
+
+  .figure-contact-overtext {
+    display: none;
+  }
+
+  .figure-contact-header {
+    display: flex;
+  }
+}

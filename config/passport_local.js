@@ -1,5 +1,8 @@
 const db = require("../db/mongooseSchema");
+const md5 = require("md5");
 const LocalStrategy = require("passport-local").Strategy;
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
 // the passport we are passing in is going to be in the main index.js file
 // that's also why we didn't need require the passport module here
@@ -13,22 +16,26 @@ module.exports = function (passport) {
           let foundUser = null;
           error = "";
           users.forEach((user) => {
-            if (user.email === email && user.password === password) {
+            if (user.email === email) {
               foundUser = user;
             } else {
               if (user.email !== email) {
                 error = "email is not registered";
               }
-
-              if (user.password !== password) {
-                error = "password does not match";
-              }
             }
           });
 
           if (foundUser) {
-            return done(null, foundUser, { message: "Welcome back" });
+            bcrypt.compare(password, foundUser.password, function(err, result) {
+              if (result == true) {
+                return done(null, foundUser, { message: `Welcome back ${foundUser.name}` });
+              } else {
+                error = "password does not match";
+                return done(null, false, { message: error });
+              }
+            });
           } else {
+            console.log("Failed");
             return done(null, false, { message: error });
           }
         } else {

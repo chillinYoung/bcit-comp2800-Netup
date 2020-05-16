@@ -14,58 +14,75 @@
 
     <form action="/create" class="form-basic" method="post">
       <div class="form-create-container">
-        <label for="create-topic" class="form-label-basic">Choose Topic</label>
+        <label for="create-topic" class="form-label-basic">Choose Topic *</label>
         <select
           class="form-input-basic"
           id="create-topic"
           name="eventTopic"
           required
         >
-          <option value selected>Select...</option>
+          <option selected>Select...</option>
           <option value="social">Social</option>
           <option value="health">Health</option>
           <option value="tech">Tech</option>
         </select>
       </div>
       <div class="form-create-container">
-        <label for="create-title" class="form-label-basic">Title:</label>
+        <label for="create-title" class="form-label-basic">Title: *</label>
         <input
           class="form-input-basic"
           type="text"
           id="create-title"
           name="eventName"
           minlength="5"
+          placeholder="at least 5 characters"
           required
         />
       </div>
       <div class="form-create-container">
-        <label for="create-date" class="form-label-basic">Date:</label>
+        <label for="create-date" class="form-label-basic">Date: *</label>
         <input
           class="form-input-basic"
-          type="datetime-local"
-          i
-          d="create-date"
+          type="date"
+          id="create-date"
           name="eventDate"
           required
         />
       </div>
       <div class="form-create-container">
-        <label for="create-duration" class="form-label-basic"
-          >Session Duration:</label
-        >
+        <label for="create-time" class="form-label-basic">Time: *</label>
         <input
           class="form-input-basic"
-          type="number"
-          id="create-duration"
-          name="eventDuration"
-          placeholder="(in minutes, max 1440 minutes)"
-          max="1440"
+          type="time"
+          id="create-time"
+          name="eventTime"
           required
         />
       </div>
       <div class="form-create-container">
+        <label for="create-duration" class="form-label-basic"
+          >Session Duration: *</label
+        >
+        <select
+          class="form-input-basic"
+          id="create-duration"
+          name="eventDuration"
+          required
+        >
+          <option selected>Select...</option>
+
+          <option value="0.5">30 minutes</option>
+          <option value="1">1 hour</option>
+          <option value="1.5">1 hour 30 minutes</option>
+          <% for (let num = 2; num <= 12; num++) { %>
+            <option value="<%= num %>"><%= num %> hours</option>
+            <option value="<%= num + 0.5 %>"><%= num %> hours 30 minutes</option>
+          <% } %>
+        </select>
+      </div>
+      <div class="form-create-container">
         <label for="create-description" class="form-label-basic"
-          >Description:</label
+          >Description: *</label
         >
         <textarea
           class="form-textarea-basic"
@@ -74,8 +91,10 @@
           style="resize: none;"
           id="event-details"
           name="eventDetails"
+          placeholder="at least 50 characters"
         ></textarea>
       </div>
+      <span class="required-fields-text">* Required fields</span>
       <input id="create-btn" class="yellow-btn" type="submit" value="Create" />
     </form>
   </main>
@@ -85,3 +104,4 @@
 
   <%- include('../partials/sitemap'); %>
 </div>
+

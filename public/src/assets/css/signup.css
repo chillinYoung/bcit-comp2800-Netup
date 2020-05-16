@@ -75,35 +75,6 @@
   width: 100%;
 }
 
-.signup-or span {
-  color: lightgray;
-  position: relative;
-  font-size: 1.3rem;
-  top: -1rem;
-  padding: 0 1rem;
-  background-color: white;
-}
-
-.signup-third-party-list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.signup-third-party-list button {
-  width: 15rem;
-  height: 2.5rem;
-  margin: .5rem;
-  background-color: white;
-  border: .1rem solid var(--color-point-mint);
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.signup-third-party-list button:hover {
-  border-color: var(--color-point-yellow);
-}
-
 
 /* tablet layout from here */
 @media (min-width: 640px) {
