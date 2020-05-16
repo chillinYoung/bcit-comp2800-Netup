@@ -1,5 +1,7 @@
 const userController = require("./userRoute");
 const bcrypt = require("bcrypt");
+const crypto = require('crypto');
+const nodemailer = require('nodemailer');
 const saltRounds = 10;
 
 
@@ -61,30 +63,84 @@ module.exports = {
               user: userController.isLoggedIn(req.user),
             });
           } else {
-            // If the email doesn't exist in DB,
-            //then can add the new user
+              // If the email doesn't exist in DB,
+              //then can add the new user
             bcrypt.hash(pw1, saltRounds, function(err, hash) {
 
+                let newUser = new schema.User({
+                  name: `${fname} ${lname}`,
+                  email: email,
+                  password: hash,
+                  interests: [],
+                  hostedEvents: [],
+                  joinedEvents: [],
+                });
 
-            let newUser = new schema.User({
-              name: `${fname} ${lname}`,
-              email: email,
-              password: hash,
-              interests: [],
-              hostedEvents: [],
-              joinedEvents: [],
-            });
-            newUser.save((err) => {
-              if (!err) {
-                console.log("Successfully added new user!");
-              } else {
-                console.log(err);
-              }
-            });
+                // also create a tempUser for storing the token
 
-            req.flash("success_msg", "Successfully created account");
-            res.redirect("/login");
-          });
+                const newTempUser = new schema.TempUser({
+                  _userId: newUser._id,
+                  token: crypto.randomBytes(16).toString('hex')
+                })
+
+                newUser.save((err) => {
+                  if (!err) {
+                    console.log("Successfully added new user!");
+                  } else {
+                    console.log(err);
+                  }
+                });
+
+                newTempUser.save((err) => {
+                  if(!err) {
+                    console.log("Successfully created new temporary user for email verification")
+                  } else {
+                    console.log(err);
+                  }
+                })
+
+                // *** SETTING UP EMAIL TO SEND TO USER USING NODEMAILER *********
+                let emailBody = `
+            
+                  <h1> Welcome to Netup </h1>
+
+                  <p> Please click the link below to verify your email <p>
+                  <p> It will expire after 5 minutes </p>
+                  
+                  <a href="http://localhost:5050/confirmation/${newTempUser.token}">Verification link here</a> 
+                `
+
+                const transporter = nodemailer.createTransport({
+                  host: "smtp.ethereal.email",
+                  port: 587,
+                  secure: false,
+                  auth: {
+                    user: "estell.will@ethereal.email",
+                    pass: "HBEB2ufzXwuH8rttgf"
+                  },
+                  tls: {
+                    rejectUnauthorized: false
+                  }
+                });
+
+                const mailOPtions = {
+                  from: "estell.will@ethereal.email",
+                  to: email,
+                  subject: "testing verification email",
+                  html: emailBody
+                }
+
+                transporter.sendMail(mailOPtions, (error, info) => {
+                  if (error) {
+                    return console.log(error);
+                  }
+                  console.log('Message sent: %s', info.messageId);   
+                  console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+                  
+                  req.flash("success_msg", "Please verify your email before login");
+                  res.redirect("/");
+              });   
+            });
           }
         }
       } else {

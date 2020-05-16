@@ -20,10 +20,10 @@ module.exports = function (passport) {
               foundUser = user;
             } else {
               if (user.email !== email) {
-                error = "email is not registered";
-              }
+              error = "email is not registered";
             }
-          });
+          }
+      });
 
           if (foundUser) {
             bcrypt.compare(password, foundUser.password, function(err, result) {

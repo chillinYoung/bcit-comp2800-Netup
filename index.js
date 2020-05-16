@@ -36,7 +36,7 @@ const mongooseFunctions = require("./db/mongooseFunctions");
 // set up to use static files
 server.use(express.static("public"));
 
-// ejs middleware
+// EJS MIDDLEWARE **********************************************************************
 server.use(ejsLayouts);
 server.set("views", "./views");
 server.set("view engine", "ejs");
@@ -49,11 +49,12 @@ require("./config/passport_local")(passport);
 
 // EXPRESS-SESSION MIDDLEWARE ***********************************************************
 // it's a dependency for both passport and connect-flash messaging
-
+// added key: sid in case James/Antony needs it
 server.set("trust proxy", 1); // trust first proxy
 server.use(
   session({
     secret: "keyboard cat",
+    key: "sid",
     resave: true,
     saveUninitialized: true,
   })
@@ -118,8 +119,12 @@ server.get("/auth/google/secrets",
   ));
   
   //For facebook login
+  // COMMENTED OUT DUPLICATED CODE FOR USING EXPRESS SESSION
   server.use(cookieParser());
-  server.use(session({ secret: 'keyboard cat', key: 'sid'}));
+  // server.use(session({ 
+  // secret: 'keyboard cat', 
+  // key: 'sid'
+  // });
   server.get('/auth/facebook',
   passport.authenticate('facebook'));
 
@@ -180,6 +185,8 @@ server.use((req, res, next) => {
   res.locals.error = req.flash("error");
   // global variable for the flash error for passport when login succeeded
   res.locals.success = req.flash("success");
+
+  res.locals.user = userController.isLoggedIn(req.user);
 
   next();
 });
@@ -248,10 +255,10 @@ server.post("/login", (req, res, next) => {
 });
 
 // route for when user clicks the link in the email to verify their email
-app.get("/confirmation/:hash", userController.confirmation);
+server.get("/confirmation/:hash", userController.confirmation);
 
 // route for when verification email expired and user needs to have it resend to them
-app.post("/resend", userController.resend);
+server.post("/resend", userController.resend);
 // ***************************************************************************
 
 // this is Jame's login route for Join event

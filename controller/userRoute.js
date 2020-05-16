@@ -1,5 +1,7 @@
 let db = require("../db/mockDatabase");
 let schema = require("../db/mongooseSchema");
+const nodemailer = require('nodemailer');
+const crypto = require('crypto');
 
 module.exports = {
   isLoggedIn: (user) => {
@@ -99,15 +101,15 @@ module.exports = {
     }
   }, 
 
-  // confirmation function
+  // confirmation function for email verification
   confirmation: (req, res) => {
     let hash = req.params.hash
-    TempUser.findOne({token: hash}, (err, tempUser) => {
+    schema.TempUser.findOne({token: hash}, (err, tempUser) => {
       if(tempUser) {
         // finds the temp user meaning the verification hasn't expired
         const userId = tempUser._userId;
-
-        User.findOneAndUpdate({_id: userId},
+      
+        schema.User.findOneAndUpdate({_id: userId},
           {isEmailVerified: true}, (err, user) => {
             if(user) {
               console.log(user);
@@ -117,10 +119,12 @@ module.exports = {
           })
         
         // user can now be sent to the login page to login
-        res.redirect('/login.html')
+        // req.flash("success_msg", "Thank you for verifying your email! Login now!")
+        // res.redirect('/login')
+        res.send("success! please login")
 
       } else {
-        res.send("we will redirect to get request at this time")
+        res.render('./pages/resend');
         // the link has expired, user should enter their email again
       }
     })
@@ -131,11 +135,11 @@ module.exports = {
     const { email } = req.body;
 
     // find the user with this email in the db
-    User.findOne({email: email}, (err, user) => {
+    schema.User.findOne({email: email}, (err, user) => {
       if(user) {
 
           // create a new tempUser entry based on the user id
-          const newTempUser = new TempUser({
+          const newTempUser = new schema.TempUser({
             _userId: user._id,
             token: crypto.randomBytes(16).toString('hex')
           })
@@ -152,7 +156,7 @@ module.exports = {
           <p> Please click the link below to verify your email <p>
           <p> It will expire after 5 minutes </p>
           
-          <a href="http://localhost:5000/confirmation/${newTempUser.token}">Verification link here</a> 
+          <a href="http://localhost:5050/confirmation/${newTempUser.token}">Verification link here</a> 
           `
 
           // created TestAccount since I don't have a real mail account yet
@@ -184,11 +188,13 @@ module.exports = {
             console.log('Message sent: %s', info.messageId);   
             console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
             
-            res.send("Please check your email to verify before you can login")
+            req.flash("success_msg", "Please check your email to verify before you can login"),
+            res.redirect('/');
           });
 
       } else {
-        res.send("There's no user currently with this account, create account first")
+        req.flash("error", "No user with this email, please sign up first");
+        res.redirect('/signup');
       }
     })
    
