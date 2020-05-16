@@ -119,9 +119,8 @@ module.exports = {
           })
         
         // user can now be sent to the login page to login
-        // req.flash("success_msg", "Thank you for verifying your email! Login now!")
-        // res.redirect('/login')
-        res.send("success! please login")
+        req.flash("success_msg", "Thank you for verifying your email! Login now!")
+        res.redirect('/login')
 
       } else {
         res.render('./pages/resend');

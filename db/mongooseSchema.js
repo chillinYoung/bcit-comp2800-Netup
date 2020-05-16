@@ -38,10 +38,7 @@ const userSchema = new mongoose.Schema({
   name: String,
   email: String,
   password: String,
-  isEmailVerified: {
-    type: Boolean,
-    default: false
-  },
+  isEmailVerified: Boolean,
   interests: [String],
   hostedEvents: [Object],
   joinedEvents: [Object],

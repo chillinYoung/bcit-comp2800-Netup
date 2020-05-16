@@ -71,6 +71,7 @@ module.exports = {
                   name: `${fname} ${lname}`,
                   email: email,
                   password: hash,
+                  isEmailVerified: false,
                   interests: [],
                   hostedEvents: [],
                   joinedEvents: [],
