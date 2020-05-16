@@ -2,6 +2,7 @@ let db = require("../db/mockDatabase");
 let schema = require("../db/mongooseSchema");
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
+const passport = require('passport');
 
 module.exports = {
   isLoggedIn: (user) => {
@@ -9,8 +10,41 @@ module.exports = {
   },
   userDetails: (user) => {
     return user
-  }
-  ,
+  },
+  loginPost: (req, res, next) => { 
+    passport.authenticate('local', function(err, user, info) {
+      // passport.authenticate("local", {
+      //   successRedirect: "/myEvents",
+      //   failureRedirect: "/login",
+      //   failureFlash: true,
+      //   successFlash: true,
+      // })(req, res, next);
+      
+      // if there's error with passport local, just return
+      if (err) { return next(err); }
+      
+      // if passport local doesn't return the user object (aka user == false)
+      // then i want to customize the behavior here for the redirect
+      if (!user) { 
+        
+        if(info.message.indexOf("verify") !== -1) {
+          req.flash("error", info.message);
+          return res.redirect('/resend');
+        } else {
+          req.flash("error", info.message);
+          return res.redirect('/login'); 
+        }
+      }
+      
+      // if passport returns the user object, then we can log user in
+      req.logIn(user, function(err) {
+        if (err) { return next(err); }
+        req.flash("success", info.message);
+        return res.redirect('/myEvents');
+      });
+      
+    })(req, res, next);
+  },
   createEvent: (req, res) => {
     console.log(req.user);
     const {

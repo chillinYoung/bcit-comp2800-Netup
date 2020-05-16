@@ -242,17 +242,10 @@ server.get('/host/:eventId', mongooseFunctions.getEvent);
 // UPDATED LOGIN HANDLE FOR EMAIL VERIFICATION *******************************
 // login handle
 server.get("/login", (req, res) => {
-  res.render("pages/login", { user: userController.isLoggedIn(req.user) });
+  res.render("pages/login");
 });
 
-server.post("/login", (req, res, next) => {
-  passport.authenticate("local", {
-    successRedirect: "/myEvents",
-    failureRedirect: "/login",
-    failureFlash: true,
-    successFlash: true,
-  })(req, res, next);
-});
+server.post("/login", userController.loginPost);
 
 // route for when user clicks the link in the email to verify their email
 server.get("/confirmation/:hash", userController.confirmation);
