@@ -231,15 +231,36 @@ server.get('/eventdetails/:eventId', mongooseFunctions.getEvent);
 // event host page for specific event
 server.get('/host/:eventId', mongooseFunctions.getEvent);
 
+
+// UPDATED LOGIN HANDLE FOR EMAIL VERIFICATION *******************************
 // login handle
 server.get("/login", (req, res) => {
   res.render("pages/login", { user: userController.isLoggedIn(req.user) });
 });
 
+server.post("/login", (req, res, next) => {
+  passport.authenticate("local", {
+    successRedirect: "/myEvents",
+    failureRedirect: "/login",
+    failureFlash: true,
+    successFlash: true,
+  })(req, res, next);
+});
+
+// route for when user clicks the link in the email to verify their email
+app.get("/confirmation/:hash", userController.confirmation);
+
+// route for when verification email expired and user needs to have it resend to them
+app.post("/resend", userController.resend);
+// ***************************************************************************
+
+// this is Jame's login route for Join event
 server.get("/loginRequired", (req, res) => {
   req.flash("success_msg", "Users must login first");
   res.redirect("/login")
 })
+
+// UPDATED SIGNUP/REGISTRATION HANDLE FOR EMAIL VERIFICATION ******************
 
 // signup handle
 server.get("/signup", (req, res) => {
@@ -249,6 +270,7 @@ server.get("/signup", (req, res) => {
 // registration (signup) handle
 server.post("/signup", mainController.createAccount);
 
+// **************************************************************************
 // post handle for create page event
 server.post('/create', userController.createEvent);
 
@@ -276,15 +298,6 @@ server.get("/signout", (req, res) => {
   req.logout();
   req.flash("success_msg", "Logged out successfully");
   res.redirect("/");
-});
-
-server.post("/login", (req, res, next) => {
-  passport.authenticate("local", {
-    successRedirect: "/myEvents",
-    failureRedirect: "/login",
-    failureFlash: true,
-    successFlash: true,
-  })(req, res, next);
 });
 
 server.post("/create", userController.createEvent);
