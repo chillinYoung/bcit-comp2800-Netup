@@ -258,6 +258,11 @@ server.post("/login", (req, res, next) => {
 server.get("/confirmation/:hash", userController.confirmation);
 
 // route for when verification email expired and user needs to have it resend to them
+
+server.get("/resend", (req, res) => {
+  res.render('pages/resend');
+})
+
 server.post("/resend", userController.resend);
 // ***************************************************************************
 
