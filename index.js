@@ -123,7 +123,7 @@ server.get("/auth/google/secrets",
   server.get('/auth/facebook',
   passport.authenticate('facebook'));
 
-server.get('/auth/facebook/callback',
+  server.get('/auth/facebook/callback',
   passport.authenticate('facebook', { successRedirect : '/myEvents', failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication, redirect home.
