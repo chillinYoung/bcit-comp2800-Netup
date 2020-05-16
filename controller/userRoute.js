@@ -157,7 +157,8 @@ module.exports = {
         res.redirect('/login')
 
       } else {
-        res.render('./pages/resend');
+        let error = "validation link expired"
+        res.render('./pages/resend', {error: error});
         // the link has expired, user should enter their email again
       }
     })
@@ -195,12 +196,15 @@ module.exports = {
           // created TestAccount since I don't have a real mail account yet
         
           const transporter = nodemailer.createTransport({
-            host: "smtp.ethereal.email",
+            // host: "smtp.ethereal.email",
+            service: 'gmail',
             port: 587,
             secure: false,
             auth: {
-              user: "estell.will@ethereal.email",
-              pass: "HBEB2ufzXwuH8rttgf"
+              // user: "estell.will@ethereal.email",
+              // pass: "HBEB2ufzXwuH8rttgf"
+              user: 'netupTestEmail@gmail.com', // generated ethereal user
+              pass: 'Netup123@'
             },
             tls: {
               rejectUnauthorized: false

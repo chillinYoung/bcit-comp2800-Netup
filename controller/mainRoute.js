@@ -112,12 +112,15 @@ module.exports = {
                 `
 
                 const transporter = nodemailer.createTransport({
-                  host: "smtp.ethereal.email",
+                  // host: "smtp.ethereal.email",
+                  service: 'gmail',
                   port: 587,
                   secure: false,
                   auth: {
-                    user: "estell.will@ethereal.email",
-                    pass: "HBEB2ufzXwuH8rttgf"
+                    // user: "estell.will@ethereal.email",
+                    // pass: "HBEB2ufzXwuH8rttgf"
+                    user: 'netupTestEmail@gmail.com', // generated ethereal user
+                    pass: 'Netup123@'
                   },
                   tls: {
                     rejectUnauthorized: false
@@ -125,7 +128,7 @@ module.exports = {
                 });
 
                 const mailOPtions = {
-                  from: "estell.will@ethereal.email",
+                  from: "netupTestEmail@gmail.com",
                   to: email,
                   subject: "testing verification email",
                   html: emailBody
