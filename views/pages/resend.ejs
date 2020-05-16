@@ -1,0 +1,13 @@
+
+<div class="body-contact">
+  <%- include('../partials/navigation'); %>
+
+  <main class="main-contact">
+    <form action='/resend' method="POST">
+      <p>Please enter your email here to get new verification email</p>
+      <input type="email" name="email">
+      <button type="submit">Send</button>
+    </form>
+  </main>
+  <%- include('../partials/sitemap'); %>
+</div>

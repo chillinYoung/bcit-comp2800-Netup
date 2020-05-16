@@ -36,7 +36,7 @@ const mongooseFunctions = require("./db/mongooseFunctions");
 // set up to use static files
 server.use(express.static("public"));
 
-// ejs middleware
+// EJS MIDDLEWARE **********************************************************************
 server.use(ejsLayouts);
 server.set("views", "./views");
 server.set("view engine", "ejs");
@@ -49,11 +49,12 @@ require("./config/passport_local")(passport);
 
 // EXPRESS-SESSION MIDDLEWARE ***********************************************************
 // it's a dependency for both passport and connect-flash messaging
-
+// added key: sid in case James/Antony needs it
 server.set("trust proxy", 1); // trust first proxy
 server.use(
   session({
     secret: "keyboard cat",
+    key: "sid",
     resave: true,
     saveUninitialized: true,
   })
@@ -118,12 +119,16 @@ server.get("/auth/google/secrets",
   ));
   
   //For facebook login
+  // COMMENTED OUT DUPLICATED CODE FOR USING EXPRESS SESSION
   server.use(cookieParser());
-  server.use(session({ secret: 'keyboard cat', key: 'sid'}));
+  // server.use(session({ 
+  // secret: 'keyboard cat', 
+  // key: 'sid'
+  // });
   server.get('/auth/facebook',
   passport.authenticate('facebook'));
 
-server.get('/auth/facebook/callback',
+  server.get('/auth/facebook/callback',
   passport.authenticate('facebook', { successRedirect : '/myEvents', failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication, redirect home.
@@ -181,6 +186,8 @@ server.use((req, res, next) => {
   // global variable for the flash error for passport when login succeeded
   res.locals.success = req.flash("success");
 
+  res.locals.user = userController.isLoggedIn(req.user);
+
   next();
 });
 
@@ -231,15 +238,34 @@ server.get('/eventdetails/:eventId', mongooseFunctions.getEvent);
 // event host page for specific event
 server.get('/host/:eventId', mongooseFunctions.getEvent);
 
+
+// UPDATED LOGIN HANDLE FOR EMAIL VERIFICATION *******************************
 // login handle
 server.get("/login", (req, res) => {
-  res.render("pages/login", { user: userController.isLoggedIn(req.user) });
+  res.render("pages/login");
 });
 
+server.post("/login", userController.loginPost);
+
+// route for when user clicks the link in the email to verify their email
+server.get("/confirmation/:hash", userController.confirmation);
+
+// route for when verification email expired and user needs to have it resend to them
+
+server.get("/resend", (req, res) => {
+  res.render('pages/resend');
+})
+
+server.post("/resend", userController.resend);
+// ***************************************************************************
+
+// this is Jame's login route for Join event
 server.get("/loginRequired", (req, res) => {
   req.flash("success_msg", "Users must login first");
   res.redirect("/login")
 })
+
+// UPDATED SIGNUP/REGISTRATION HANDLE FOR EMAIL VERIFICATION ******************
 
 // signup handle
 server.get("/signup", (req, res) => {
@@ -249,6 +275,7 @@ server.get("/signup", (req, res) => {
 // registration (signup) handle
 server.post("/signup", mainController.createAccount);
 
+// **************************************************************************
 // post handle for create page event
 server.post('/create', userController.createEvent);
 
@@ -276,15 +303,6 @@ server.get("/signout", (req, res) => {
   req.logout();
   req.flash("success_msg", "Logged out successfully");
   res.redirect("/");
-});
-
-server.post("/login", (req, res, next) => {
-  passport.authenticate("local", {
-    successRedirect: "/myEvents",
-    failureRedirect: "/login",
-    failureFlash: true,
-    successFlash: true,
-  })(req, res, next);
 });
 
 server.post("/create", userController.createEvent);
