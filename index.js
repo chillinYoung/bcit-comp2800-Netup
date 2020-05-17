@@ -201,8 +201,6 @@ passport.deserializeUser(function(obj, done) {
 });
 
 
-
-
 // temporary routes
 server.get('/comingsoon', (req, res) => {
   res.sendFile(__dirname + '/public/comingsoon.html');
@@ -214,12 +212,12 @@ server.get("/", mongooseFunctions.setUpIndex);
 
 // about netup
 server.get('/netup', (req, res) => {
-  res.render('pages/aboutNetup', {user: userController.isLoggedIn(req.user)});
+  res.render('pages/aboutNetup');
 })
 
 // about our team
 server.get('/team', (req, res) => {
-  res.render('pages/aboutTeam', {user: userController.isLoggedIn(req.user)});
+  res.render('pages/aboutTeam');
 })
 
 // all events page
@@ -269,7 +267,7 @@ server.get("/loginRequired", (req, res) => {
 
 // signup handle
 server.get("/signup", (req, res) => {
-  res.render("pages/signup", { user: userController.isLoggedIn(req.user) });
+  res.render("pages/signup");
 });
 
 // registration (signup) handle
@@ -309,7 +307,7 @@ server.post("/create", userController.createEvent);
 
 // contact form will be moved to it's own file later.
 server.get('/contact', (req, res) => {
-  res.render('pages/contact', { user: userController.isLoggedIn(req.user) });
+  res.render('pages/contact');
 });
 
 server.post('/send', mongooseFunctions.contactForm);
