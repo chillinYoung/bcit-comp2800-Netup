@@ -1,7 +1,7 @@
 const userController = require("./userRoute");
 const bcrypt = require("bcrypt");
 const crypto = require('crypto');
-const nodemailer = require('nodemailer');
+const sendEmail = require('../controller/sendEmail');
 const saltRounds = 10;
 
 
@@ -101,49 +101,7 @@ module.exports = {
                 })
 
                 // *** SETTING UP EMAIL TO SEND TO USER USING NODEMAILER *********
-                let emailBody = `
-            
-                  <h1> Welcome to Netup </h1>
-
-                  <p> Please click the link below to verify your email <p>
-                  <p> It will expire after 5 minutes </p>
-                  
-                  <a href="http://localhost:5050/confirmation/${newTempUser.token}">Verification link here</a> 
-                `
-
-                const transporter = nodemailer.createTransport({
-                  // host: "smtp.ethereal.email",
-                  service: 'gmail',
-                  port: 587,
-                  secure: false,
-                  auth: {
-                    // user: "estell.will@ethereal.email",
-                    // pass: "HBEB2ufzXwuH8rttgf"
-                    user: 'netupTestEmail@gmail.com', // generated ethereal user
-                    pass: 'Netup123@'
-                  },
-                  tls: {
-                    rejectUnauthorized: false
-                  }
-                });
-
-                const mailOPtions = {
-                  from: "netupTestEmail@gmail.com",
-                  to: email,
-                  subject: "testing verification email",
-                  html: emailBody
-                }
-
-                transporter.sendMail(mailOPtions, (error, info) => {
-                  if (error) {
-                    return console.log(error);
-                  }
-                  console.log('Message sent: %s', info.messageId);   
-                  console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-                  
-                  req.flash("success_msg", "Please verify your email before login");
-                  res.redirect("/");
-              });   
+                sendEmail(email, newTempUser.token);
             });
           }
         }

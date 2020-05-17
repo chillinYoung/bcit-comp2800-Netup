@@ -1,6 +1,6 @@
 let db = require("../db/mockDatabase");
 let schema = require("../db/mongooseSchema");
-const nodemailer = require('nodemailer');
+const sendEmail = require("../controller/sendEmail");
 const crypto = require('crypto');
 const passport = require('passport');
 
@@ -13,12 +13,6 @@ module.exports = {
   },
   loginPost: (req, res, next) => { 
     passport.authenticate('local', function(err, user, info) {
-      // passport.authenticate("local", {
-      //   successRedirect: "/myEvents",
-      //   failureRedirect: "/login",
-      //   failureFlash: true,
-      //   successFlash: true,
-      // })(req, res, next);
       
       // if there's error with passport local, just return
       if (err) { return next(err); }
@@ -135,6 +129,7 @@ module.exports = {
     }
   }, 
 
+  // EMAIL VERIFICATION FUNCTIONALITY
   // confirmation function for email verification
   confirmation: (req, res) => {
     let hash = req.params.hash
@@ -164,6 +159,7 @@ module.exports = {
     })
   },
 
+  // EMAIL VERIFICATION FUNCTIONALITY
   // here's the callback for user to get a new verification email sent to them
   resend: (req, res) => {
     const { email } = req.body;
@@ -182,52 +178,7 @@ module.exports = {
           newTempUser.save();
 
           // send email to the user again
-
-          let emailBody = `
-              
-          <h1> Welcome to Netup </h1>
-
-          <p> Please click the link below to verify your email <p>
-          <p> It will expire after 5 minutes </p>
-          
-          <a href="http://localhost:5050/confirmation/${newTempUser.token}">Verification link here</a> 
-          `
-
-          // created TestAccount since I don't have a real mail account yet
-        
-          const transporter = nodemailer.createTransport({
-            // host: "smtp.ethereal.email",
-            service: 'gmail',
-            port: 587,
-            secure: false,
-            auth: {
-              // user: "estell.will@ethereal.email",
-              // pass: "HBEB2ufzXwuH8rttgf"
-              user: 'netupTestEmail@gmail.com', // generated ethereal user
-              pass: 'Netup123@'
-            },
-            tls: {
-              rejectUnauthorized: false
-            }
-          });
-
-          const mailOPtions = {
-            from: "estell.will@ethereal.email",
-            to: email,
-            subject: "testing verification email",
-            html: emailBody
-          }
-
-          transporter.sendMail(mailOPtions, (error, info) => {
-            if (error) {
-              return console.log(error);
-            }
-            console.log('Message sent: %s', info.messageId);   
-            console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-            
-            req.flash("success_msg", "Please check your email to verify before you can login"),
-            res.redirect('/');
-          });
+         sendEmail(email, newTempUser.token);
 
       } else {
         req.flash("error", "No user with this email, please sign up first");
