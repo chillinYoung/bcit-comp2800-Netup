@@ -1,3 +1,8 @@
+/*
+  CODE INSPIRED BY BRAD TRAVERSY
+  SOURCE: https://github.com/bradtraversy/node_passport_login/blob/master/config/passport.js
+*/ 
+
 const db = require("../db/mongooseSchema");
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcrypt");

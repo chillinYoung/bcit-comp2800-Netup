@@ -53,6 +53,9 @@ userSchema.plugin(findOrCreate);
 const User = mongoose.model("User", userSchema);
 
 // Schema for a temporary token for email verification
+/* This schema block of code was adapted from code found here:
+* Source: https://codemoto.io/coding/nodejs/email-verification-node-express-mongodb
+*/
 
 const TempUserSchema = new mongoose.Schema({
   _userId: {
@@ -71,6 +74,11 @@ const TempUserSchema = new mongoose.Schema({
     expires: 300
   }
 })
+
+/*
+* Code block snippet ends here
+* Source: https://codemoto.io/coding/nodejs/email-verification-node-express-mongodb
+*/
 
 const TempUser = mongoose.model("TempUser", TempUserSchema);
 

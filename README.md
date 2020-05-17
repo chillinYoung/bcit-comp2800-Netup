@@ -24,3 +24,13 @@
 ## Version
 
 - 1.0.0
+
+## References and source for functionality
+
+1. Email Verification Functionality
+- implementation concept referenced this [article](https://codemoto.io/coding/nodejs/email-verification-node-express-mongodb)
+- I took the code snippet for TempUserSchema from [article](https://codemoto.io/coding/nodejs/email-verification-node-express-mongodb) but they called it TokenSchema which I've already commented inline inside the file mongooseSchema.js
+- Read the Nodemailer and passport documentation to implement the rest of the code
+
+2. Passport Local Strategy Authentication
+- Referenced Traversy Media' [tutorial](https://www.youtube.com/watch?v=6FOq4cUdH8k) to implement the authentication flow. Please see code inline for snippets that was inspired by Brad Traversy.
