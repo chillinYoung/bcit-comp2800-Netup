@@ -172,17 +172,22 @@ server.use(express.urlencoded({ extended: false }));
 server.use(flash());
 
 // CUSTOM MIDDLEWARE *********************************************************************
-
+/* A portion of this middleware was taken from Brad Traversy
+* Source: https://github.com/bradtraversy/node_passport_login/blob/master/app.js
+*/
 server.use((req, res, next) => {
   // THIS IS FOR THE CREATE ACCOUNT MESSAGES
 
   res.locals.success_msg = req.flash("success_msg");
   // this is for the create account page error messages
   res.locals.error_msg = req.flash("error_msg");
-
   // THIS IS FOR THE AUTHENTICATION ERROR / SUCCESS MESSAGES FROM PASSPORT
   // global variable for the flash error for passport just returns an error
   res.locals.error = req.flash("error");
+
+/* Portion of code from Brad Traversy ends here
+* Source: https://github.com/bradtraversy/node_passport_login/blob/master/app.js
+*/
   // global variable for the flash error for passport when login succeeded
   res.locals.success = req.flash("success");
 
