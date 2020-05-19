@@ -139,6 +139,8 @@
   width: 8.4rem;
   height: 5.6rem;
   object-fit: cover;
+  /* keep max-width! for image size changing error during loading (Young) */
+  max-width: 100%;
 }
 
 .myevents-event-list-text {
