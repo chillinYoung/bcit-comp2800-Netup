@@ -368,6 +368,7 @@ nav {
 .video-post-join {
   background-color: var(--color-point-yellow);
   cursor: pointer;
+  padding: 0;
 }
 
 .video-post-join:hover {
@@ -377,6 +378,7 @@ nav {
 .video-post-joined {
   background-color: var(--color-dim-text);
   cursor: initial;
+  padding: 0;
 }
 
 .video-post span {
