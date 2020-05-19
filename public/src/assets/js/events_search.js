@@ -18,16 +18,25 @@ function eventSearch() {
 // EASTER EGG
 window.onresize = function() {easterEgg()};
 function easterEgg() {
+
+  // if input is 'karen', insert canvas, execute fireworks, and remove it
   if (searchInp.value.toLowerCase().trim() == "karen") {
     document.querySelector("#allevents-search-keyword").blur();
     window.scrollTo(0,1);
+    let parent = document.querySelector(".body-allevents");
+    let figurePos = document.querySelector("figure");
+    let newDiv = document.createElement("div");
+    newDiv.id = "fireworks";
+    parent.insertBefore(newDiv, figurePos);
+
     changeColor();
     startFireworks();
+    
     setTimeout(function () {
       document.querySelector('canvas').style.transition = "opacity 1s";
       document.querySelector('canvas').style.opacity = "0";
       setTimeout(function () {
-        document.querySelector('#fireworks').innerHTML = "";
+        document.querySelector('#fireworks').remove();
       }, 500);
     }, 10000);
 

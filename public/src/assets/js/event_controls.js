@@ -1,19 +1,19 @@
 function joinToJoined(eventIdAsId) {
   let parent = document.getElementById(eventIdAsId).parentNode;
   document.getElementById(eventIdAsId).remove();
-  let new_btn = document.createElement("button");
-  parent.appendChild(new_btn);
-  new_btn.className = "video-post-joined";
-  new_btn.innerHTML = "Joined";
+  let newBtn = document.createElement("button");
+  parent.appendChild(newBtn);
+  newBtn.className = "video-post-joined";
+  newBtn.innerHTML = "Joined";
 }
 
 function joinToJoinedDetail(eventIdAsId) {
   let parent = document.getElementById(eventIdAsId).parentNode;
   document.getElementById(eventIdAsId).remove();
-  let new_btn = document.createElement("button");
-  parent.appendChild(new_btn);
-  new_btn.className = "details-joined-btn";
-  new_btn.innerHTML = "Joined";
+  let newBtn = document.createElement("button");
+  parent.appendChild(newBtn);
+  newBtn.className = "details-joined-btn";
+  newBtn.innerHTML = "Joined";
 }
 
 

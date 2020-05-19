@@ -19,6 +19,7 @@ var mousePos = {
 function startFireworks() {
     $("#fireworks").append(canvas);
     $("#fireworks").css("z-index", "2");
+    $("canvas").css("opacity", "1");
     canvas.width = SCREEN_WIDTH;
     canvas.height = SCREEN_HEIGHT;
     setInterval(launch, 800);
