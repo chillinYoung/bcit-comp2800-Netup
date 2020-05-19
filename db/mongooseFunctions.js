@@ -20,6 +20,7 @@ let mongooseFunctions = {
       eventName: req.body.eventName,
       hostName: req.body.hostName,
       eventDate: req.body.eventDate,
+      eventTime: req.body.eventTime,
       duration: req.body.duration,
       description: req.body.description,
     });
