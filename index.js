@@ -264,7 +264,7 @@ server.post("/resend", userController.resend);
 
 // this is Jame's login route for Join event
 server.get("/loginRequired", (req, res) => {
-  req.flash("success_msg", "Users must login first");
+  req.flash("error", "Users must login first");
   res.redirect("/login")
 })
 
