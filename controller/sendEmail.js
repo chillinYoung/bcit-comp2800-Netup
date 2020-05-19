@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer');
 
 // EMAIL VERIFICATION FUNCTIONALITY
 
-module.exports = function(recipient, hash) {
+module.exports = function(recipient, hash, req, res) {
 
   let emailBody = `
               
@@ -51,7 +51,7 @@ module.exports = function(recipient, hash) {
     console.log('Message sent: %s', info.messageId);   
     console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
     
-    req.flash("success_msg", "Please check your email to verify before you can login"),
+    req.flash("success_msg", "Please check your email to verify before you can login");
     res.redirect('/');
   });
 

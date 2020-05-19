@@ -178,7 +178,7 @@ module.exports = {
           newTempUser.save();
 
           // send email to the user again
-         sendEmail(email, newTempUser.token);
+         sendEmail(email, newTempUser.token, req, res);
 
       } else {
         req.flash("error", "No user with this email, please sign up first");

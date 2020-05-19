@@ -101,7 +101,7 @@ module.exports = {
                 })
 
                 // *** SETTING UP EMAIL TO SEND TO USER USING NODEMAILER *********
-                sendEmail(email, newTempUser.token);
+                sendEmail(email, newTempUser.token, req, res);
             });
           }
         }
