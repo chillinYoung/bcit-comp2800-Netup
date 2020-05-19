@@ -1,16 +1,18 @@
 function joinToJoined(eventIdAsId) {
-  document.getElementById(eventIdAsId).innerHTML = "Joined";
-  document.getElementById(eventIdAsId).removeAttribute("formmethod");
-  document.getElementById(eventIdAsId).removeAttribute("formaction");
-  document.getElementById(eventIdAsId).removeAttribute("onclick");
-  document.getElementById(eventIdAsId).setAttribute("class", "video-post-joined");
+  let parent = document.getElementById(eventIdAsId).parentNode;
+  document.getElementById(eventIdAsId).remove();
+  let new_btn = document.createElement("button");
+  parent.appendChild(new_btn);
+  new_btn.className = "video-post-joined";
+  new_btn.innerHTML = "Joined";
 }
 
 function joinToJoinedDetail(eventIdAsId) {
-  document.getElementById(eventIdAsId).innerHTML = "Joined";
-  document.getElementById(eventIdAsId).removeAttribute("formmethod");
-  document.getElementById(eventIdAsId).removeAttribute("formaction");
-  document.getElementById(eventIdAsId).removeAttribute("onclick");
-  document.getElementById(eventIdAsId).setAttribute("class", "details-joined-btn");
+  let parent = document.getElementById(eventIdAsId).parentNode;
+  document.getElementById(eventIdAsId).remove();
+  let new_btn = document.createElement("button");
+  parent.appendChild(new_btn);
+  new_btn.className = "details-joined-btn";
+  new_btn.innerHTML = "Joined";
 }
 
