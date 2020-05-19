@@ -11,7 +11,7 @@ module.exports = function(recipient, hash, req, res) {
   <p> Please click the link below to verify your email <p>
   <p> It will expire after 5 minutes </p>
   
-  <a href="http://localhost:5050/confirmation/${hash}">Verification link here</a> 
+  <a href="https://dtc10-netup.herokuapp.com/confirmation/${hash}">Verification link here</a> 
   `
 
   // if you want to use the test accounts instead of actually emailing someone
@@ -22,15 +22,15 @@ module.exports = function(recipient, hash, req, res) {
   // and the user details under auth
 
   const transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
-    // service: 'gmail',
+    // host: "smtp.ethereal.email",
+    service: 'gmail',
     port: 587,
     secure: false,
     auth: {
-      user: "estell.will@ethereal.email",
-      pass: "HBEB2ufzXwuH8rttgf"
-      // user: 'netupTestEmail@gmail.com', 
-      // pass: 'Netup123@'
+      // user: "estell.will@ethereal.email",
+      // pass: "HBEB2ufzXwuH8rttgf"
+      user: 'netupTestEmail@gmail.com', 
+      pass: 'Netup123@'
     },
     tls: {
       rejectUnauthorized: false
