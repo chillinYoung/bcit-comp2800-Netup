@@ -20,4 +20,24 @@ $(document).ready(function(){
             window.location.assign("/loginRequired");
         })
     })
+
+    $('.details-join-btn').on('click', function() {
+
+        $.ajax({
+            url: '/joinEvent',
+            method: 'POST',
+            data: {
+                id: this.id,
+            },
+            success: function (response) {
+                // let's not relocate the page! I commented out this (from Young)
+                // window.location.assign("/allEventsSuccess");
+             }
+        }).
+        done(function(data){
+        })
+        .fail(function(error){
+            window.location.assign("/loginRequired");
+        })
+    })
 })

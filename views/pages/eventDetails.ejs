@@ -44,13 +44,13 @@
 
 
       <% if (!currentUser) { %>
-        <button class="details-join-btn" id="<%= events.id %>" name="<%= events.id %>" formmethod="post" formaction="/joinEvent" onclick="joinToJoinedDetail('<%= events.id %>')">Join</button>
+        <button class="details-join-btn" id="<%= events._id %>" name="<%= events._id %>" formmethod="post" formaction="/joinEvent" onclick="joinToJoinedDetail('<%= events.id %>')">Join</button>
 
       <% } else if (currentUser && (events.hostId != currentUser._id)) { %>
         <% if (currentUser.joinedEvents.includes(events.id)) { %>
           <button class="details-joined-btn">Joined</button>
         <% } else { %>
-          <button class="details-join-btn" id="<%= events.id %>" name="<%= events.id %>" formmethod="post" formaction="/joinEvent" onclick="joinToJoinedDetail('<%= events.id %>')">Join</button>
+          <button class="details-join-btn" id="<%= events._id %>" name="<%= events._id %>" formmethod="post" formaction="/joinEvent" onclick="joinToJoinedDetail('<%= events.id %>')">Join</button>
         <% } %>
 
       <% } %>
@@ -65,4 +65,7 @@
 
   <%- include('../partials/sitemap'); %>
 </div>
+<script type='text/javascript' src='https://code.jquery.com/jquery-3.5.0.min.js'></script>
+<script src="/src/assets/js/buttonClick.js" async></script>
+
 
