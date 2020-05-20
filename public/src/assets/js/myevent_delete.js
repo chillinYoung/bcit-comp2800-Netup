@@ -1,8 +1,11 @@
 function deleteConfirm(id) {
   closeAllConfirm();
   document.querySelector(".warn-" + id).style.width = "100%";
-  document.querySelector(".warn-" + id + " span").style.display = "block";
-  document.querySelector(".warn-" + id + " div").style.display = "flex";
+  setTimeout(function () {
+    document.querySelector(".warn-" + id + " span").style.display = "block";
+    document.querySelector(".warn-" + id + " div").style.display = "flex";
+    document.querySelector(".warn-" + id + " span").style.opacity = "1";
+  }, 300);
 }
 
 function closeAllConfirm() {
@@ -14,6 +17,9 @@ function closeAllConfirm() {
   });
   document.querySelectorAll(".myevents-warn div").forEach(elem => {
     elem.style.display = "none";
+  });
+  document.querySelectorAll(".myevents-warn span").forEach(elem => {
+    elem.style.opacity = "0";
   });
 }
 
