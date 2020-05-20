@@ -168,10 +168,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-flow: wrap;
 }
 
 .share-button {
-  margin: .2rem;
+  margin: .3rem;
   border-radius: 50%;
   cursor: pointer;
   display: inline-block;
@@ -179,6 +180,12 @@
   padding: .7rem;
   justify-content: center;
   align-items: center;
+}
+
+.share-button:hover {
+  filter: brightness(1.2);
+  transform: translateY(-.4rem);
+  transition: transform .3s;
 }
 
 .share-button img {
