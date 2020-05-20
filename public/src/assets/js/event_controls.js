@@ -17,9 +17,10 @@ function joinToJoinedDetail(eventIdAsId) {
 }
 
 
-// join event by clicking join button
+// Logic for joining an event by clicking join button
 $(document).ready(function(){
 
+    // Joining an event on the 'all events' page.
     $('.video-post-join').on('click', function() {
 
         $.ajax({
@@ -40,8 +41,8 @@ $(document).ready(function(){
         })
     })
 
+    // Joining an event inside of the specific event's details page.
     $('.details-join-btn').on('click', function() {
-
         $.ajax({
             url: '/joinEvent',
             method: 'POST',

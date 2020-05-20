@@ -1,9 +1,14 @@
 const userController = require("../controller/userRoute");
 const db = require("./mongooseSchema");
 const nodemailer = require('nodemailer');
-const path = require("path")
 
+// 
+//Instruction for using mongoose and mongoDB from Complete Web Development bootcamp on Udemy.
+// Available at https://www.udemy.com/course/the-complete-web-development-bootcamp/.
+
+// Stores all the mongoDB related functions inside an object.
 let mongooseFunctions = {
+  // Retreives all the events in the database.
   getEvent: (req, res) => {
     db.Event.find({}, (err, foundEvents) => {
       if (!err) {
@@ -13,6 +18,7 @@ let mongooseFunctions = {
       }
     });
   },
+  // Create a new event in the database.
   postEvent: function (req, res) {
     const newEvent = new db.Event({
       image: req.body.image,
@@ -24,6 +30,7 @@ let mongooseFunctions = {
       duration: req.body.duration,
       description: req.body.description,
     });
+    // Saves an event in the database.
     newEvent.save((err) => {
       if (!err) {
         res.send("Successfully added a new Event!!");
@@ -32,6 +39,7 @@ let mongooseFunctions = {
       }
     });
   },
+  // Deletes all the event in the database.
   deleteEvent: (req, res) => {
     db.Event.deleteMany(function (err) {
       if (!err) {
@@ -41,6 +49,7 @@ let mongooseFunctions = {
       }
     });
   },
+  // Logic for setting up the 'my events' page with all the necessary information.
   prepareEvent: (req, res) => {
     db.Event.find({}, (err, foundEvent) => {
       if (!err) {
@@ -55,6 +64,7 @@ let mongooseFunctions = {
       }
     });
   },
+    // Create a new User in the database.
   postUser: function (req, res) {
     let newUser = new User({
       name: req.body.name,
@@ -64,6 +74,7 @@ let mongooseFunctions = {
       hostedEvents: req.body.hostedEvents,
       joinedEvents: req.body.joinedEvents,
     });
+    // Saves the user in MongoDB atlas.
     newUser.save((err) => {
       if (!err) {
         res.send("Successfully added new user!");
@@ -72,6 +83,7 @@ let mongooseFunctions = {
       }
     });
   },
+  // Locate a specific event in the database and send all the
   findEvent: function (req, res) {
     db.Event.findOne({ _id: req.params.eventId }, (err, foundEvent) => {
       if (foundEvent) {
@@ -81,6 +93,7 @@ let mongooseFunctions = {
       }
     });
   },
+  // Edit an event in the database.
   updateEvent: (req, res) => {
     db.Event.updateOne(
       { _id: req.params.eventId },
@@ -93,6 +106,7 @@ let mongooseFunctions = {
       }
     });
   },
+  // Delete a specific event from the database.
   deleteEvent: (req, res) => {
     db.Event.deleteOne({ _id: req.params.eventId }, function (err) {
       if (!err) {
@@ -102,7 +116,9 @@ let mongooseFunctions = {
       }
     });
   },
+  // Allow a user to leave an event they previously joined.
   leaveEvent: (req, res) => {
+    // Updates the specific event document to no longer list the userId as a participant.
     db.Event.updateOne({ _id: req.params.eventId }, {$pull: {participants: req.user.id}}, function (err) {
       if (!err) {
         console.log("Successfully left event!")
@@ -110,6 +126,7 @@ let mongooseFunctions = {
         res.send(err);
       }
     });
+    // Updates the specific user document to no longer list the eventId as a joined event.
     db.User.updateOne({_id: req.user.id}, {$pull: {joinedEvents: req.params.eventId}}, (err)=> {
       if (!err) {
         res.redirect("/myEvents")
@@ -118,6 +135,7 @@ let mongooseFunctions = {
       }
     })
   },
+  // Finds a specific user in the database.
   findUser: function (req, res) {
     db.User.findOne({ _id: req.params.userId }, (err, foundUser) => {
       if (foundUser) {
@@ -127,6 +145,7 @@ let mongooseFunctions = {
       }
     });
   },
+  // Edits the user information in the database.
   updateUser: (req, res) => {
     db.User.update({ _id: req.params.userId }, { $set: req.body }, (err) => {
       if (!err) {
@@ -136,6 +155,8 @@ let mongooseFunctions = {
       }
     });
   },
+  // Sets up the index page with all the necessary information, such as all the events in our database,
+  // If the user is logged in or not, and the user's information.
   setUpIndex: (req, res) => {
     db.Event.find({}, (err, foundEvents) => {
       res.render("pages/index", {
@@ -145,7 +166,27 @@ let mongooseFunctions = {
       });
     });
   },
-
+  // Logic for letting a user join an event.
+  joinEvent: (req, res) => {
+    if (!req.user) {
+      console.error(err)
+    } else {
+      // Update the event to list the user as one of its participants in the database.
+    schema.Event.updateOne({ _id: req.body.id }, {$push: {participants: req.user.id}},(err) => {
+      if (err) {
+        res.send(err)
+      } 
+    });
+    // Update the user to list the event as one of its joined events.
+    schema.User.updateOne({ _id: req.user.id }, {$push: {joinedEvents: req.body.id}},(err) => {
+      if (err) {
+        res.send(err);
+      } 
+    }).then(result => res.json('Success'))
+    .catch(error => console.error(error));
+  }
+  },
+  // Logic for the contact form and sending an email to netupTestEmail@gmail.com with any feedback.
   contactForm: (req, res) => {
     const output = `
       <p>You have a new contact request</p>
@@ -159,6 +200,7 @@ let mongooseFunctions = {
       <h3>Message</h3>
       <p>${req.body.message}</p>
     `;  
+    // Use the nodemailer api to send an email.
     let transporter = nodemailer.createTransport({
       service: 'gmail',
       secure: false, // true for 465, false for other ports
@@ -191,6 +233,7 @@ let mongooseFunctions = {
         res.render('pages/contact', { user: userController.isLoggedIn(req.user) });
     });
   },
+  // Set up the Allevents page to display all the events in the database.
   getAllEvents: (req, res) => {
     db.Event.find({}, (err, foundEvents) => {
       res.render("pages/allEvents", {
@@ -201,6 +244,7 @@ let mongooseFunctions = {
       });
     });
   },
+  // Logic for filtering the events displayed in the events section by topic.
   getEventByTopics: (req, res) => {
     let chosenTopic = req.params.topic;
     db.Event.find({eventTopic: chosenTopic})
@@ -214,6 +258,7 @@ let mongooseFunctions = {
     })
   .catch(error => console.error(error));
   },
+  // Get the details about a specific event from the database.
   getEvent: (req, res) => {
     // console.log(req.params.eventId);
     db.Event.find({"_id": req.params.eventId})
@@ -226,6 +271,7 @@ let mongooseFunctions = {
     })
     .catch(error => console.error(error));
   },
+  // Edit an event in the database to have new information.
   editEvent: (req, res) => {
     // console.log(req.params.eventId);
     db.Event.find({"_id": req.params.eventId})
@@ -239,4 +285,5 @@ let mongooseFunctions = {
   }
 };
 
+// Export all of the functions in this module.
 module.exports = mongooseFunctions;

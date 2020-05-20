@@ -17,6 +17,7 @@ const FacebookStrategy = require('passport-facebook').Strategy;
 // instantiate express app
 const server = express();
 
+// Address for server to run on our local machines that does not conflict with heroku when deploying our site.
 let PORT = process.env.PORT;
 if(PORT == null || PORT == "") {
   PORT = 5050;
@@ -78,17 +79,19 @@ passport.use(new GoogleStrategy({
 function(accessToken, refreshToken, profile, cb) {
   console.log(profile);
 
+  // Creates a user in the database for the logged-in gmail account.
   User.findOrCreate({ googleId: profile.id, name: profile.displayName }, function (err, user) {
     return cb(err, user);
   });
 }
 ));
 
-// Google authemtication route.
+// Google authemtication route for logging in with google.
 server.get("/auth/google",
   passport.authenticate('google', { scope: ["profile"] })
 );
 
+// Callback route for what to do after logging in with google.
 server.get("/auth/google/secrets",
   passport.authenticate('google', { failureRedirect: "/login" }),
   function(req, res) {
@@ -97,20 +100,13 @@ server.get("/auth/google/secrets",
     res.redirect("/myEvents");
   });
 
-
-server.get("/auth/google/secrets",
-  passport.authenticate('google', { failureRedirect: "/login" }),
-  function(req, res) {
-    console.log(req.user)
-    // Successful authentication, redirect to myEvents.
-    res.redirect("/myEvents");
-  });
-
+  // Configuring passport to use facebook for logging in.
   passport.use(new FacebookStrategy({
     clientID: "559597601651836",
     clientSecret: "404682cf8b29834311d8d275c8175a29",
     callbackURL: "https://dtc10-netup.herokuapp.com/auth/facebook/callback"
   },
+  // Creating a user in the database for this facebook account.
   function(accessToken, refreshToken, profile, cb) {
     User.findOrCreate({ facebookId: profile.id, name: profile.displayName }, function (err, user) {
       return cb(err, user);
@@ -128,6 +124,7 @@ server.get("/auth/google/secrets",
   server.get('/auth/facebook',
   passport.authenticate('facebook'));
 
+  // Callback function for what to do after logging in with facebook.
   server.get('/auth/facebook/callback',
   passport.authenticate('facebook', { successRedirect : '/myEvents', failureRedirect: '/login' }),
   function(req, res) {
@@ -136,12 +133,13 @@ server.get("/auth/google/secrets",
   });
 
   
-  //Github
+  // Setting up passport configuration for using github.
   passport.use(new GitHubStrategy({
     clientID: "bc9876b04ebf2a2a49df",
     clientSecret: "a222cc9a6a23ededf73ee91a42890f99d886cdeb",
     callbackURL: "https://dtc10-netup.herokuapp.com/auth/github/callback"
   },
+  // Creating a new user in the database for this github account.
   function(accessToken, refreshToken, profile, cb) {
     User.findOrCreate({ githubId: profile.id, name: profile.displayName }, function (err, user) {
       return cb(err, user);
@@ -262,7 +260,7 @@ server.get("/resend", (req, res) => {
 server.post("/resend", userController.resend);
 // ***************************************************************************
 
-// this is Jame's login route for Join event
+// Route for redirecting users to login screen when they try to join event without being signed in.
 server.get("/loginRequired", (req, res) => {
   req.flash("error", "Users must login first");
   res.redirect("/login")
@@ -298,7 +296,10 @@ server.get("/myEvents", checkAuth, mongooseFunctions.prepareEvent);
 
 server.get("/myfriends", checkAuth);
 
+// Route for deleting a specific event
 server.get("/deleteEvent/:eventId", mongooseFunctions.deleteEvent);
+
+// Route for leaving a specific event.
 server.get("/leaveEvent/:eventId", mongooseFunctions.leaveEvent);
 
 // signout handle
@@ -316,25 +317,11 @@ server.get('/contact', (req, res) => {
   res.render('pages/contact');
 });
 
+// Route for sending feedback via the contact form.
 server.post('/send', mongooseFunctions.contactForm);
 
-server.post("/joinEvent", (req, res) => {
-  if (!req.user) {
-    console.error(err)
-  } else {
-  schema.Event.updateOne({ _id: req.body.id }, {$push: {participants: req.user.id}},(err) => {
-    if (err) {
-      res.send(err)
-    } 
-  });
-  schema.User.updateOne({ _id: req.user.id }, {$push: {joinedEvents: req.body.id}},(err) => {
-    if (err) {
-      res.send(err);
-    } 
-  }).then(result => res.json('Success'))
-  .catch(error => console.error(error));
-}
-})
+// Route for joining an event.
+server.post("/joinEvent", mongooseFunctions.joinEvent)
 
 
 // 404 page route (Please keep at the very bottom)

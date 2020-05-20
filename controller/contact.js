@@ -1,3 +1,7 @@
+// Code is a combinatination of snippets from Traversy media and W3Schools.
+// Traversy media available from https://www.youtube.com/watch?v=nF9g1825mwk
+// W3schools tutorial available from https://www.w3schools.com/nodejs/nodejs_email.asp
+
 "use strict";
 const nodemailer = require("nodemailer");
 

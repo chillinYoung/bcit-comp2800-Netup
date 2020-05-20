@@ -1,3 +1,5 @@
+// A mock database we created for testing our functions before setting up mongoDB.
+
 const Database = {
   events:[
     {

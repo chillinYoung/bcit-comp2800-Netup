@@ -1,3 +1,8 @@
+// Code for fireworks available from http://techslides.com/learning-html5-canvas-through-jsfiddle-examples
+// Specifically provided through this link http://jsfiddle.net/dtrooper/AceJJ/
+// HTML 5 canvas instruction found at Armaan's lecture for COMP 2537, Web Development 2 at BCIT:
+// Lectures found here: https://www.youtube.com/playlist?list=PLcY9m5ySunaPQLfrd-16aP3YRtfDeJvT4
+
 var SCREEN_WIDTH = window.innerWidth
 var SCREEN_HEIGHT = window.innerHeight
 var mousePos = {
