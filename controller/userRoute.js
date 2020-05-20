@@ -68,6 +68,8 @@ module.exports = {
       eventTime: eventTime,
       image: "/src/assets/images/yoga.jpg",
     });
+    // Find the user collection in the database and find the specific user who created this event,
+    // and then find all the other events created by this user and store in a variable called userExisting events.
     schema.User.find({}, (err, foundUser) => {
       if (!err) {
         let users = Array.from(foundUser);
@@ -96,7 +98,7 @@ module.exports = {
         // res.render('pages/myevents', {user: userController.isLoggedIn(req.user)});
         res.redirect("/create");
       } else {
-        // if no event conflict, then add event to events collection
+        // if no event conflict, then save the new event to events collection in the MongoDB atlas database.
         // if no event conflict, then add event to user.hosted event document
 
         newEvent.save((err) =>

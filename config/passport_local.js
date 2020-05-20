@@ -20,6 +20,7 @@ module.exports = function (passport) {
           let foundUser = null;
           error = "";
           
+          // Check to make sure the email entered actually exists in the database.
           users.forEach((user) => {
               if (user.email === email) {
                 foundUser = user;
@@ -34,6 +35,8 @@ module.exports = function (passport) {
 
             if (foundUser.isEmailVerified) {
             
+              // Need to decrypt the password using bcrypt in order to read it and compare it with the 
+              // password that was entered in the login form.
               bcrypt.compare(password, foundUser.password, function(err, result) {
                 if (result == true) {
                   return done(null, foundUser, { message: `Welcome back ${foundUser.name}` });
@@ -71,6 +74,8 @@ module.exports = function (passport) {
 
   // need to deserializeUser
   passport.deserializeUser((id, done) => {
+    // Find all the users in the database's user's collection and convert the 
+    // returned object to a list.  Iterate through the list an find which user
     db.User.find({}, (err, results) => {
       if (!err) {
         let users = Array.from(results);

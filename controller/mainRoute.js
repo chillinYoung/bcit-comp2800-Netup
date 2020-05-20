@@ -65,6 +65,9 @@ module.exports = {
           } else {
               // If the email doesn't exist in DB,
               //then can add the new user
+
+          // User Bcrypt library to hash and salt the password (similar to encryption)
+            // to protect the password in the database and keep it secure.
             bcrypt.hash(pw1, saltRounds, function(err, hash) {
 
                 let newUser = new schema.User({
