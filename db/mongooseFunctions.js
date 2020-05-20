@@ -229,8 +229,7 @@ let mongooseFunctions = {
         }
         console.log('Message sent: %s', info.messageId);   
         console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-        req.flash("success_msg", "Message sent successfully")
-        res.render('pages/contact', { user: userController.isLoggedIn(req.user) });
+        res.render('pages/contact', { success: "Thanks for your feedback, message sent to Netup Team" });
     });
   },
   // Set up the Allevents page to display all the events in the database.
