@@ -69,6 +69,10 @@ server.use(passport.session());
 const User = schema.User
 
 
+//Instruction for social media login from Complete Web Development bootcamp on Udemy.
+// Available at https://www.udemy.com/course/the-complete-web-development-bootcamp/.
+
+
 // Passport connection to google credentials
 passport.use(new GoogleStrategy({
   clientID: process.env.CLIENT_ID,

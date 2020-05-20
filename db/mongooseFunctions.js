@@ -172,13 +172,13 @@ let mongooseFunctions = {
       console.error(err)
     } else {
       // Update the event to list the user as one of its participants in the database.
-    schema.Event.updateOne({ _id: req.body.id }, {$push: {participants: req.user.id}},(err) => {
+    db.Event.updateOne({ _id: req.body.id }, {$push: {participants: req.user.id}},(err) => {
       if (err) {
         res.send(err)
       } 
     });
     // Update the user to list the event as one of its joined events.
-    schema.User.updateOne({ _id: req.user.id }, {$push: {joinedEvents: req.body.id}},(err) => {
+    db.User.updateOne({ _id: req.user.id }, {$push: {joinedEvents: req.body.id}},(err) => {
       if (err) {
         res.send(err);
       } 

@@ -1,7 +1,5 @@
 //jshint esversion:6
 require('dotenv').config();
-const express = require("express");
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const mongoose = require("mongoose");
 require('dotenv').config();
 const passportLocalMongoose = require("passport-local-mongoose");

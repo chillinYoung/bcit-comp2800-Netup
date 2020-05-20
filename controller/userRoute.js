@@ -1,4 +1,3 @@
-let db = require("../db/mockDatabase");
 let schema = require("../db/mongooseSchema");
 const sendEmail = require("../controller/sendEmail");
 const crypto = require('crypto');
@@ -56,7 +55,6 @@ module.exports = {
     // check user db to make sure no conflicting events hosted by same user
 
     let newEvent = new schema.Event({
-      id: db.events.length + 1,
       eventTopic: eventTopic,
       eventName: eventName,
       hostName: hostName,
@@ -104,14 +102,12 @@ module.exports = {
         newEvent.save((err) =>
           err ? console.log(err) : console.log("Successfully added new user.")
         );
-        db.events.push(newEvent);
 
         schema.User.find({ name: newEvent.hostName }, (err, foundUser) => {
           foundUser.hostedEvents.push(newEvent);
         });
 
         req.user.hostedEvents.push(newEvent);
-        console.log(db.events);
         console.log(req.user);
         req.flash("success_msg", "Event added!");
         res.redirect("/myevents");
@@ -122,9 +118,7 @@ module.exports = {
       newEvent.save((err) =>
         err ? console.log(err) : console.log("Successfully added new user.")
       );
-      db.events.push(newEvent);
       req.user.hostedEvents.push(newEvent);
-      console.log(db.events);
       console.log(req.user);
       req.flash("success_msg", "Event added!");
       res.redirect("/myevents");
