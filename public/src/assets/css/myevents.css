@@ -133,6 +133,7 @@
   align-items: flex-start;
   padding-bottom: 1rem;
   border-bottom: 1px solid lightgray;
+  position: relative;
 }
 
 .myevents-event-list img {
@@ -141,6 +142,7 @@
   object-fit: cover;
   /* keep max-width! for image size changing error during loading (Young) */
   max-width: 100%;
+  border-radius: 5px;
 }
 
 .myevents-event-list-text {
@@ -188,10 +190,10 @@
   display: none;
   position: absolute;
   background-color: var(--color-point-silver);
-  padding: 0.3rem 0.5rem;
+  padding: 0.3rem 0.8rem;
   z-index: 1;
   right: 1.1rem;
-  top: 0;
+  top: -.4rem;
   border-radius: 3px;
 }
 
@@ -199,7 +201,9 @@
   text-decoration: none;
   display: block;
   color: var(--color-dark-text);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
+  margin: .3rem 0;
+  cursor: pointer;
 }
 
 .myevents-event-list-dropdown a:hover {
@@ -209,6 +213,72 @@
 .myevents-event-list-option:hover .myevents-event-list-dropdown {
   display: block;
 }
+
+.myevents-warn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: var(--color-dim-text);
+  border-radius: 5px;
+  height: 100%;
+  width: 0;
+  transition: width .5s;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.myevents-warn span {
+  padding: 0 2rem;
+  box-sizing: border-box;
+  display: none;
+  width: 100%;
+  z-index: 1;
+  min-width: 20rem;
+  max-width: 30rem;
+}
+
+.myevents-warn div {
+  margin-top: .5rem;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  width: 100%;
+}
+
+.myevents-warn a {
+  border-radius: 5px;
+  text-decoration: none;
+  color: var(--color-bright-text);
+  margin: 0 .5rem;
+  padding: .1rem 1rem;
+}
+
+.myevents-warn-cancel {
+  background-color: var(--color-dim-text);
+  cursor: pointer;
+}
+
+.myevents-warn-cancel:hover {
+  background-color: var(--color-dark-text);
+}
+
+.myevents-warn-delete {
+  background-color: var(--color-point-yellow);
+  cursor: pointer;
+}
+
+.myevents-warn-delete:hover {
+  background-color: var(--color-point-orange);
+}
+
+
 
 .long-yellow-btn {
   display: flex;
