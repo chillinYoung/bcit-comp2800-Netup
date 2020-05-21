@@ -52,7 +52,7 @@ module.exports = function(recipient, hash, req, res) {
     console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
     
     req.flash("success_msg", "Please check your email to verify before you can login");
-    res.redirect('/');
+    res.redirect('/login');
   });
 
 }
