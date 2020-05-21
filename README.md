@@ -93,7 +93,16 @@ The team is made up of 4 students in the BCIT Computer Systems Technology Diplom
 
 4. __Set set Twilio for video streaming__
     * Twilio
-    ANTONY TO UPDATE
+    
+    1. Go to https://github.com/twilio/twilio-video-app-react 
+    2. Clone the repository in master branch
+    3. Open the repository on Visual Studio Code
+    4. Run "npm install" to install all dependencies from NPM
+    5. Install twilio-cli with: $ npm install -g twilio-cli
+    6. Login to the Twilio CLI: $ twilio login
+    7. Install the CLI plugin with: $ twilio plugins:install @twilio-labs/plugin-rtc
+    8. Deploy twilio with: $ npm run deploy:twilio-cli. It wil generate a link used to access the Video app
+    9. The link will expire in 1 week. To generate a new link, redeploy the app: $ npm run deploy:twilio-cli -- --override
 
     * OTHERS?
 
