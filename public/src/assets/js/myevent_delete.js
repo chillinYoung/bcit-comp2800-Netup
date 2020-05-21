@@ -1,3 +1,4 @@
+// warn and confirm the delete of event on 'my events' page
 function deleteConfirm(id) {
   closeAllConfirm();
   document.querySelector(".warn-" + id).style.width = "100%";
@@ -8,6 +9,8 @@ function deleteConfirm(id) {
   }, 300);
 }
 
+// close all delete confirm messages on 'my events' page
+// currently used to have only one confirm messege on the screen
 function closeAllConfirm() {
   document.querySelectorAll(".myevents-warn").forEach(elem => {
     elem.style.width = "0";
@@ -23,4 +26,5 @@ function closeAllConfirm() {
   });
 }
 
+// on window scroll, close all confirm messages
 window.onscroll = function() {closeAllConfirm()};

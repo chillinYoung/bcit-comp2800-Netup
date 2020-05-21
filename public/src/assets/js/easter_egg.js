@@ -1,3 +1,4 @@
+// functions of mouse trailing feature (Esater Egg, Chris picture)
 let mouse = {x:100, y:100};
 let xPosition = 0;
 let yPosition = 0;

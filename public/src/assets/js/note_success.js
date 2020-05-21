@@ -1,3 +1,4 @@
+// success flash message -  appear and disappear above header
 setTimeout(function () {
     document.querySelector('.main-notification-success').style.height='2rem';
     document.querySelector('.main-notification-success span').style.opacity='1';
