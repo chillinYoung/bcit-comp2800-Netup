@@ -1,3 +1,4 @@
+// error flash message -  appear and disappear above header
 setTimeout(function () {
     document.querySelector('.main-notification-error').style.height='2rem';
     document.querySelector('.main-notification-error span').style.opacity='1';

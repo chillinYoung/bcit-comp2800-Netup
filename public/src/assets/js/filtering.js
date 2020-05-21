@@ -1,3 +1,4 @@
+// topic filtering on 'Events' page
 document.querySelector("#all-events-topic-select").onchange = (e) => {
   let selectedValue = e.target.selectedIndex;
   getPage(e.target[selectedValue].innerText);
