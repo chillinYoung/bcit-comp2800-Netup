@@ -1,31 +1,5 @@
-# COMP2800 Project
-- BCIT course for students to work in teams to build web applications
 
-## Start Guide
-
-1. Install dependencies `npm install`
-2. Create a .env file in the same directory as index.js and Procfile.
-3. Add the two lines for google authentication, shared on slack (ask james).
-4. Start the app `npm run dev`
-5. Go to http://localhost:5050 to view the app
-
-
-## DTC Team 10 Members
-
-- Young Kim
-- James Reinhardt
-- Antony Pham
-- Lily Yang
-
-## App Name: Netup
-
-- a platform created to allow anyone to initiate an event that anyone can join online anywhere in the world without worrying about language barriers
-
-## Version
-
-- 1.0.0
-
-## References and source for functionality
+# References and source for functionality
 
 1. Email Verification Functionality
 - implementation concept referenced this [article](https://codemoto.io/coding/nodejs/email-verification-node-express-mongodb)
@@ -34,3 +8,50 @@
 
 2. Passport Local Strategy Authentication
 - Referenced Traversy Media' [tutorial](https://www.youtube.com/watch?v=6FOq4cUdH8k) to implement the authentication flow. Please see code inline for snippets that was inspired by Brad Traversy.
+
+
+## Test Plan
+https://docs.google.com/spreadsheets/d/1i10TOo_MbF_NREpyH08IiKmlHsNerO_lF4zTSKJ_mWU/edit#gid=394496370
+
+## Netup Overview
+
+- a platform created to allow anyone to initiate an event that anyone can join online anywhere in the world without worrying about language barriers
+
+## DTC Team 10 Members
+
+- Young Kim
+- James Reinhardt
+- Antony Pham
+- Lily Yang
+
+## Start Guide
+
+### Set up
+
+__Install dependencies__
+
+1. Run the command `npm install`
+
+__Set up google authentication__
+
+1. Create .env file in the main directory
+2. JAMES TO UPDATE DETAILS REQUIRE FOR GOOGLE AUTHENTICATION
+
+__Set up MongoDB__
+JAMES TO UPDATE
+
+__Set set for 3rd Party API's__
+* Twilio
+ANTONY TO UPDATE
+
+* OTHERS?
+
+__Start the app__
+1. Start the app `npm run dev`
+1. Go to http://localhost:5050 to view the app
+
+__Host the app__
+- The project is set up to host node.js applications on heroku
+- You can update the configuration files and change the host yourselves if you don't want to host on heroku
+- If you do choose to host on heroku, you can click [here](https://devcenter.heroku.com/articles/deploying-nodejs) for more instructions
+
