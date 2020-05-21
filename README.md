@@ -50,7 +50,7 @@ __Set up MongoDB__
 1.  First you will need to set up an account with mongoDB atlas and create a cluster.  
 For more imformation on setting up a cluster with MongoDB, see this [helpful guide.](https://intercom.help/mongodb-atlas/en/articles/3013643-creating-databases-and-collections-for-atlas-clusters)
 
-2. Add your mongoDB atlas connection string URL to the .env file as weill on its own line with no spaces.
+2. Add your mongoDB atlas connection string URL to the .env file as well on its own line with no spaces.
 
 ```
  MONGODB_CLIENT=<"PUT YOUR MONGODB CONNECTION STRING HERE">
