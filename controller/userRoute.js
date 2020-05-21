@@ -3,6 +3,8 @@ const sendEmail = require("../controller/sendEmail");
 const crypto = require('crypto');
 const passport = require('passport');
 
+//Module for logging users in to the site.
+
 module.exports = {
   isLoggedIn: (user) => {
     return user ? false : true;

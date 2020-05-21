@@ -100,6 +100,7 @@ server.get("/auth/google/secrets",
     res.redirect("/myEvents");
   });
 
+  
   // Setting up passport configuration for using github.
   passport.use(new GitHubStrategy({
     clientID: process.env.GITHUBID,

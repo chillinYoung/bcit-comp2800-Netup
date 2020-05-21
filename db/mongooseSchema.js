@@ -47,7 +47,6 @@ const userSchema = new mongoose.Schema({
   joinedEvents: [Object],
   googleId: String,
   githubId: String,
-  facebookId: String,
   secret: String
 });
 // Enhance the userSchema to have passport functionality attached.
