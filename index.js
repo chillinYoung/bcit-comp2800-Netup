@@ -139,8 +139,8 @@ server.get("/auth/google/secrets",
   
   // Setting up passport configuration for using github.
   passport.use(new GitHubStrategy({
-    clientID: "bc9876b04ebf2a2a49df",
-    clientSecret: "a222cc9a6a23ededf73ee91a42890f99d886cdeb",
+    clientID: process.env.GITHUBID,
+    clientSecret: process.env.GITHUBSECRET,
     callbackURL: "http://dtc10-netup.herokuapp.com/auth/github/callback"
   },
     // Creating a new user in the database for this github account.
