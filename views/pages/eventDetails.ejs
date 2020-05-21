@@ -1,4 +1,5 @@
 <div class="body-details">
+  <!-- main top navigation bar -->
   <%- include('../partials/navigation'); %>
 
   <figure class="figure-details-bg">
@@ -8,15 +9,18 @@
   </figure>
 
   <main class="main-details">
+    <!-- header for pc window -->
     <div class="figure-details-header">
       <span><%= events.eventName %></span>
     </div>
 
     <div class="details-container">
+      <!-- event image -->
       <div class="details-row">
         <img src="<%= events.image %>">
       </div>
 
+      <!-- event details -->
       <div class="details-row">
         <span class="details-label">Topic:</span>
         <span class="details-contents"><%= events.eventTopic %></span>
@@ -42,9 +46,9 @@
         <span class="details-contents"><%= events.description %></span>
       </div>
 
-
+      <!-- join button -->
       <% if (!currentUser) { %>
-        <button class="details-join-btn" id="<%= events._id %>" name="<%= events._id %>" formmethod="post" formaction="/joinEvent" onclick="joinToJoinedDetail('<%= events.id %>')">Join</button>
+        <button class="details-join-btn" id="<%= events._id %>" name="<%= events._id %>" formmethod="post" formaction="/joinEvent">Join</button>
 
       <% } else if (currentUser && (events.hostId != currentUser._id)) { %>
         <% if (currentUser.joinedEvents.includes(events.id)) { %>
@@ -55,7 +59,9 @@
 
       <% } %>
 
-
+      <!-- share icons; sharelink; custom buttons -->
+      <!-- inline buttons from sharelink had a lot of preset css and didn't work well with our mobile window, so custom buttons are set up here and used. If you need to modify something on this section but can't understand about this, please ask Young.
+      (styles are in 'eventdetails.css') -->
       <div class="sharelink-container">
         <div class="st-custom-button share-button" data-network="facebook">
           <img alt="facebook sharing button" src="https://platform-cdn.sharethis.com/img/facebook.svg">
@@ -83,11 +89,15 @@
     </div>
   </main>
 
+  <!-- extra images to make side images positioned well (on pc window) -->
   <figure class="figure-details-bg-left"></figure>
   <figure class="figure-details-bg-right"></figure>
 
+  <!-- footer including sitemap -->
   <%- include('../partials/sitemap'); %>
 </div>
+
+<!-- page specific script files -->
 <script type='text/javascript' src='https://code.jquery.com/jquery-3.5.0.min.js'></script>
 <script src="/src/assets/js/event_controls.js" async></script>
 

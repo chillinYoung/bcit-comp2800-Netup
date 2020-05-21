@@ -1,3 +1,6 @@
+/* change to dark theme
+created for easter eggs, but can be used for dark theme feature later
+a little adjustment will be needed for the dark theme feature */
 function changeColor() {
   document.documentElement.style.setProperty('--color-point-mint', '#333333');
   document.documentElement.style.setProperty('--color-point-orange', '#66CCFF');

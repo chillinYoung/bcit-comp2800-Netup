@@ -1,20 +1,23 @@
-// Change the colour of the join event button if it is already 
-//joined by the user inside of the 'all events' page.
+/* Change the colour of the join event button if it is already 
+joined by the user inside of the 'all events' page. */
 function joinToJoined(eventIdAsId) {
   let parent = document.getElementById(eventIdAsId).parentNode;
   document.getElementById(eventIdAsId).remove();
   let newBtn = document.createElement("button");
-  parent.appendChild(newBtn);
+  let shareBtn = document.querySelector(".sharelink-container");
+  parent.insertBefore(newBtn, shareBtn);
   newBtn.className = "video-post-joined";
   newBtn.innerHTML = "Joined";
 }
 
-// Change the colour of the join button if the event is already joined inside the event's detail page.
+/* Change the colour of the join button if the event is already
+joined inside the event's detail page. */
 function joinToJoinedDetail(eventIdAsId) {
   let parent = document.getElementById(eventIdAsId).parentNode;
   document.getElementById(eventIdAsId).remove();
   let newBtn = document.createElement("button");
-  parent.appendChild(newBtn);
+  let shareBtn = document.querySelector(".sharelink-container");
+  parent.insertBefore(newBtn, shareBtn);
   newBtn.className = "details-joined-btn";
   newBtn.innerHTML = "Joined";
 }

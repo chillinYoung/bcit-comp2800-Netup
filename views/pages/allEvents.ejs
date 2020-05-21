@@ -1,6 +1,9 @@
+<!-- mouse trailing image for easter egg -->
 <img id="chrisFace" alt="surprise" src="/src/assets/images/chris_face.jpeg">
 
+
 <div class="body-allevents">
+  <!-- main top navigation bar -->
   <%- include('../partials/navigation'); %>
 
   <figure class="figure-allevents-bg">
@@ -11,14 +14,23 @@
 
   <main class="main-allevents-container">
     <div class="main-allevents">
+      <!-- header for pc window -->
       <div class="figure-allevents-header">
         <span>Events</span>
       </div>
 
       <div class="allevents-filter">
         <div class="allevents-filter-select">
-          <%- include('../partials/topicFilter'); %>
+          <!-- topic selection; sync with current page's topic after redirected -->
+          <select id="all-events-topic-select" name="all-events-topic-select">
+            <option value selected>All Topics</option>
+            <option value="social" <% if (topic === 'social') { %>selected<% } %>>Social</option>
+            <option value="health" <% if (topic === 'health') { %>selected<% } %>>Health</option>
+            <option value="tech" <% if (topic === 'tech') { %>selected<% } %>>Tech</option>
+          </select>
         </div>
+
+        <!-- search bar -->
         <div class="allevents-titlesearch">
           <span>&#128269;</span>
           <input type="text" id="allevents-search-keyword" onkeyup="eventSearch()">
@@ -26,13 +38,18 @@
       </div>    
   
       <div class="main-index">
-         <%- include('../partials/events'); %>
+        <!-- event cards -->
+        <%- include('../partials/events'); %>
+      </div>
     </div>
 
   </main>
-
+  
+  <!-- footer including sitemap -->
   <%- include('../partials/sitemap'); %>
 </div>
+
+<!-- page specific javascript files -->
 <script src="/src/assets/js/events_search.js" async></script>
 <script src="/src/assets/js/easter_egg.js" async></script>
 <script src="/src/assets/js/filtering.js" async></script>
