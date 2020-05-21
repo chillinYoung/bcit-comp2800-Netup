@@ -48,7 +48,7 @@
 
       <!-- join button -->
       <% if (!currentUser) { %>
-        <button class="details-join-btn" id="<%= events._id %>" name="<%= events._id %>" formmethod="post" formaction="/joinEvent" onclick="joinToJoinedDetail('<%= events.id %>')">Join</button>
+        <button class="details-join-btn" id="<%= events._id %>" name="<%= events._id %>" formmethod="post" formaction="/joinEvent">Join</button>
 
       <% } else if (currentUser && (events.hostId != currentUser._id)) { %>
         <% if (currentUser.joinedEvents.includes(events.id)) { %>
