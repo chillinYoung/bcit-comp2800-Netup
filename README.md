@@ -39,7 +39,8 @@ __Set up google authentication__
   -When you create a new google project in your google developer console, you will find a client id and client secret in the credentials section of the api dashboard.  Enter them in your .env file with no spaces, like below.
 
   ```CLIENT_ID=<"PUT YOUR CLIENT ID HERE>
-     CLIENT_SECRET=<"PUT YOUR CLIENT SECRET HERE">```
+     CLIENT_SECRET=<"PUT YOUR CLIENT SECRET HERE">
+     ```
 
 For more complete instructions see the [passport js documentation on Google OAuth 2.0.](http://www.passportjs.org/packages/passport-google-oauth20/)
 
