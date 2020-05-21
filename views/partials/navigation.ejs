@@ -14,6 +14,8 @@
 
     <div class="header-nav">
       <ul class="main-nav-links">
+
+        <!-- ABOUT -->
         <li>
           <span class="main-nav-link">About</span>
           <div class="main-nav-dropdown">
@@ -21,6 +23,8 @@
             <a href="/team">Our Team</a>
           </div>
         </li>
+
+        <!-- EVENTS -->
         <li>
           <span class="main-nav-link">Events</span>
           <div class="main-nav-dropdown">
@@ -30,18 +34,24 @@
             <a href="/allevents/tech">Tech</a>
           </div>
         </li>
+
+        <!-- CONTACT -->
         <li>
-          <span class="main-nav-link">Help</span>
+          <span class="main-nav-link">Contact</span>
           <div class="main-nav-dropdown">
             <a href="/comingsoon">FAQ</a>
             <a href="/contact">Feedback</a>
           </div>
         </li>
+
+        <!-- SIGN IN / MY ACCOUNT -->
         <li>
+          <!-- sign in -->
           <% if(user) { %>
             <!-- THIS IS WHEN USER IS NOT LOGGED IN-->
             <a href="/login" class="main-nav-signin">Sign in</a>
 
+          <!-- my account -->
           <% } else { %>
             <span class="main-nav-link main-nav-white">My Account</span>
             <div class="main-nav-dropdown">
@@ -58,6 +68,7 @@
 
   <div class="mobile-nav">
     <ul class="mobile-nav-links">
+      <!-- mobile ABOUT -->
       <li>
         <span class="mobile-nav-header">About</span>
         <div class="mobile-nav-container">
@@ -65,6 +76,8 @@
           <a  class="mobile-nav-link" href="/team">Our Team</a>
         </div>
       </li>
+
+      <!-- mobile EVENTS -->
       <li>
         <span class="mobile-nav-header">Events</span>
         <div class="mobile-nav-container">
@@ -74,18 +87,24 @@
           <a  class="mobile-nav-link" href="/allevents/tech">Tech</a>
         </div>
       </li>
+
+      <!-- mobile CONTACT -->
       <li>
-        <span class="mobile-nav-header">Help</span>
+        <span class="mobile-nav-header">Contact</span>
         <div class="mobile-nav-container">
           <a  class="mobile-nav-link" href="/comingsoon">FAQ</a>
           <a  class="mobile-nav-link" href="/contact">Feedback</a>
         </div>
       </li>
+
+      <!-- mobile SIGN IN / MY ACCOUNT -->
       <li>
+        <!-- mobile sign in -->
         <% if(user) { %>
           <!-- THIS IS WHEN USER IS NOT LOGGED IN-->
           <a  class="mobile-nav-signin" href="/login">Sign in</a>
 
+        <!-- mobile my account -->
         <% } else { %>
           <span class="mobile-nav-header mobile-nav-white">My Account</span>
           <div class="mobile-nav-container">

@@ -1,5 +1,5 @@
 <div class="body-signin">
-
+  <!-- main top navigation bar -->
   <%- include('../partials/navigation'); %>
 
   <figure class="figure-signin-bg">
@@ -9,18 +9,22 @@
   </figure>
 
   <main class="main-signin">
+    <!-- link to sign up page -->
     <div class="signin-signup">
       <span>Not signed up yet?</span>
       <a href="/signup">Sign up</a>
     </div>
     
     <form action="/login" method="post" class="form-basic">
+      <!-- Email -->
       <div class="form-basic-container">
         <label for="email" class="form-label-basic">Email:</label>
         <input type="email" class="form-input-basic" 
         id="email" 
         name="email" required>
       </div>
+
+      <!-- Password -->
       <div class="form-basic-container">
         <label for="password" class="form-label-basic">Password:</label>
         <input type="password" class="form-input-basic" 
@@ -28,34 +32,39 @@
         name="password" required>
       </div>
 
+      <!-- sign in button -->
       <input id="signin-btn" class="yellow-btn" type="submit" value="Sign in">
     </form>
+
+    <!-- horizontal line (separator) -->
     <div class="signin-or">
       <div class="horizontal-line"></div>
       <span class="">or</span>
     </div>
+
     <div class="signin-third-party-list">
-      <!-- <button> -->
+      <!-- google login -->
         <a class="third-party-google" href="/auth/google">
           <i class="fab fa-google"></i>
           <span>Sign in with Google</span>
         </a>
-      <!-- </button> -->
+
+      <!-- facebook login -->
         <a class="third-party-facebook" href="/auth/facebook">
           <i class="fab fa-facebook"></i>
           <span>Sign in with Facebook</span>
         </a>
 
-      <!-- <button> -->
+      <!-- github login -->
         <a class="third-party-github" href="/auth/github">
           <i class="fab fa-github"></i>
           <span>Sign in with Github</span>
         </a>
     </div>
     
-
   </main>
 
+  <!-- only footer without sitemap -->
   <%- include('../partials/footer'); %>
 
 </div>
