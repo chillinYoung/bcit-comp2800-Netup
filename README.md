@@ -45,9 +45,9 @@ __Set up google authentication__
 
 __Set up MongoDB__
 3.  Add your mongoDB atlas connection string URL to the .env file as weill on its own line with no spaces.
-''' MONGODB_CLIENT=<"PUT YOUR MONGODB CONNECTION STRING HERE">
+ MONGODB_CLIENT=<"PUT YOUR MONGODB CONNECTION STRING HERE">
     (The connection string should look like this:
-    '''mongodb+srv://<username>:<password>@<cluster_id>/<"Any name you choose for your database>"'''
+    '''mongodb+srv://<username>:<password>@<cluster_id>/<Any name you choose for your database>'''
 
 For more imformation on setting up a cluster with MongoDB, see this [helpful guide.](https://intercom.help/mongodb-atlas/en/articles/3013643-creating-databases-and-collections-for-atlas-clusters)
 
