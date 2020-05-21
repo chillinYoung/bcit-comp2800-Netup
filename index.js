@@ -156,7 +156,7 @@ server.get('/auth/github',
 passport.authenticate('github'));
 
 server.get('/auth/github/callback', 
-passport.authenticate('github', { failureRedirect: '/login' }),
+passport.authenticate('github', { successRedirect : '/myEvents', failureRedirect: '/login' }),
 function(req, res) {
   // Successful authentication, redirect home.
   res.redirect('/myevents');
