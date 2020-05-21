@@ -127,11 +127,11 @@
 }
 
 .myevents-event-list {
-  margin: 1rem 0;
+  margin: 0 0 1rem;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding-bottom: 1rem;
+  padding: 1rem 0;
   border-bottom: 1px solid lightgray;
   position: relative;
 }
