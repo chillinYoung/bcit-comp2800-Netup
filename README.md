@@ -1,83 +1,108 @@
+<!--lint disable no-literal-urls-->
+<p align="center">
+  <a href="https://dtc10-netup.herokuapp.com">
+    <img
+      alt="Netup"
+      src="./public/src/assets/images/logo.png"
+      width="400"
+    />
+  </a>
+</p>
 
-# References and source for functionality
+A platform created to allow anyone to initiate an event that anyone can join online anywhere in the world without worrying about language barriers
 
-1. Email Verification Functionality
+# Attribution
+This Netup app is made possible because of amazing people that created:
+
+* [Node.js](https://github.com/nodejs/node) for allow us to use Javascript on the server!
+* [Express.js](https://github.com/expressjs/express) for allowing us to easily write a server for our application
+* [Mongoose](https://github.com/Automattic/mongoose) for allowing us to easily integrate MongoDB with our application
+* [Passport](https://github.com/jaredhanson/passport), [passport-github](https://github.com/jaredhanson/passport-github), [passport-google-oauth2](https://github.com/jaredhanson/passport-google-oauth2), [passport-local](https://github.com/jaredhanson/passport-local) for all of our user authentication needs
+* [connect-flash](https://github.com/jaredhanson/connect-flash) for enabling flash messaging to work properly with redirects
+* [Nodemailer](https://github.com/nodemailer/nodemailer) for enabling us to send emails from our Node application
+* [bcrypt](https://github.com/kelektiv/node.bcrypt.js/) for encrpyting passwords in mongoDB
+* [shareThis](https://sharethis.com/) for easily sharing our app on social media platforms
+* [Heroku](https://devcenter.heroku.com/articles/deploying-nodejs) for allowing us to host our app for free
+
+Thank you for making these resources free so it's possible for us to create applications with ease!
+
+## Additional References and source for functionality
+
+__Email Verification Functionality__
 - implementation concept referenced this [article](https://codemoto.io/coding/nodejs/email-verification-node-express-mongodb)
 - I took the code snippet for TempUserSchema from [article](https://codemoto.io/coding/nodejs/email-verification-node-express-mongodb) but they called it TokenSchema which I've already commented inline inside the file mongooseSchema.js
 - Read the Nodemailer and passport documentation to implement the rest of the code
 
-2. Passport Local Strategy Authentication
+__User Authentication and DB__
 - Referenced Traversy Media' [tutorial](https://www.youtube.com/watch?v=6FOq4cUdH8k) to implement the authentication flow. Please see code inline for snippets that was inspired by Brad Traversy.
-
-3. Mongodb and google Authentication
 - Referenced Angela Yu's course on Udemy, [The Complete Web Development Bootcamp](https://www.udemy.com/course/the-complete-web-development-bootcamp/)
 
+# Overview
+
+## How our repo is organized
+
+* [config](https://github.com/lilyyanglt/COMP-2800-Team-DTC-10-Netup/tree/master/config) holds 
 
 ## Test Plan
 https://docs.google.com/spreadsheets/d/1i10TOo_MbF_NREpyH08IiKmlHsNerO_lF4zTSKJ_mWU/edit#gid=394496370
 
-## Netup Overview
 
-- a platform created to allow anyone to initiate an event that anyone can join online anywhere in the world without worrying about language barriers
+# Team
 
-## DTC Team 10 Members
+The team is made up of 4 students in the BCIT Computer Systems Technology Diploma program 
 
-- Young Kim
-- James Reinhardt
-- Antony Pham
-- Lily Yang
+- Young Kim (CST Term 1)
+- James Reinhardt (CST Term 2)
+- Antony Pham (CST Term 2)
+- Lily Yang (CST Term 1)
 
-## Start Guide
+# Start Guide
 
-### Set up
+1. __Install dependencies__
 
-__Install dependencies__
+    * Run the command `npm install`
 
-1. Run the command `npm install`
+2. __Set up google authentication__
 
-__Set up google authentication__
+    1. Create .env file in the main directory
+    2. Add credentials to the .env file for google authentication.  
+      - When you create a new google project in your google developer console, you will find a client id and client secret in the credentials section of the api dashboard.  Enter them in your .env file with no spaces, like below.
 
-1. Create .env file in the main directory
-2. Add credentials to the .env file for google authentication.  
-  -When you create a new google project in your google developer console, you will find a client id and client secret in the credentials section of the api dashboard.  Enter them in your .env file with no spaces, like below.
+      ```
+        CLIENT_ID=<"PUT YOUR CLIENT ID HERE>
+        CLIENT_SECRET=<"PUT YOUR CLIENT SECRET HERE">
+      ```
 
-```
-  CLIENT_ID=<"PUT YOUR CLIENT ID HERE>
-     CLIENT_SECRET=<"PUT YOUR CLIENT SECRET HERE">
-```
+      For more complete instructions see the [passport js documentation on Google OAuth 2.0.](http://www.passportjs.org/packages/passport-google-oauth20/)
 
-For more complete instructions see the [passport js documentation on Google OAuth 2.0.](http://www.passportjs.org/packages/passport-google-oauth20/)
+3. __Set up MongoDB__
 
-__Set up MongoDB__
+    1.  First you will need to set up an account with mongoDB atlas and create a cluster.  
+    For more imformation on setting up a cluster with MongoDB, see this [helpful guide.](https://intercom.help/mongodb-atlas/en/articles/3013643-creating-databases-and-collections-for-atlas-clusters)
 
-1.  First you will need to set up an account with mongoDB atlas and create a cluster.  
-For more imformation on setting up a cluster with MongoDB, see this [helpful guide.](https://intercom.help/mongodb-atlas/en/articles/3013643-creating-databases-and-collections-for-atlas-clusters)
+    2. Add your mongoDB atlas connection string URL to the .env file as well on its own line with no spaces.
 
-2. Add your mongoDB atlas connection string URL to the .env file as well on its own line with no spaces.
+    ```
+    MONGODB_CLIENT=<"PUT YOUR MONGODB CONNECTION STRING HERE">
+    ```
 
-```
- MONGODB_CLIENT=<"PUT YOUR MONGODB CONNECTION STRING HERE">
-```
+    The connection string should look like this:
+    ```
+        mongodb+srv://<username>:<password>@<cluster_id>/<Any name you choose for your database>
+    ```
 
-The connection string should look like this:
-```
-    mongodb+srv://<username>:<password>@<cluster_id>/<Any name you choose for your database>
-```
+4. __Set set Twilio for video streaming__
+    * Twilio
+    ANTONY TO UPDATE
 
+    * OTHERS?
 
+5. __Start the app__
+    1. Start the app `npm run dev`
+    1. Go to http://localhost:5050 to view the app
 
-__Set set for 3rd Party API's__
-* Twilio
-ANTONY TO UPDATE
-
-* OTHERS?
-
-__Start the app__
-1. Start the app `npm run dev`
-1. Go to http://localhost:5050 to view the app
-
-__Host the app__
-- The project is set up to host node.js applications on heroku
-- You can update the configuration files and change the host yourselves if you don't want to host on heroku
-- If you do choose to host on heroku, you can click [here](https://devcenter.heroku.com/articles/deploying-nodejs) for more instructions
+6. __Host the app__ (Optional)
+    - The project is set up to host node.js applications on heroku
+    - You can update the configuration files and change the host yourselves if you don't want to host on heroku
+    - If you do choose to host on heroku, you can click [here](https://devcenter.heroku.com/articles/deploying-nodejs) for more instructions
 
