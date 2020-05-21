@@ -4,6 +4,9 @@ document.querySelector("#all-events-topic-select").onchange = (e) => {
   getPage(e.target[selectedValue].innerText);
 } 
 
+/**
+ * @param {string} value - value of the selected topic 
+ */
 function getPage(value) {
   if (value !== "All Topics") {
     fetch(`/allEvents/${value.toLowerCase()}`)
