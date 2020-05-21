@@ -41,7 +41,7 @@ __Set up google authentication__
   '''CLIENT_ID=<"PUT YOUR CLIENT ID HERE>
      CLIENT_SECRET=<"PUT YOUR CLIENT SECRET HERE">'''
 
-     For more complete instructions see the [passport js documentation on Google OAuth 2.0.](http://www.passportjs.org/packages/passport-google-oauth20/)
+For more complete instructions see the [passport js documentation on Google OAuth 2.0.](http://www.passportjs.org/packages/passport-google-oauth20/)
 
 __Set up MongoDB__
 3.  Add your mongoDB atlas connection string URL to the .env file as weill on its own line with no spaces.
