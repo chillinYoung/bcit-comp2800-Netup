@@ -1,4 +1,3 @@
-//jshint esversion:6
 require('dotenv').config();
 const mongoose = require("mongoose");
 require('dotenv').config();
@@ -11,7 +10,7 @@ const findOrCreate = require('mongoose-findorcreate');
 
 // Connect with MongoDB Atlas database online.
 mongoose.connect(
-  "mongodb+srv://james:A_good_1@cluster0-st3n9.mongodb.net/netup",
+  `${process.env.MONGODB_CLIENT}`,
   { useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
