@@ -1,3 +1,5 @@
+// Module for controlling the logic of joining event buttons.
+
 /* Change the colour of the join event button if it is already 
 joined by the user inside of the 'all events' page. */
 function joinToJoined(eventIdAsId) {

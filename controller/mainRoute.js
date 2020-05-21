@@ -4,6 +4,7 @@ const crypto = require('crypto');
 const sendEmail = require('../controller/sendEmail');
 const saltRounds = 10;
 
+// Module for registering a new user and saving them in the database.
 
 // initialize our mock database
 const schema = require("../db/mongooseSchema");

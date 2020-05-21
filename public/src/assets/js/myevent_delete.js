@@ -1,4 +1,4 @@
-// warn and confirm the delete of event on 'my events' page
+// Module for warning about and confirming the deletion of event on 'my events' page
 function deleteConfirm(id) {
   closeAllConfirm();
   document.querySelector(".warn-" + id).style.width = "100%";

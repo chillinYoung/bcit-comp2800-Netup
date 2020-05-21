@@ -3,14 +3,10 @@ const ejsLayouts = require('express-ejs-layouts');
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
-const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const config = require('./config/config');
-const mysql = require('mysql');
 const schema = require("./db/mongooseSchema");
 require('dotenv').config();
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const FacebookStrategy = require('passport-facebook').Strategy;
 const GitHubStrategy = require('passport-github').Strategy;
 
 
@@ -102,38 +98,6 @@ server.get("/auth/google/secrets",
     console.log(req.user)
     // Successful authentication, redirect to myEvents.
     res.redirect("/myEvents");
-  });
-
-  // Configuring passport to use facebook for logging in.
-  passport.use(new FacebookStrategy({
-    clientID: "559597601651836",
-    clientSecret: "404682cf8b29834311d8d275c8175a29",
-    callbackURL: "https://dtc10-netup.herokuapp.com/auth/facebook/callback"
-  },
-  // Creating a user in the database for this facebook account.
-  function(accessToken, refreshToken, profile, cb) {
-    User.findOrCreate({ facebookId: profile.id, name: profile.displayName }, function (err, user) {
-      return cb(err, user);
-    });
-  }
-  ));
-  
-  //For facebook login
-  // COMMENTED OUT DUPLICATED CODE FOR USING EXPRESS SESSION
-  server.use(cookieParser());
-  // server.use(session({ 
-  // secret: 'keyboard cat', 
-  // key: 'sid'
-  // });
-  server.get('/auth/facebook',
-  passport.authenticate('facebook'));
-
-  // Callback function for what to do after logging in with facebook.
-  server.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { successRedirect : '/myEvents', failureRedirect: '/login' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/myevents');
   });
 
   

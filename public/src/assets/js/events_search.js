@@ -53,7 +53,7 @@ function easterEgg() {
   }
 };
 
-
+// Hide Chris' image if using a mobile device to allow use of touch-screen.
 window.onresize = function() {
   // hide chris picture on mobile and tablet devices
   if (window.matchMedia("(max-width: 1024px)").matches) {

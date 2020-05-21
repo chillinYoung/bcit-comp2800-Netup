@@ -1,3 +1,5 @@
+// Module for navigation bar specifications on mobile screen.
+
 // mobile nav open
 function openMenu() {
   document.querySelector(".mobile-nav").style.height = "calc(100vh - 4.7rem)";
