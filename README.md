@@ -9,6 +9,9 @@
 2. Passport Local Strategy Authentication
 - Referenced Traversy Media' [tutorial](https://www.youtube.com/watch?v=6FOq4cUdH8k) to implement the authentication flow. Please see code inline for snippets that was inspired by Brad Traversy.
 
+3. Mongodb and google Authentication
+- Referenced Angela Yu's course on Udemy, [The Complete Web Development Bootcamp](https://www.udemy.com/course/the-complete-web-development-bootcamp/)
+
 
 ## Test Plan
 https://docs.google.com/spreadsheets/d/1i10TOo_MbF_NREpyH08IiKmlHsNerO_lF4zTSKJ_mWU/edit#gid=394496370
