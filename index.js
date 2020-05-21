@@ -9,9 +9,9 @@ const config = require('./config/config');
 const mysql = require('mysql');
 const schema = require("./db/mongooseSchema");
 require('dotenv').config();
-const GitHubStrategy = require('passport-github').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
+const GitHubStrategy = require('passport-github').Strategy;
 
 
 // instantiate express app
@@ -141,25 +141,26 @@ server.get("/auth/google/secrets",
   passport.use(new GitHubStrategy({
     clientID: "bc9876b04ebf2a2a49df",
     clientSecret: "a222cc9a6a23ededf73ee91a42890f99d886cdeb",
-    callbackURL: "https://dtc10-netup.herokuapp.com/auth/github/callback"
+    callbackURL: "http://localhost:5050/auth/github/callback"
   },
-  // Creating a new user in the database for this github account.
+    // Creating a new user in the database for this github account.
   function(accessToken, refreshToken, profile, cb) {
     User.findOrCreate({ githubId: profile.id, name: profile.displayName }, function (err, user) {
       return cb(err, user);
     });
   }
   ));
+
   //login via Github
-  server.get('/auth/github',
-    passport.authenticate('github'));
-  
-  server.get('/auth/github/callback', 
-    passport.authenticate('github', { failureRedirect: '/login' }),
-    function(req, res) {
-      // Successful authentication, redirect home.
-      res.redirect('/myEvents');
-    });
+server.get('/auth/github',
+passport.authenticate('github'));
+
+server.get('/auth/github/callback', 
+passport.authenticate('github', { failureRedirect: '/login' }),
+function(req, res) {
+  // Successful authentication, redirect home.
+  res.redirect('/myevents');
+});
 
 
 // REGISTRATION AND LOGIN ****************************************************************
