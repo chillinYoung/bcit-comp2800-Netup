@@ -26,7 +26,7 @@ server.listen(PORT, () => {
 const checkAuth = require("./config/auth").ensureAuthenticated;
 const userController = require("./controller/userRoute");
 const mainController = require("./controller/mainRoute");
-const socialAuth = require('./db/socialAuth')
+const socialAuth = require('./config/socialAuth');
 const mongooseFunctions = require("./db/mongooseFunctions");
 
 // set up to use static files
