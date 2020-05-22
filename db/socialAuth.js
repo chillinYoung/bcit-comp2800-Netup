@@ -13,8 +13,8 @@ module.exports = {
     googleSetup: passport.use(new GoogleStrategy({
         clientID: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
-        callbackURL: "http://dtc10-netup.herokuapp.com/auth/google/secrets",
-        userProfileURL: "http://www.googleapis.com/oauth2/v3/userinfo"
+        callbackURL: "https://dtc10-netup.herokuapp.com/auth/google/secrets",
+        userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
       },
             // Logic for bringing up the google sign-in interface to the screen.
       function(accessToken, refreshToken, profile, cb) {
@@ -35,7 +35,7 @@ module.exports = {
       githubSetup:  passport.use(new GitHubStrategy({
         clientID: process.env.GITHUBID,
         clientSecret: process.env.GITHUBSECRET,
-        callbackURL: "http://dtc10-netup.herokuapp.com/auth/github/callback"
+        callbackURL: "https://dtc10-netup.herokuapp.com/auth/github/callback"
       },
         // Creating a new user in the database for this github account.
       function(accessToken, refreshToken, profile, cb) {
