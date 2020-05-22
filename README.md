@@ -24,7 +24,7 @@ This Netup app is made possible because of amazing people that created:
 * [shareThis](https://sharethis.com/) for easily sharing our app on social media platforms
 * [Heroku](https://devcenter.heroku.com/articles/deploying-nodejs) for allowing us to host our app for free
 * [ejs](https://github.com/mde/ejs), [express-ejs-layout](https://github.com/soarez/express-ejs-layouts) which is the templating engine for rendering dynamic pages
-* [Twilio](https://github.com/twilio/twilio-video-app-react)
+* [Twilio](https://github.com/twilio/twilio-video-app-react) for real-time video streaming
 * [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) for allowing us to have a database for free on the cloud
 
 Thank you for making these resources free so it's possible for us to create applications with ease!
@@ -87,7 +87,7 @@ The team is made up of 4 students in the BCIT Computer Systems Technology Diplom
     1. Click on your profile picture in the upper right-hand corner to open account drop-down menu.
     2. Go to settings.
     3. Click on developer settings at the bottom of the navigation bar to the left.
-    4. Select oauth apps and click on 'New Oath App'.
+    4. Select oauth apps and click on 'New Oauth App'.
     5. Choose an application name and enter 'http:localhost:5050' into the Hompage URL input.
     6. Enter http:localhost:5050/auth/github/callback into the Authorization callback URL input.
     7. Select 'Register application' to get your Client ID and client secret.
@@ -99,9 +99,6 @@ The team is made up of 4 students in the BCIT Computer Systems Technology Diplom
         GITHUBSECRET=<"PUT YOUR Github CLIENT SECRET HERE">
       ```
     9. Now you will be able to use Github to sign in to the account.
-
-
-2.
 
 
 4. __Set up MongoDB__
