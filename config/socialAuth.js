@@ -1,7 +1,7 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const GitHubStrategy = require('passport-github').Strategy;
-const schema = require("../db/mongooseSchema");
+const schema = require("../model/mongooseSchema");
 
 const User = schema.User
 

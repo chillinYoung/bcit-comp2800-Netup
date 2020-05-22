@@ -1,4 +1,4 @@
-let schema = require("../db/mongooseSchema");
+let schema = require("../model/mongooseSchema");
 const sendEmail = require("../controller/sendEmail");
 const crypto = require('crypto');
 const passport = require('passport');

@@ -7,7 +7,7 @@ const saltRounds = 10;
 // Module for registering a new user and saving them in the database.
 
 // initialize our mock database
-const schema = require("../db/mongooseSchema");
+const schema = require("../model/mongooseSchema");
 
 // load users from db
 

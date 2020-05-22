@@ -4,7 +4,7 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
 const bodyParser = require('body-parser');
-const schema = require("./db/mongooseSchema");
+const schema = require("./model/mongooseSchema");
 require('dotenv').config();
 
 
@@ -27,7 +27,7 @@ const checkAuth = require("./config/auth").ensureAuthenticated;
 const userController = require("./controller/userRoute");
 const mainController = require("./controller/mainRoute");
 const socialAuth = require('./config/socialAuth');
-const mongooseFunctions = require("./db/mongooseFunctions");
+const mongooseFunctions = require("./controller/mongooseFunctions");
 
 // set up to use static files
 server.use(express.static("public"));

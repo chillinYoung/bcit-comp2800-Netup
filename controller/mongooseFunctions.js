@@ -1,5 +1,5 @@
 const userController = require("../controller/userRoute");
-const db = require("./mongooseSchema");
+const db = require("../model/mongooseSchema");
 const nodemailer = require('nodemailer');
 
 // 
