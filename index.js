@@ -6,8 +6,6 @@ const passport = require('passport');
 const bodyParser = require('body-parser');
 const schema = require("./db/mongooseSchema");
 require('dotenv').config();
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const GitHubStrategy = require('passport-github').Strategy;
 
 
 // instantiate express app
@@ -28,6 +26,7 @@ server.listen(PORT, () => {
 const checkAuth = require("./config/auth").ensureAuthenticated;
 const userController = require("./controller/userRoute");
 const mainController = require("./controller/mainRoute");
+const socialAuth = require('./controller/socialAuth')
 const mongooseFunctions = require("./db/mongooseFunctions");
 
 // set up to use static files
@@ -70,61 +69,24 @@ const User = schema.User
 
 
 // Passport connection to google credentials
-passport.use(new GoogleStrategy({
-  clientID: process.env.CLIENT_ID,
-  clientSecret: process.env.CLIENT_SECRET,
-  callbackURL: "https://dtc10-netup.herokuapp.com/auth/google/secrets",
-  userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
-},
-function(accessToken, refreshToken, profile, cb) {
-  console.log(profile);
-
-  // Creates a user in the database for the logged-in gmail account.
-  User.findOrCreate({ googleId: profile.id, name: profile.displayName }, function (err, user) {
-    return cb(err, user);
-  });
-}
-));
+socialAuth.googleSetup;
 
 // Google authemtication route for logging in with google.
 server.get("/auth/google",
-  passport.authenticate('google', { scope: ["profile"] })
+  socialAuth.getGoogleSigninRoute
 );
 
 // Callback route for what to do after logging in with google.
-server.get("/auth/google/secrets",
-  passport.authenticate('google', { failureRedirect: "/login" }),
-  function(req, res) {
-    console.log(req.user)
-    // Successful authentication, redirect to myEvents.
-    res.redirect("/myEvents");
-  });
+server.get("/auth/google/secrets", socialAuth.googleCallback);
 
   
   // Setting up passport configuration for using github.
-  passport.use(new GitHubStrategy({
-    clientID: process.env.GITHUBID,
-    clientSecret: process.env.GITHUBSECRET,
-    callbackURL: "http://dtc10-netup.herokuapp.com/auth/github/callback"
-  },
-    // Creating a new user in the database for this github account.
-  function(accessToken, refreshToken, profile, cb) {
-    User.findOrCreate({ githubId: profile.id, name: profile.displayName }, function (err, user) {
-      return cb(err, user);
-    });
-  }
-  ));
+ socialAuth.githubSetup;
 
   //login via Github
-server.get('/auth/github',
-passport.authenticate('github'));
+server.get('/auth/github',socialAuth.authenticateGithub);
 
-server.get('/auth/github/callback', 
-passport.authenticate('github', { successRedirect : '/myEvents', failureRedirect: '/login' }),
-function(req, res) {
-  // Successful authentication, redirect home.
-  res.redirect('/myevents');
-});
+server.get('/auth/github/callback', socialAuth.githubCallback);
 
 
 // REGISTRATION AND LOGIN ****************************************************************
