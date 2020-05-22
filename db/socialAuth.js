@@ -29,7 +29,7 @@ module.exports = {
       googleCallback:  passport.authenticate('google', { failureRedirect: "/login" }),
       function(req, res) {
         // Successful authentication, redirect to myEvents.
-        res.redirect("/myEvents");
+        res.redirect("/myevents");
       },
       // Prepare passport to use github sign-in api with the correct credentials.
       githubSetup:  passport.use(new GitHubStrategy({
