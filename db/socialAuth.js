@@ -26,11 +26,12 @@ module.exports = {
       )),
       // Callback function for responding to a user signing in.
       getGoogleSigninRoute: passport.authenticate('google', { scope: ["profile"] }),
-      googleCallback:  passport.authenticate('google', { failureRedirect: "/login" }),
-      function(req, res) {
-        // Successful authentication, redirect to myEvents.
-        res.redirect("/myevents");
-      },
+      googleCallback:   passport.authenticate('google', { successRedirect : '/myEvents', failureRedirect: "/login" }),
+  function(req, res) {
+    console.log(req.user)
+    // Successful authentication, redirect to myEvents.
+    res.redirect("/myEvents");
+  },
       // Prepare passport to use github sign-in api with the correct credentials.
       githubSetup:  passport.use(new GitHubStrategy({
         clientID: process.env.GITHUBID,
