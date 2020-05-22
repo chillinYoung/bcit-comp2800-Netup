@@ -40,20 +40,6 @@ __User Authentication and DB__
 - Referenced Traversy Media' [tutorial](https://www.youtube.com/watch?v=6FOq4cUdH8k) to implement the authentication flow. Please see code inline for snippets that was inspired by Brad Traversy.
 - Referenced Angela Yu's course on Udemy, [The Complete Web Development Bootcamp](https://www.udemy.com/course/the-complete-web-development-bootcamp/)
 
-# Overview
-
-## How our repo is organized
-
-* [config](https://github.com/lilyyanglt/COMP-2800-Team-DTC-10-Netup/tree/master/config) - holds configuration related files
-* [controller](https://github.com/lilyyanglt/COMP-2800-Team-DTC-10-Netup/tree/dev/controller) - holds the files that can be imported by index.js 
-* [db](https://github.com/lilyyanglt/COMP-2800-Team-DTC-10-Netup/tree/dev/db) - holds the schema of our db 
-* [public](https://github.com/lilyyanglt/COMP-2800-Team-DTC-10-Netup/tree/dev/public) - that holds all of the static resources such as assets, images, css, and front-end javascript files
-* [views](https://github.com/lilyyanglt/COMP-2800-Team-DTC-10-Netup/tree/dev/views) - that holds all of the dynamic pages 
-* index.js - which is the main app
-
-## Test Plan
-Click [here](https://docs.google.com/spreadsheets/d/1i10TOo_MbF_NREpyH08IiKmlHsNerO_lF4zTSKJ_mWU/edit#gid=394496370) for our test plan
-
 # Team
 
 The team is made up of 4 students in the BCIT Computer Systems Technology Diploma program 
@@ -62,6 +48,23 @@ The team is made up of 4 students in the BCIT Computer Systems Technology Diplom
 - James Reinhardt (CST Term 2)
 - Antony Pham (CST Term 2)
 - Lily Yang (CST Term 1)
+
+# Overview
+
+## How our repo is organized
+
+* [config](https://github.com/lilyyanglt/COMP-2800-Team-DTC-10-Netup/tree/master/config) - holds configuration related files
+* [controller](https://github.com/lilyyanglt/COMP-2800-Team-DTC-10-Netup/tree/master/controller) - holds the files that can be imported by index.js 
+* [db](https://github.com/lilyyanglt/COMP-2800-Team-DTC-10-Netup/tree/master/db) - holds the schema of our db 
+* [public](https://github.com/lilyyanglt/COMP-2800-Team-DTC-10-Netup/tree/master/public) - that holds all of the static resources such as assets, images, css, and front-end javascript files
+* [views](https://github.com/lilyyanglt/COMP-2800-Team-DTC-10-Netup/tree/master/views) - that holds all of the dynamic pages 
+* index.js - which is the main app
+
+## Test Plan
+Click [here](https://docs.google.com/spreadsheets/d/1i10TOo_MbF_NREpyH08IiKmlHsNerO_lF4zTSKJ_mWU/edit#gid=394496370) for our test plan
+
+## License
+[MIT](https://github.com/lilyyanglt/COMP-2800-Team-DTC-10-Netup/blob/master/LICENSE)
 
 # Start Guide
 
@@ -117,7 +120,7 @@ The team is made up of 4 students in the BCIT Computer Systems Technology Diplom
         mongodb+srv://<username>:<password>@<cluster_id>/<Any name you choose for your database>
     ```
 
-5. __Set set Twilio for video streaming__
+5. __Set up Twilio for video streaming__
     * Twilio
     
     1. Go to https://github.com/twilio/twilio-video-app-react 
@@ -129,7 +132,7 @@ The team is made up of 4 students in the BCIT Computer Systems Technology Diplom
     7. Install the CLI plugin with: $ twilio plugins:install @twilio-labs/plugin-rtc
     8. Deploy twilio with: $ npm run deploy:twilio-cli. It wil generate a link used to access the Video app
     9. The link will expire in 1 week. To generate a new link, redeploy the app: $ npm run deploy:twilio-cli -- --override
-    10. Once you have the link, you will need to replace the twilio link inside `./views/pages/myEveents.ejs`
+    10. Once you have the link, you will need to replace the twilio link inside `./views/pages/myEvents.ejs`, there should be 2 href that you need to update.
 
     ```html
       <div class="myevents-event-list-dropdown">
