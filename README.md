@@ -23,6 +23,9 @@ This Netup app is made possible because of amazing people that created:
 * [bcrypt](https://github.com/kelektiv/node.bcrypt.js/) for encrpyting passwords in mongoDB
 * [shareThis](https://sharethis.com/) for easily sharing our app on social media platforms
 * [Heroku](https://devcenter.heroku.com/articles/deploying-nodejs) for allowing us to host our app for free
+* [ejs](https://github.com/mde/ejs), [express-ejs-layout](https://github.com/soarez/express-ejs-layouts) which is the templating engine for rendering dynamic pages
+* [Twilio](https://github.com/twilio/twilio-video-app-react)
+* [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) for allowing us to have a database for free on the cloud
 
 Thank you for making these resources free so it's possible for us to create applications with ease!
 
@@ -41,11 +44,15 @@ __User Authentication and DB__
 
 ## How our repo is organized
 
-* [config](https://github.com/lilyyanglt/COMP-2800-Team-DTC-10-Netup/tree/master/config) holds 
+* [config](https://github.com/lilyyanglt/COMP-2800-Team-DTC-10-Netup/tree/master/config) - holds configuration related files
+* [controller](https://github.com/lilyyanglt/COMP-2800-Team-DTC-10-Netup/tree/dev/controller) - holds the files that can be imported by index.js 
+* [db](https://github.com/lilyyanglt/COMP-2800-Team-DTC-10-Netup/tree/dev/db) - holds the schema of our db 
+* [public](https://github.com/lilyyanglt/COMP-2800-Team-DTC-10-Netup/tree/dev/public) - that holds all of the static resources such as assets, images, css, and front-end javascript files
+* [views](https://github.com/lilyyanglt/COMP-2800-Team-DTC-10-Netup/tree/dev/views) - that holds all of the dynamic pages 
+* index.js - which is the main app
 
 ## Test Plan
-https://docs.google.com/spreadsheets/d/1i10TOo_MbF_NREpyH08IiKmlHsNerO_lF4zTSKJ_mWU/edit#gid=394496370
-
+Click [here](https://docs.google.com/spreadsheets/d/1i10TOo_MbF_NREpyH08IiKmlHsNerO_lF4zTSKJ_mWU/edit#gid=394496370) for our test plan
 
 # Team
 
@@ -75,7 +82,11 @@ The team is made up of 4 students in the BCIT Computer Systems Technology Diplom
 
       For more complete instructions see the [passport js documentation on Google OAuth 2.0.](http://www.passportjs.org/packages/passport-google-oauth20/)
 
-3. __Set up MongoDB__
+3. __Set up Github authentication__
+
+    JAMES TO UPDATE
+
+4. __Set up MongoDB__
 
     1.  First you will need to set up an account with mongoDB atlas and create a cluster.  
     For more imformation on setting up a cluster with MongoDB, see this [helpful guide.](https://intercom.help/mongodb-atlas/en/articles/3013643-creating-databases-and-collections-for-atlas-clusters)
@@ -91,7 +102,7 @@ The team is made up of 4 students in the BCIT Computer Systems Technology Diplom
         mongodb+srv://<username>:<password>@<cluster_id>/<Any name you choose for your database>
     ```
 
-4. __Set set Twilio for video streaming__
+5. __Set set Twilio for video streaming__
     * Twilio
     
     1. Go to https://github.com/twilio/twilio-video-app-react 
@@ -103,14 +114,23 @@ The team is made up of 4 students in the BCIT Computer Systems Technology Diplom
     7. Install the CLI plugin with: $ twilio plugins:install @twilio-labs/plugin-rtc
     8. Deploy twilio with: $ npm run deploy:twilio-cli. It wil generate a link used to access the Video app
     9. The link will expire in 1 week. To generate a new link, redeploy the app: $ npm run deploy:twilio-cli -- --override
+    10. Once you have the link, you will need to replace the twilio link inside `./views/pages/myEveents.ejs`
 
-    * OTHERS?
+    ```html
+      <div class="myevents-event-list-dropdown">
+        <a href="/eventdetails/<%= events[i]._id %>">Details</a>
+        <a href="/eventedit/<%= events[i]._id %>">Edit</a>
+        <a onclick="deleteConfirm('<%= events[i]._id %>')">Delete</a>
+        <a href="YOUR TWILIO LINK">Enter</a>
+      </div>
 
-5. __Start the app__
+    ```
+
+6. __Start the app__
     1. Start the app `npm run dev`
     1. Go to http://localhost:5050 to view the app
 
-6. __Host the app__ (Optional)
+7. __Host the app__ (Optional)
     - The project is set up to host node.js applications on heroku
     - You can update the configuration files and change the host yourselves if you don't want to host on heroku
     - If you do choose to host on heroku, you can click [here](https://devcenter.heroku.com/articles/deploying-nodejs) for more instructions
