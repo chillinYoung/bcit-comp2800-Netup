@@ -84,7 +84,25 @@ The team is made up of 4 students in the BCIT Computer Systems Technology Diplom
 
 3. __Set up Github authentication__
 
-    JAMES TO UPDATE
+    1. Click on your profile picture in the upper right-hand corner to open account drop-down menu.
+    2. Go to settings.
+    3. Click on developer settings at the bottom of the navigation bar to the left.
+    4. Select oauth apps and click on 'New Oath App'.
+    5. Choose an application name and enter 'http:localhost:5050' into the Hompage URL input.
+    6. Enter http:localhost:5050/auth/github/callback into the Authorization callback URL input.
+    7. Select 'Register application' to get your Client ID and client secret.
+    8. Add your client id and client secret to your .env file like below.
+
+
+      ```
+        GITHUBID=<PUT YOUR GITHUB CLIENT ID HERE>
+        GITHUBSECRET=<"PUT YOUR Github CLIENT SECRET HERE">
+      ```
+    9. Now you will be able to use Github to sign in to the account.
+
+
+2.
+
 
 4. __Set up MongoDB__
 
