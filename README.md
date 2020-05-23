@@ -55,7 +55,7 @@ The team is made up of 4 students in the BCIT Computer Systems Technology Diplom
 
 * [config](https://github.com/lilyyanglt/COMP-2800-Team-DTC-10-Netup/tree/master/config) - holds configuration related files
 * [controller](https://github.com/lilyyanglt/COMP-2800-Team-DTC-10-Netup/tree/master/controller) - holds the files that can be imported by index.js 
-* [db](https://github.com/lilyyanglt/COMP-2800-Team-DTC-10-Netup/tree/master/db) - holds the schema of our db 
+* [model](https://github.com/lilyyanglt/COMP-2800-Team-DTC-10-Netup/tree/master/model) - holds the schema of our db 
 * [public](https://github.com/lilyyanglt/COMP-2800-Team-DTC-10-Netup/tree/master/public) - that holds all of the static resources such as assets, images, css, and front-end javascript files
 * [views](https://github.com/lilyyanglt/COMP-2800-Team-DTC-10-Netup/tree/master/views) - that holds all of the dynamic pages 
 * index.js - which is the main app
