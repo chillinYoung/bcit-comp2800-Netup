@@ -1,10 +1,13 @@
 const userController = require("./userRoute");
 const bcrypt = require("bcrypt");
+const crypto = require('crypto');
+const sendEmail = require('../controller/sendEmail');
 const saltRounds = 10;
 
+// Module for registering a new user and saving them in the database.
 
 // initialize our mock database
-const schema = require("../db/mongooseSchema");
+const schema = require("../model/mongooseSchema");
 
 // load users from db
 
@@ -61,30 +64,49 @@ module.exports = {
               user: userController.isLoggedIn(req.user),
             });
           } else {
-            // If the email doesn't exist in DB,
-            //then can add the new user
+              // If the email doesn't exist in DB,
+              //then can add the new user
+
+          // User Bcrypt library to hash and salt the password (similar to encryption)
+            // to protect the password in the database and keep it secure.
             bcrypt.hash(pw1, saltRounds, function(err, hash) {
 
+                let newUser = new schema.User({
+                  name: `${fname} ${lname}`,
+                  email: email,
+                  password: hash,
+                  isEmailVerified: false,
+                  interests: [],
+                  hostedEvents: [],
+                  joinedEvents: [],
+                });
 
-            let newUser = new schema.User({
-              name: `${fname} ${lname}`,
-              email: email,
-              password: hash,
-              interests: [],
-              hostedEvents: [],
-              joinedEvents: [],
-            });
-            newUser.save((err) => {
-              if (!err) {
-                console.log("Successfully added new user!");
-              } else {
-                console.log(err);
-              }
-            });
+                // also create a tempUser for storing the token
 
-            req.flash("success_msg", "Successfully created account");
-            res.redirect("/login");
-          });
+                const newTempUser = new schema.TempUser({
+                  _userId: newUser._id,
+                  token: crypto.randomBytes(16).toString('hex')
+                })
+
+                newUser.save((err) => {
+                  if (!err) {
+                    console.log("Successfully added new user!");
+                  } else {
+                    console.log(err);
+                  }
+                });
+
+                newTempUser.save((err) => {
+                  if(!err) {
+                    console.log("Successfully created new temporary user for email verification")
+                  } else {
+                    console.log(err);
+                  }
+                })
+
+                // *** SETTING UP EMAIL TO SEND TO USER USING NODEMAILER *********
+                sendEmail(email, newTempUser.token, req, res);
+            });
           }
         }
       } else {

@@ -1,4 +1,5 @@
 <div class="body-create">
+  <!-- main top navigation bar -->
   <%- include('../partials/navigation'); %>
 
   <figure class="figure-create-bg">
@@ -8,25 +9,28 @@
   </figure>
 
   <main class="main-create">
+    <!-- header for pc window -->
     <div class="figure-create-header">
       <span>Create a New Event</span>
     </div>
 
     <form action="/create" class="form-basic" method="post">
+      <!-- Topic -->
       <div class="form-create-container">
         <label for="create-topic" class="form-label-basic">Choose Topic *</label>
         <select
           class="form-input-basic"
           id="create-topic"
           name="eventTopic"
-          required
-        >
-          <option selected>Select...</option>
+          required>
+          <option value="">Select...</option>
           <option value="social">Social</option>
           <option value="health">Health</option>
           <option value="tech">Tech</option>
         </select>
       </div>
+
+      <!-- Title -->
       <div class="form-create-container">
         <label for="create-title" class="form-label-basic">Title: *</label>
         <input
@@ -36,9 +40,10 @@
           name="eventName"
           minlength="5"
           placeholder="at least 5 characters"
-          required
-        />
+          required />
       </div>
+
+      <!-- Date -->
       <div class="form-create-container">
         <label for="create-date" class="form-label-basic">Date: *</label>
         <input
@@ -46,9 +51,10 @@
           type="date"
           id="create-date"
           name="eventDate"
-          required
-        />
+          required />
       </div>
+
+      <!-- Time -->
       <div class="form-create-container">
         <label for="create-time" class="form-label-basic">Time: *</label>
         <input
@@ -56,20 +62,18 @@
           type="time"
           id="create-time"
           name="eventTime"
-          required
-        />
+          required />
       </div>
+
+      <!-- Duration -->
       <div class="form-create-container">
-        <label for="create-duration" class="form-label-basic"
-          >Session Duration: *</label
-        >
+        <label for="create-duration" class="form-label-basic">Session Duration: *</label>
         <select
           class="form-input-basic"
           id="create-duration"
           name="eventDuration"
-          required
-        >
-          <option selected>Select...</option>
+          required>
+          <option value="">Select...</option>
 
           <option value="0.5">30 minutes</option>
           <option value="1">1 hour</option>
@@ -80,10 +84,10 @@
           <% } %>
         </select>
       </div>
+
+      <!-- Description -->
       <div class="form-create-container">
-        <label for="create-description" class="form-label-basic"
-          >Description: *</label
-        >
+        <label for="create-description" class="form-label-basic">Description: *</label>
         <textarea
           class="form-textarea-basic"
           rows="5"
@@ -92,6 +96,7 @@
           id="event-details"
           name="eventDetails"
           placeholder="at least 50 characters"
+          required
         ></textarea>
       </div>
       <span class="required-fields-text">* Required fields</span>
@@ -99,9 +104,11 @@
     </form>
   </main>
 
+  <!-- extra images to make side images positioned well (on pc window) -->
   <figure class="figure-create-bg-left"></figure>
   <figure class="figure-create-bg-right"></figure>
 
+  <!-- footer including sitemap -->
   <%- include('../partials/sitemap'); %>
 </div>
 

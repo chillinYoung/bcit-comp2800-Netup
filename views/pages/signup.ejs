@@ -1,5 +1,5 @@
 <div class="body-signup">
-
+  <!-- main top navigation bar -->
   <%- include('../partials/navigation'); %>
 
   <figure class="figure-signup-bg">
@@ -9,12 +9,14 @@
   </figure>
 
   <main class="main-signup">
+    <!-- link to sign in page -->
     <div class="signup-signup">
       <span>Already have an account?</span>
       <a href="/login">Sign in</a>
     </div>
 
     <form action="/signup" class="form-basic" method="post">
+      <!-- First Name -->
       <div class="form-basic-container">
         <label for="signup-fname" class="form-label-basic">First Name: *</label>
         <input 
@@ -26,6 +28,7 @@
         required>
       </div>
 
+      <!-- Last Name -->
       <div class="form-basic-container">
         <label for="signup-lname" class="form-label-basic">Last Name: *</label>
         <input 
@@ -37,6 +40,7 @@
         required>
       </div>
 
+      <!-- Email -->
       <div class="form-basic-container">
         <label for="signup-email" class="form-label-basic">Email: *</label>
         <input 
@@ -48,6 +52,7 @@
         required>
       </div>
 
+      <!-- Password -->
       <div class="form-basic-container">
         <label for="signup-pw" class="form-label-basic">Password: *</label>
         <input 
@@ -60,6 +65,7 @@
         required>
       </div>
 
+      <!-- Confirm Password -->
       <div class="form-basic-container">
         <label for="signup-pw" class="form-label-basic">Confirm Password: *</label>
         <input 
@@ -73,12 +79,14 @@
 
       <span class="required-fields-text">* Required fields </span>
 
+      <!-- sign up button -->
       <input id="signup-btn" class="yellow-btn" type="submit" value="Sign up">
 
     </form>
 
   </main>
 
+  <!-- only footer without sitemap -->
   <%- include('../partials/footer'); %>
 
 </div>

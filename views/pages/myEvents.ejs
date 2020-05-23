@@ -1,3 +1,7 @@
+<!-- You Can Change Twilio Link Below -->
+<% let twilioLink = "https://video-app-6928-dev.twil.io/?passcode=3223536928" %>
+
+
 <div class="body-myevents">
   <%- include('../partials/navigation'); %>
 
@@ -9,31 +13,38 @@
 
   <main class="main-myevents-container">
     <div class="main-myevents">
+      <!-- header for pc window -->
       <div class="figure-myevents-header">
         <span>My Events</span>
       </div>
 
+      <!-- create event button -->
       <a class="long-yellow-btn" href="/create">Create a New Event</a>
 
       <div class="myevents-blocks">
+
+        <!-- HOSTED EVENTS -->
         <div class="myevents-header">
           <span>Hosted Events</span>
           <select
             class="myevents-sort-select"
             id="hosted-myevents-sort-select"
-            name="hosted-myevents-sort-select"
-          >
+            name="hosted-myevents-sort-select">
+
             <option value selected>Sort</option>
             <option value="date">Date</option>
             <option value="title">Title</option>
           </select>
         </div>
 
+        <!-- hosted event lists -->
         <div class="myevents-block hosted-myevents">
           <% let hostedEmpty = true %>
+
           <% for (let i = 0; i < events.length; i++) { %>
             <% if (currentUser._id == (events[i].hostId)) { %>
             <% hostedEmpty = false %>
+
             <div class="myevents-event-list">
               <img src="<%= events[i].image %>" />
               <div class="myevents-event-list-text">
@@ -44,8 +55,8 @@
                     <div class="myevents-event-list-dropdown">
                       <a href="/eventdetails/<%= events[i]._id %>">Details</a>
                       <a href="/eventedit/<%= events[i]._id %>">Edit</a>
-                      <a href="/deleteEvent/<%= events[i]._id %>">Delete</a>
-                      <a href="https://video-app-6928-dev.twil.io/?passcode=3585026928">Enter</a>
+                      <a onclick="deleteConfirm('<%= events[i]._id %>')">Delete</a>
+                      <a href="<%= twilioLink %>">Enter</a>
                     </div>
                   </div>
                 </div>
@@ -57,11 +68,21 @@
                   <% } %>
                 </p>
               </div>
+
+              <!-- warning message for delete event -->
+              <div class="myevents-warn warn-<%= events[i]._id %>">
+                <span>Do you really want to delete the event '<%= events[i].eventName %>'?</span>
+                <div>
+                  <a class="myevents-warn-cancel" onclick="closeAllConfirm('<%= events[i]._id %>')">Cancel</a>
+                  <a href="/deleteEvent/<%= events[i]._id %>" class="myevents-warn-delete">Delete</a>
+                </div>
+              </div>
+
             </div>
           <% }} %>
         </div>
 
-        <!-- show this message if there are no hosted events (TEMPORARY) -->
+        <!-- show this message if there are no hosted events -->
         <% if(hostedEmpty) { %>
           <div class="myevents-no-events">
             <span>You don't have any hosted events yet.</span>
@@ -76,20 +97,23 @@
           <select
             class="myevents-sort-select"
             id="joined-myevents-sort-select"
-            name="joined-myevents-sort-select"
-          >
+            name="joined-myevents-sort-select">
+
             <option value selected>Sort</option>
             <option value="date">Date</option>
             <option value="title">Title</option>
           </select>
         </div>
 
+        <!-- joined event lists -->
         <div class="myevents-block joined-myevents">
           <% let joinedEmpty = true %>
+
           <% for (let i = 0; i < events.length; i++) { %>
             <% events[i].participants.forEach( participant => { %>
             <% if (currentUser.id == participant) { %>
             <% joinedEmpty = false %>
+
             <div class="myevents-event-list">
               <img src="<%= events[i].image %>" />
               <div class="myevents-event-list-text">
@@ -99,18 +123,28 @@
                     <button class="myevents-event-list-btn">&#8942;</button>
                     <div class="myevents-event-list-dropdown">
                       <a href="/eventdetails/<%= events[i]._id %>">Details</a>
-                      <a href="/leaveEvent/<%= events[i]._id %>">Leave</a>
-                      <a href="https://video-app-6928-dev.twil.io/?passcode=3585026928">Enter</a>
+                      <a onclick="deleteConfirm('<%= events[i]._id %>')">Leave</a>
+                      <a href="<%= twilioLink %>">Enter</a>
                     </div>
                   </div>
                 </div>
                 <p><%= events[i].description %></p>
               </div>
+
+              <!-- warning message for leave event -->
+              <div class="myevents-warn warn-<%= events[i]._id %>">
+                <span>Do you really want to leave the event '<%= events[i].eventName %>'?</span>
+                <div>
+                  <a class="myevents-warn-cancel" onclick="closeAllConfirm('<%= events[i]._id %>')">Cancel</a>
+                  <a href="/leaveEvent/<%= events[i]._id %>" class="myevents-warn-delete">Leave</a>
+                </div>
+              </div>
+
             </div>
           <% } }) } %>
         </div>
 
-        <!-- show this message if there are no joined events (TEMPORARY) -->
+        <!-- show this message if there are no joined events -->
          <% if(joinedEmpty) { %>
           <div class="myevents-no-events">
             <span>You don't have any joined events yet.</span>
@@ -120,6 +154,10 @@
       </div>
     </div>
   </main>
-
+  
+  <!-- footer including sitemap -->
   <%- include('../partials/sitemap'); %>
 </div>
+
+<!-- page specific script files -->
+<script src="/src/assets/js/myevent_delete.js" async></script>

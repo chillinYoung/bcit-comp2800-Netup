@@ -356,18 +356,20 @@ nav {
 
 .video-post-description button {
   -webkit-appearance: none;
-  width: 4rem;
+  width: 5rem;
   border-radius: 5px;
   border: none;
   color: var(--color-bright-text);
   font-weight: bold;
-  font-size: .9rem;
+  font-size: 1.1rem;
+  height: 1.9rem;
   outline: none;
 }
 
 .video-post-join {
   background-color: var(--color-point-yellow);
   cursor: pointer;
+  padding: 0;
 }
 
 .video-post-join:hover {
@@ -377,6 +379,7 @@ nav {
 .video-post-joined {
   background-color: var(--color-dim-text);
   cursor: initial;
+  padding: 0;
 }
 
 .video-post span {
@@ -623,6 +626,12 @@ footer {
     align-items: center;
     justify-items: center;
     align-items: start;
+  }
+
+  .video-post-description button {
+    width: 4rem;
+    font-size: .9rem;
+    height: 1.5rem;
   }
 
   .figure-index-text {

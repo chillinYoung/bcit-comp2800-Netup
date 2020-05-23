@@ -1,26 +1,39 @@
-
+<!-- event cards -->
   <% events.forEach(event => { %>
     <div class="video-post">
       <img src="<%= event['image'] %>" alt="Photo by Tyler Nix on Unsplash">
       <div class="video-post-description">
+
+        <!-- first row in a card; topic and join button -->
         <div>
           <span class="video-post-category"><%= event['eventTopic'].toUpperCase() %></span>
 
+          <!-- user didn't login -->
           <% if (!currentUser) { %>
             <button class="video-post-join" id="<%= event['_id'] %>" name="<%= event['_id'] %>" formmethod="post" formaction="/joinEvent" onclick="joinToJoined(<%= event['_id'] %>)">Join</button>
 
+          <!-- user did login and event is NOT hosted by the user -->
           <% } else if (currentUser && (event.hostId != currentUser._id)) { %>
+
+            <!-- user did login and joined event -->
             <% if (currentUser.joinedEvents.includes(event['_id'])) { %>
               <button class="video-post-joined">Joined</button>
+
+            <!-- user did login and NOT joined event -->
             <% } else { %>
               <button class="video-post-join" id="<%= event['_id'] %>" name="<%= event['_id'] %>" formmethod="post" formaction="/joinEvent" onclick="joinToJoined('<%= event['_id'] %>')">Join</button>
+
             <% } %>
-
           <% } %>
-
+          <!-- user did login and event is hosted by the user: NO BUTTON -->
         </div>
+
+        <!-- second row in a card; event title -->
         <a href="/eventdetails/<%= event['_id'] %>" class="video-post-title"><%= event['eventName'] %></a>
-        <span class="video-post-date"><%= event['eventDate'] %></span>
+
+        <!-- third (last) row in a card; event date and time -->
+        <span class="video-post-date"><%= event['eventDate'] %>, <%= event['eventTime'] %></span>
+
       </div>
     </div>
   <% }) %> 
