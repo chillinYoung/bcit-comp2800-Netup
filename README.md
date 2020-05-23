@@ -132,15 +132,11 @@ Click [here](https://docs.google.com/spreadsheets/d/1i10TOo_MbF_NREpyH08IiKmlHsN
     7. Install the CLI plugin with: $ twilio plugins:install @twilio-labs/plugin-rtc
     8. Deploy twilio with: $ npm run deploy:twilio-cli. It wil generate a link used to access the Video app
     9. The link will expire in 1 week. To generate a new link, redeploy the app: $ npm run deploy:twilio-cli -- --override
-    10. Once you have the link, you will need to replace the twilio link inside `./views/pages/myEvents.ejs`, there should be 2 href that you need to update.
+    10. Once you have the link, you will need to replace the twilio link inside `./views/pages/myEvents.ejs`, there should be one line of code in line 2 that you need to update.
 
     ```html
-      <div class="myevents-event-list-dropdown">
-        <a href="/eventdetails/<%= events[i]._id %>">Details</a>
-        <a href="/eventedit/<%= events[i]._id %>">Edit</a>
-        <a onclick="deleteConfirm('<%= events[i]._id %>')">Delete</a>
-        <a href="YOUR TWILIO LINK">Enter</a>
-      </div>
+      <!-- You Can Change Twilio Link Below -->
+      <% let twilioLink = "YOUR TWILIO LINK HERE" %>
 
     ```
 
