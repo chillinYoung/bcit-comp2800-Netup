@@ -1,3 +1,7 @@
+<!-- You Can Change Twilio Link Below -->
+<% let twilioLink = "https://video-app-6928-dev.twil.io/?passcode=3223536928" %>
+
+
 <div class="body-myevents">
   <%- include('../partials/navigation'); %>
 
@@ -52,7 +56,7 @@
                       <a href="/eventdetails/<%= events[i]._id %>">Details</a>
                       <a href="/eventedit/<%= events[i]._id %>">Edit</a>
                       <a onclick="deleteConfirm('<%= events[i]._id %>')">Delete</a>
-                      <a href="https://video-app-6928-dev.twil.io/?passcode=3223536928">Enter</a>
+                      <a href="<%= twilioLink %>">Enter</a>
                     </div>
                   </div>
                 </div>
@@ -120,7 +124,7 @@
                     <div class="myevents-event-list-dropdown">
                       <a href="/eventdetails/<%= events[i]._id %>">Details</a>
                       <a onclick="deleteConfirm('<%= events[i]._id %>')">Leave</a>
-                      <a href="https://video-app-6928-dev.twil.io/?passcode=3223536928">Enter</a>
+                      <a href="<%= twilioLink %>">Enter</a>
                     </div>
                   </div>
                 </div>
